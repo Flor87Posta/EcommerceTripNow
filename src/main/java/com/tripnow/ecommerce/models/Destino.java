@@ -85,4 +85,25 @@ public class Destino {
     public void setPaquetes(Set<Paquete> paquetes) {
         this.paquetes = paquetes;
     }
+
+    // Método para añadir un destinoExcursion:
+    public void añadirDestinoExcursion(DestinoExcursion destinoExcursion){
+        destinoExcursion.setDestino(this);
+        destinosExcursiones.add(destinoExcursion); // destinosExcursiones es el Set
+    }
+
+    // Método para añadir un hotel:
+
+    public void añadirHotel(Hotel hotel){
+        hotel.setDestino(this);
+        hoteles.add(hotel); // destinosExcursiones es el Set
+    }
+
+    // Método para añadir un hotel:
+
+    public void añadirPaquete(Paquete paquete){
+        paquete.setDestino(this);
+        paquetes.add(paquete); // destinosExcursiones es el Set
+    }
+
 }

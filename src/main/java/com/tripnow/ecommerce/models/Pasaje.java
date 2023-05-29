@@ -20,24 +20,28 @@ public class Pasaje {
     private LocalDate fechaRegreso;
     private double precioPasaje;
 
+    private int cantidadStock;
+
 
     @OneToMany(mappedBy = "pasaje", fetch = FetchType.EAGER)
     private Set<Paquete> paquetes = new HashSet<>();
 
 
     public Pasaje(){ }
-    public Pasaje(TipoPasaje tipo, String compania, LocalDate fechaSalida, LocalDate fechaRegreso, double precioPasaje){
+    public Pasaje(TipoPasaje tipo, String compania, LocalDate fechaSalida, LocalDate fechaRegreso, double precioPasaje, int cantidadStock){
         this.tipo= tipo;
         this.compania=compania;
         this.fechaSalida= fechaSalida;
         this.fechaRegreso=fechaRegreso;
         this.precioPasaje = precioPasaje;
+        this.cantidadStock = cantidadStock;
     }
 
 
     public long getId() {
         return id;
     }
+
 
     public TipoPasaje getTipo() {
         return tipo;
@@ -79,11 +83,25 @@ public class Pasaje {
         this.precioPasaje = precioPasaje;
     }
 
+    public int getCantidadStock() {
+        return cantidadStock;
+    }
+
+    public void setCantidadStock(int cantidadStock) {
+        this.cantidadStock = cantidadStock;
+    }
+
     public Set<Paquete> getPaquetes() {
         return paquetes;
     }
 
     public void setPaquetes(Set<Paquete> paquetes) {
         this.paquetes = paquetes;
+    }
+
+    // Método para añadir pasaje al paquete:
+    public void añadirPasaje(Paquete paquete){
+        paquete.setPasaje(this);
+        paquetes.add(paquete); //paquetes es el Set
     }
 }

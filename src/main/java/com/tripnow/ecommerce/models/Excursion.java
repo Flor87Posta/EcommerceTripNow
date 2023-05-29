@@ -14,15 +14,18 @@ public class Excursion {
     private String actividad;
     private double precioExcursion;
 
+    private int cantidadStock;
+
     @OneToMany(mappedBy = "excursion", fetch = FetchType.EAGER)
     private Set<DestinoExcursion> destinosExcursiones = new HashSet<>();
 
     public Excursion() {
     }
-    public Excursion(String nombre, String actividad, double precioExcursion) {
+    public Excursion(String nombre, String actividad, double precioExcursion, int cantidadStock) {
         this.nombre = nombre;
         this.actividad = actividad;
         this.precioExcursion = precioExcursion;
+        this.cantidadStock=cantidadStock;
     }
 
     public long getId() {
@@ -57,11 +60,24 @@ public class Excursion {
         this.precioExcursion = precioExcursion;
     }
 
+    public int getCantidadStock() {
+        return cantidadStock;
+    }
+    public void setCantidadStock(int cantidadStock) {
+        this.cantidadStock = cantidadStock;
+    }
+
     public Set<DestinoExcursion> getDestinosExcursiones() {
         return destinosExcursiones;
     }
 
     public void setDestinosExcursiones(Set<DestinoExcursion> destinosExcursiones) {
         this.destinosExcursiones = destinosExcursiones;
+    }
+
+    // Método para añadir un destinoExcursion:
+    public void añadirDestinoExcursion(DestinoExcursion destinoExcursion){
+        destinoExcursion.setExcursion(this);
+        destinosExcursiones.add(destinoExcursion); // destinosExcursiones es el Set
     }
 }
