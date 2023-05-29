@@ -15,6 +15,8 @@ public class Orden {
     private boolean activa;
     private int cantidadPasajeros;
     private double precioTotalPaquetes;
+
+    private boolean pagada;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="client_id")
     private Cliente cliente;
@@ -24,18 +26,16 @@ public class Orden {
     private Set<OrdenPaquete> ordenesPaquetes = new HashSet<>(); // set para evitar datos duplicados
     //ordenesPaquetes como nueva propiedad de la tabla Orden
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "pago_id")
-    private Pago pago;
 
 
     public Orden(){};
 
-    public Orden(LocalDateTime fechaCreacion, boolean activa, int cantidadPasajeros, double precioTotalPaquetes ){
+    public Orden(LocalDateTime fechaCreacion, boolean activa, int cantidadPasajeros, double precioTotalPaquetes, boolean pagada ){
     this.fechaCreacion = fechaCreacion;
     this.activa=activa;
     this.cantidadPasajeros =cantidadPasajeros;
     this.precioTotalPaquetes=precioTotalPaquetes;
+    this.pagada=pagada;
     };
 
     //Metodos accesores:
@@ -81,6 +81,14 @@ public class Orden {
         this.precioTotalPaquetes = precioTotalPaquetes;
     }
 
+    public boolean isPagada() {
+        return pagada;
+    }
+
+    public void setPagada(boolean pagada) {
+        this.pagada = pagada;
+    }
+
     public Cliente getCliente() {
         return cliente;
     }
@@ -97,11 +105,13 @@ public class Orden {
         this.ordenesPaquetes = ordenesPaquetes;
     }
 
-    public Pago getPago() {
-        return pago;
+
+    //Metodos creados:
+
+    // Método para añadir una ordenPaquete:
+    public void añadirOrdenPaquete(OrdenPaquete ordenPaquete){
+        ordenPaquete.setOrden(this);
+        ordenesPaquetes.add(ordenPaquete); // ordenesPaquetes es el Set
     }
 
-    public void setPago(Pago pago) {
-        this.pago = pago;
-    }
 }
