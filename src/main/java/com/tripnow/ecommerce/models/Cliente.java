@@ -20,7 +20,7 @@ public class Cliente {
     private Date fechaNac;
     private String email;
     private String contrasena;
-    private String historialCompras;
+
 
     @OneToMany(mappedBy="cliente", fetch= FetchType.EAGER) //asociado a cliente definido en la clase Orden, fijarse q
     // este el mappedBy para que no genere una tabla intermedia en blanco
@@ -29,7 +29,7 @@ public class Cliente {
 
     public Cliente(){};
 
-    public Cliente(String nombre, String apellido, String pasaporte, String direccion, String telefono, String email, String contrasena, Date fechaNac, String historialCompras) {
+    public Cliente(String nombre, String apellido, String pasaporte, String direccion, String telefono, String email, String contrasena, Date fechaNac) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.pasaporte = pasaporte;
@@ -38,7 +38,7 @@ public class Cliente {
         this.email = email;
         this.contrasena = contrasena;
         this.fechaNac = fechaNac;
-        this.historialCompras =historialCompras;
+
     }
 
     //Métodos accesores:
@@ -115,13 +115,6 @@ public class Cliente {
         this.contrasena = contrasena;
     }
 
-    public String getHistorialCompras() {
-        return historialCompras;
-    }
-
-    public void setHistorialCompras(String historialCompras) {
-        this.historialCompras = historialCompras;
-    }
 
     public Set<Orden> getOrdenes() {
         return ordenes;
@@ -129,6 +122,13 @@ public class Cliente {
 
     public void setOrdenes(Set<Orden> ordenes) {
         this.ordenes = ordenes;
+    }
+
+    //Metodos creados:
+    // Método para añadir nueva orden:
+    public void añadirOrden(Orden orden){
+        orden.setCliente(this);
+        ordenes.add(orden); //ordenes es Set
     }
 
 }

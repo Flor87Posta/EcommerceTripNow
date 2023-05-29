@@ -94,4 +94,15 @@ public class Paquete {
     public void setOrdenesPaquetes(Set<OrdenPaquete> ordenesPaquetes) {
         this.ordenesPaquetes = ordenesPaquetes;
     }
+
+
+
+    //Metodos creados:
+
+    // Método para añadir una OrdenPaquete:
+    public void añadirOrdenPaquete(OrdenPaquete ordenPaquete){
+        ordenPaquete.setPaquete(this);
+        ordenesPaquetes.add(ordenPaquete); // ordenesPaquetes es el Set
+    }
+
 }
