@@ -13,13 +13,11 @@ public class Hotel {
 
     private String nombre;
     private HotelCategoria categoria;
-
     private boolean allInclusive;
     private boolean desayuno;
     private boolean mediaPension;
     private double precioHotel;
-    private LocalDate fechaEntrada;
-    private LocalDate fechaSalida;
+    private int cantidadStock;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "destino_id")
@@ -27,15 +25,15 @@ public class Hotel {
 
 
     public Hotel(){ }
-    public Hotel(String nombre, HotelCategoria categoria, boolean allInclusive, boolean desayuno, boolean mediaPension, double precioHotel, LocalDate fechaEntrada, LocalDate fechaSalida){
+    public Hotel(String nombre, HotelCategoria categoria, boolean allInclusive, boolean desayuno, boolean mediaPension, double precioHotel, int cantidadStock){
         this.nombre=nombre;
         this.categoria=categoria;
         this.allInclusive= allInclusive;
         this.desayuno=desayuno;
         this.mediaPension=mediaPension;
         this.precioHotel=precioHotel;
-        this.fechaEntrada=fechaEntrada;
-        this.fechaSalida= fechaSalida;
+        this.cantidadStock=cantidadStock;
+
     }
 
     public long getId() {
@@ -90,22 +88,13 @@ public class Hotel {
         this.precioHotel = precioHotel;
     }
 
-    public LocalDate getFechaEntrada() {
-        return fechaEntrada;
+    public int getCantidadStock() {
+        return cantidadStock;
     }
 
-    public void setFechaEntrada(LocalDate fechaEntrada) {
-        this.fechaEntrada = fechaEntrada;
+    public void setCantidadStock(int cantidadStock) {
+        this.cantidadStock = cantidadStock;
     }
-
-    public LocalDate getFechaSalida() {
-        return fechaSalida;
-    }
-
-    public void setFechaSalida(LocalDate fechaSalida) {
-        this.fechaSalida = fechaSalida;
-    }
-
     public Destino getDestino() {
         return destino;
     }
@@ -113,4 +102,6 @@ public class Hotel {
     public void setDestino(Destino destino) {
         this.destino = destino;
     }
+
+
 }

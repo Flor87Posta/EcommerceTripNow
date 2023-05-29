@@ -14,10 +14,11 @@ public class Paquete {
     private String nombrePaquete;
     private int dias;
     private double precioTotalUnitario;
-    private int cantidadStock;
 
-    @OneToMany(mappedBy = "paquete", fetch = FetchType.EAGER)
-    private Set<OrdenPaquete> ordenesPaquetes = new HashSet<>();
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="orden_id")
+    private Orden orden;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "pasaje_id" )
@@ -28,11 +29,11 @@ public class Paquete {
     private Destino destino;
 
     public Paquete(){}
-    public Paquete(String nombrePaquete, int dias, double precioTotalUnitario, int cantidadStock){
+    public Paquete(String nombrePaquete, int dias, double precioTotalUnitario){
         this.nombrePaquete = nombrePaquete;
         this.dias = dias;
         this.precioTotalUnitario= precioTotalUnitario;
-        this.cantidadStock= cantidadStock;
+
     }
 
     public long getId() {
@@ -63,13 +64,6 @@ public class Paquete {
         this.precioTotalUnitario = precioTotalUnitario;
     }
 
-    public int getCantidadStock() {
-        return cantidadStock;
-    }
-
-    public void setCantidadStock(int cantidadStock) {
-        this.cantidadStock = cantidadStock;
-    }
 
     public Pasaje getPasaje() {
         return pasaje;
@@ -87,22 +81,16 @@ public class Paquete {
         this.destino = destino;
     }
 
-    public Set<OrdenPaquete> getOrdenesPaquetes() {
-        return ordenesPaquetes;
+    public Orden getOrden() {
+        return orden;
     }
 
-    public void setOrdenesPaquetes(Set<OrdenPaquete> ordenesPaquetes) {
-        this.ordenesPaquetes = ordenesPaquetes;
+    public void setOrden(Orden orden) {
+        this.orden = orden;
     }
 
+//Metodos creados:
 
 
-    //Metodos creados:
-
-    // Método para añadir una OrdenPaquete:
-    public void añadirOrdenPaquete(OrdenPaquete ordenPaquete){
-        ordenPaquete.setPaquete(this);
-        ordenesPaquetes.add(ordenPaquete); // ordenesPaquetes es el Set
-    }
 
 }

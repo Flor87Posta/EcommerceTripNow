@@ -7,7 +7,9 @@ public class OrdenDTO {
     private LocalDateTime fechaCreacion;
     private boolean activa;
     private int cantidadPasajeros;
-    private double precioTotalPaquetes;
+    private double precioTotalPaquete;
+
+    private double precioTotalOrden;
     private boolean pagada;
     public OrdenDTO() {
     }
@@ -16,7 +18,8 @@ public class OrdenDTO {
         this.fechaCreacion = orden.getFechaCreacion();
         this.activa = orden.isActiva();
         this.cantidadPasajeros = orden.getCantidadPasajeros();
-        this.precioTotalPaquetes = orden.getPrecioTotalPaquetes();
+        this.precioTotalPaquete = orden.getPrecioTotalPaquete();
+        this.precioTotalOrden= orden.getPrecioTotalOrden();
         this.pagada = orden.isPagada();
 
     }
@@ -37,8 +40,8 @@ public class OrdenDTO {
         return cantidadPasajeros;
     }
 
-    public double getPrecioTotalPaquetes() {
-        return precioTotalPaquetes;
+    public double getPrecioTotalPaquete() {
+        return precioTotalPaquete;
     }
 
     public boolean isPagada() {
