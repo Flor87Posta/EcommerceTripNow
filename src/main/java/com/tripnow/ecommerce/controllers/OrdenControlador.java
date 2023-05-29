@@ -1,8 +1,6 @@
 package com.tripnow.ecommerce.controllers;
 import com.tripnow.ecommerce.Dto.OrdenDTO;
-import com.tripnow.ecommerce.Dto.PagoDTO;
 import com.tripnow.ecommerce.models.Cliente;
-import com.tripnow.ecommerce.models.FormaPago;
 import com.tripnow.ecommerce.models.Orden;
 import com.tripnow.ecommerce.services.ClienteServicio;
 import com.tripnow.ecommerce.services.OrdenServicio;
@@ -10,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -42,7 +38,7 @@ public class OrdenControlador {
         } else if (cliente.getOrdenes().stream().filter( orden -> orden.isActiva()).collect(toList()).size() == 1){
             return new ResponseEntity<>("Orden en proceso", HttpStatus.OK);}
 
-        Orden nuevaOrden = new Orden(LocalDateTime.now(), true, cantidadPasajeros, 4000, false);
+        Orden nuevaOrden = new Orden(LocalDateTime.now(), true, cantidadPasajeros, 4000, 6000, false);
         cliente.añadirOrden(nuevaOrden);
         ordenServicio.saveOrden(nuevaOrden);
         return new ResponseEntity<>("Orden creada", HttpStatus.CREATED);
@@ -52,7 +48,7 @@ public class OrdenControlador {
     public ResponseEntity<Object> pagarOrden(@RequestBody PagoDTO pagoDTO){
 
         Cliente cliente = clienteServicio.findByEmail(pagoDTO.getEmail());
-
+hacer condicional con el is.pagada antes para ver q sea false y recien ahi siga toda la logica
         if (!EnumSet.of(FormaPago.CREDITO, FormaPago.DEBITO).contains(paymentDTO.getTypeCard())) {
             return new ResponseEntity<>("Invalid card type", HttpStatus.FORBIDDEN);
         }

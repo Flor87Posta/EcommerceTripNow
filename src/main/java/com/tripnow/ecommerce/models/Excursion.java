@@ -13,11 +13,13 @@ public class Excursion {
     private String nombre;
     private String actividad;
     private double precioExcursion;
-
     private int cantidadStock;
 
-    @OneToMany(mappedBy = "excursion", fetch = FetchType.EAGER)
-    private Set<DestinoExcursion> destinosExcursiones = new HashSet<>();
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="destino_id")
+    private Destino destino;
+
 
     public Excursion() {
     }
@@ -67,17 +69,12 @@ public class Excursion {
         this.cantidadStock = cantidadStock;
     }
 
-    public Set<DestinoExcursion> getDestinosExcursiones() {
-        return destinosExcursiones;
+    public Destino getDestino() {
+        return destino;
     }
 
-    public void setDestinosExcursiones(Set<DestinoExcursion> destinosExcursiones) {
-        this.destinosExcursiones = destinosExcursiones;
+    public void setDestino(Destino destino) {
+        this.destino = destino;
     }
 
-    // Método para añadir un destinoExcursion:
-    public void añadirDestinoExcursion(DestinoExcursion destinoExcursion){
-        destinoExcursion.setExcursion(this);
-        destinosExcursiones.add(destinoExcursion); // destinosExcursiones es el Set
-    }
 }
