@@ -21,4 +21,9 @@ public class PaqueteServicioImplementacion implements PaqueteServicio {
     public List<PaqueteDTO> getPaquetesDTO() {
         return paqueteRepositorio.findAll().stream().map(PaqueteDTO::new).collect(toList());
     }
+
+    @Override
+    public void deletePaquete(Paquete paquete) {
+        paqueteRepositorio.delete(paquete);
+    }
 }

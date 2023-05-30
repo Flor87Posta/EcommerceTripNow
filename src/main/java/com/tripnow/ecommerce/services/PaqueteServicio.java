@@ -6,4 +6,6 @@ import java.util.List;
 public interface PaqueteServicio {
     void savePaquete(Paquete paquete);
     List<PaqueteDTO> getPaquetesDTO();
+
+    void deletePaquete(Paquete paquete);
 }

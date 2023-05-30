@@ -41,7 +41,12 @@ public class OrdenServicioImplementacion implements OrdenServicio {
     }
 
     @Override
+    public void deleteOrden(Orden orden) {
+        ordenRepositorio.delete(orden);
+    }
+
+/*    @Override
     public List<Orden> findByClient(Cliente cliente) {
         return this.ordenRepositorio.findByClient(cliente);
-    }
+    }*/
 }
