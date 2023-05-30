@@ -14,4 +14,9 @@ public class PasajeServicioImplementacion implements PasajeServicio {
     public Pasaje getPasaje(long pasajeId) {
         return pasajeRepositorio.findById(pasajeId).orElse(null);
     }
+
+    @Override
+    public void savePasaje(Pasaje pasaje) {
+        pasajeRepositorio.save(pasaje);
+    }
 }
