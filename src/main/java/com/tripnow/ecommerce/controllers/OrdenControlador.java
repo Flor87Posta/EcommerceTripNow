@@ -38,7 +38,7 @@ public class OrdenControlador {
         } else if (cliente.getOrdenes().stream().filter( orden -> orden.isActiva()).collect(toList()).size() == 1){
             return new ResponseEntity<>("Orden en proceso", HttpStatus.OK);}
 
-        Orden nuevaOrden = new Orden(LocalDateTime.now(), true, cantidadPasajeros, 4000, 6000, false);
+        Orden nuevaOrden = new Orden(LocalDateTime.now(), true, cantidadPasajeros, 0, 0, false);
         cliente.añadirOrden(nuevaOrden);
         ordenServicio.saveOrden(nuevaOrden);
         return new ResponseEntity<>("Orden creada", HttpStatus.CREATED);

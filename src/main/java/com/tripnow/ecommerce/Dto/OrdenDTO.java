@@ -1,6 +1,8 @@
 package com.tripnow.ecommerce.Dto;
 import com.tripnow.ecommerce.models.Orden;
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class OrdenDTO {
     private long id;
@@ -11,6 +13,9 @@ public class OrdenDTO {
 
     private double precioTotalOrden;
     private boolean pagada;
+
+    private List<PaqueteDTO> paquetesDTO;
+
     public OrdenDTO() {
     }
     public OrdenDTO(Orden orden){
@@ -21,6 +26,10 @@ public class OrdenDTO {
         this.precioTotalPaquete = orden.getPrecioTotalPaquete();
         this.precioTotalOrden= orden.getPrecioTotalOrden();
         this.pagada = orden.isPagada();
+        this.paquetesDTO = orden.getPaquetes()
+                .stream()
+                .map(paquete -> new PaqueteDTO(paquete))
+                .collect(Collectors.toList());
 
     }
 

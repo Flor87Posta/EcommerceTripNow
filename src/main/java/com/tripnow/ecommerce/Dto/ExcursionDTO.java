@@ -1,32 +1,22 @@
-package com.tripnow.ecommerce.models;
-import org.hibernate.annotations.GenericGenerator;
-import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+package com.tripnow.ecommerce.Dto;
 
-@Entity
-public class Excursion {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
-    @GenericGenerator(name = "native", strategy = "native")
+import com.tripnow.ecommerce.models.Excursion;
+
+public class ExcursionDTO {
     private long id;
     private String nombre;
     private String actividad;
     private double precioExcursion;
     private int cantidadStock;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="destino_id")
-    private Destino destino;
-
-
-    public Excursion() {
+    public ExcursionDTO() {
     }
-    public Excursion(String nombre, String actividad, double precioExcursion, int cantidadStock) {
-        this.nombre = nombre;
-        this.actividad = actividad;
-        this.precioExcursion = precioExcursion;
-        this.cantidadStock=cantidadStock;
+    public ExcursionDTO(Excursion excursion){
+        this.id = excursion.getId();
+        this.nombre = excursion.getNombre();
+        this.actividad = excursion.getActividad();
+        this.precioExcursion = excursion.getPrecioExcursion();
+        this.cantidadStock = excursion.getCantidadStock();
     }
 
     public long getId() {
@@ -64,16 +54,8 @@ public class Excursion {
     public int getCantidadStock() {
         return cantidadStock;
     }
+
     public void setCantidadStock(int cantidadStock) {
         this.cantidadStock = cantidadStock;
     }
-
-    public Destino getDestino() {
-        return destino;
-    }
-
-    public void setDestino(Destino destino) {
-        this.destino = destino;
-    }
-
 }
