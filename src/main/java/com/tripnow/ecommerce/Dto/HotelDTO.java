@@ -15,7 +15,7 @@ public class HotelDTO {
 
     public HotelDTO(){
     }
-    
+
     public HotelDTO(Hotel hotel){
         this.id = hotel.getId();
         this.nombre = hotel.getNombre();
