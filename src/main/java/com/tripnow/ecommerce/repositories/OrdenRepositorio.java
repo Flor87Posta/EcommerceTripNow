@@ -11,8 +11,8 @@ import java.util.List;
 @RepositoryRestResource
 public interface OrdenRepositorio extends JpaRepository<Orden, Long> {
 
-    @Query("SELECT a FROM Account a WHERE a.cliente = :cliente AND a.activa = true" )
-    List<Orden> findByClient(@Param("cliente") Cliente cliente);
+/*    @Query("SELECT a FROM Account a WHERE a.cliente = :cliente AND a.activa = true" )
+    List<Orden> findByClient(@Param("cliente") Cliente cliente);*/
     // método que arroja la lista de ordenes del cliente y que estan activas.
 
 }

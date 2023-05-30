@@ -11,7 +11,7 @@ public class PaqueteSeleccionadoDTO {
 
     public PaqueteSeleccionadoDTO(){};
     public PaqueteSeleccionadoDTO(Paquete paquete) {
-        this.id = paquete.getId();
+        this.id = paquete.getOrden().getCliente().getId();
         this.nombrePaquete = paquete.getNombrePaquete();
         this.dias = paquete.getDias();
 

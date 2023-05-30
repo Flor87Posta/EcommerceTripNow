@@ -3,18 +3,22 @@ import com.tripnow.ecommerce.Dto.ClienteDTO;
 import com.tripnow.ecommerce.models.Cliente;
 import com.tripnow.ecommerce.services.ClienteServicio;
 import com.tripnow.ecommerce.services.OrdenServicio;
+import org.springframework.security.core.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
-import static java.util.stream.Collectors.toList;
 
 @RestController
 public class ClienteControlador {
+
+    @Autowired
+
+    private PasswordEncoder passwordEncoder;
     @Autowired
     ClienteServicio clienteServicio;
 
@@ -89,17 +93,15 @@ public class ClienteControlador {
         return new ResponseEntity<>(HttpStatus.CREATED); //código de estado HTTP 201 creado
 
     }
-    //    @RequestMapping("/clients/current")
+
+
+    //    @RequestMapping("/clientes/current")
     // este servlet es para crear un nuevo servicio que retorne toda la información del usuario autenticado,
     // antes usabamos /clients/1 que es Melba
 
-/*    @GetMapping("/clients/current")
+    @GetMapping("/api/clientes/current")
     public ClienteDTO getClienteCurrent(Authentication authentication) {
-        Client client = clientService.findByEmail(authentication.getName());//Si hay un usuario conectado, authentication.getName() devolverá el nombre que la clase WebAuthentication puso en el objeto User.
-        Set<Account> clientAccountSet =  client.getAccountSet(); //vinculo las cuentas al cliente
-        client.setAccounts(clientAccountSet);
-        Set<Card> clientCardSet = client.getCards(); //vinculo las tarjetas al cliente
-        client.setCards(clientCardSet);
-        return new ClientDTO(client); //al client que cree que guarda el usuario autenticado lo transformo en clientDTO que tiene todas las propiedades
-    }*/
+        Cliente cliente = clienteServicio.findByEmail(authentication.getName());//Si hay un usuario conectado, authentication.getName() devolverá el nombre que la clase WebAuthentication puso en el objeto User.
+        return new ClienteDTO(cliente); //al client que cree que guarda el usuario autenticado lo transformo en clientDTO que tiene todas las propiedades
+    }
 }

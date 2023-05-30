@@ -1,13 +1,20 @@
 package com.tripnow.ecommerce.controllers;
+import com.itextpdf.text.DocumentException;
 import com.tripnow.ecommerce.Dto.OrdenDTO;
 import com.tripnow.ecommerce.models.Cliente;
 import com.tripnow.ecommerce.models.Orden;
+import com.tripnow.ecommerce.models.OrdenPDFExporter;
 import com.tripnow.ecommerce.services.ClienteServicio;
 import com.tripnow.ecommerce.services.OrdenServicio;
+import org.springframework.security.core.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -21,17 +28,17 @@ public class OrdenControlador {
     @Autowired
     ClienteServicio clienteServicio;
 
-    @GetMapping("/api/cliente/orden/{id}")
+    @GetMapping("/api/clientes/orden/{id}")
     public List<OrdenDTO> obtenerOrdenesDTO(@PathVariable Long id ){
         Cliente clientes = clienteServicio.findById(id);
         List<OrdenDTO> ordenes = clientes.getOrdenes().stream().map(OrdenDTO::new).collect(toList());
         return ordenes;
     }
 
-    @PostMapping("/api/cliente/orden")
-    public ResponseEntity<Object> crearOrden(@RequestParam String email, @RequestParam int cantidadPasajeros){
+    @PostMapping("/api/clientes/current/orden")
+    public ResponseEntity<Object> crearOrden (@RequestParam int cantidadPasajeros, Authentication authentication){
 
-        Cliente cliente = clienteServicio.findByEmail(email);
+        Cliente cliente = clienteServicio.findByEmail(authentication.getName());
 
         if (cliente.getOrdenes().stream().filter( orden -> orden.isActiva()).collect(toList()).size() > 1){
             return new ResponseEntity<>("Ya tienes una orden en proceso", HttpStatus.FORBIDDEN);
@@ -44,7 +51,7 @@ public class OrdenControlador {
         return new ResponseEntity<>("Orden creada", HttpStatus.CREATED);
     }
     /*@Transactional
-    @PostMapping("/api/cliente/pagar-orden")
+    @PostMapping("/api/clientes/current/pagar-orden")
     public ResponseEntity<Object> pagarOrden(@RequestBody PagoDTO pagoDTO){
 
         Cliente cliente = clienteServicio.findByEmail(pagoDTO.getEmail());
@@ -93,9 +100,34 @@ hacer condicional con el is.pagada antes para ver q sea false y recien ahi siga 
 
         } else {
             return new ResponseEntity<>("Insufficient Funds", HttpStatus.CREATED);
+        }
+    }*/
 
+    @PostMapping("/api/clientes/current/export-pdf")
+    public ResponseEntity<Object> ExportingToPDF(HttpServletResponse response, Authentication authentication, @RequestParam long idOrden) throws DocumentException, IOException {
+
+        Cliente cliente = clienteServicio.findByEmail(authentication.getName());
+        Orden orden = ordenServicio.findById(idOrden);
+
+        if(cliente == null){
+            return new ResponseEntity<>("Tu no eres un cliente", HttpStatus.FORBIDDEN);
         }
 
-    }*/
+        if (orden == null) {
+            return new ResponseEntity<>("Id de orden inválido", HttpStatus.FORBIDDEN);
+        }
+
+        response.setContentType("application/pdf");
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=Transactions" + idOrden + ".pdf";
+        response.setHeader(headerKey, headerValue);
+
+
+       OrdenPDFExporter ordenExporter = new OrdenPDFExporter(cliente, orden);
+        ordenExporter.usePDFExport(response); // Genera el archivo PDF y envíalo como respuesta
+
+        return new ResponseEntity<>("PDF is created", HttpStatus.CREATED);
+    }
 
 }
