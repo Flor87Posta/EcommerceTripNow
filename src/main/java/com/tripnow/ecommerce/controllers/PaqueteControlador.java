@@ -13,7 +13,8 @@ public class PaqueteControlador {
         return PaqueteServicio.obtenerPaquetesDTO();
     }*/
 
-/*    @PostMapping("/api/cliente/agregar-paquete")
+/*    @PostMapping("/api/cliente/agregar-paquete") //VER EL TEMA DEL STOCK.. SE MANEJA DESDE ACA O
+DESDE LOS CONTROLADORES DE DESTINO Y PASAJES?
     public ResponseEntity<Object> añadirPaquete(@RequestBody PaqueteDTO paqueteDTO){
 
         Cliente cliente = clienteServicio.findById(paqueteDTO.getIdCliente());

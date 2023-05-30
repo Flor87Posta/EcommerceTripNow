@@ -16,8 +16,8 @@ public class ClienteDTO {
     private Date fechaNac;
     private String email;
     private String contrasena;
+    private List<OrdenDTO> ordenesDTO;
 
-    private List<OrdenDTO> ordenes;
     public ClienteDTO() {
     }
     public ClienteDTO(Cliente cliente){
@@ -30,7 +30,7 @@ public class ClienteDTO {
         this.fechaNac = cliente.getFechaNac();
         this.email = cliente.getEmail();
         this.contrasena = cliente.getContrasena();
-        this.ordenes = cliente.getOrdenes()
+        this.ordenesDTO = cliente.getOrdenes()
                 .stream()
                 .map(orden -> new OrdenDTO(orden))
                 .collect(Collectors.toList());
@@ -64,7 +64,7 @@ public class ClienteDTO {
         return contrasena;
     }
 
-    public List<OrdenDTO> getOrdenes() {
-        return ordenes;
+    public List<OrdenDTO> getOrdenesDTO() {
+        return ordenesDTO;
     }
 }

@@ -20,10 +20,13 @@ public class ClienteControlador {
 
     @Autowired
     OrdenServicio ordenServicio;
+
     @GetMapping("/api/clientes")
     public List<ClienteDTO> getClientesDTO() {
         return clienteServicio.getClientesDTO();
     }
+
+
     @GetMapping("/api/clientes/{id}")
     public ClienteDTO getClienteDTO(@PathVariable Long id) {
         return  clienteServicio.getClienteDTO(id);
