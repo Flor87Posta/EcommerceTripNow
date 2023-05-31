@@ -127,4 +127,7 @@ public class Orden {
         paquete.getOrdenes().add(this);
     }
 
+    public boolean eliminarPaquete(Paquete paquete) {
+        return paquetes.remove(paquete);
+    }
 }

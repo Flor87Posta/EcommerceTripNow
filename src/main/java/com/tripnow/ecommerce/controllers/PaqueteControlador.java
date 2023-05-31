@@ -62,13 +62,22 @@ public class PaqueteControlador {
                 .collect(toList());
 
         if (ordenes.isEmpty() || !ordenes.get(0).isActiva()) {
-            return new ResponseEntity<>("No tienes una orden o la orden no esta activa", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("No tienes una orden activa", HttpStatus.FORBIDDEN);
         }
 
         Orden orden = ordenes.get(0);
         orden.añadirPaquete(paquete);
         orden.setPrecioTotalPaquete(paquete.getPrecioTotalUnitario());
-        orden.setPrecioTotalOrden(orden.getPrecioTotalOrden() + (paquete.getPrecioTotalUnitario()* orden.getCantidadPasajeros()));
+        orden.setPrecioTotalOrden(orden.getPrecioTotalOrden() + (paquete.getPrecioTotalUnitario() * orden.getCantidadPasajeros()));
+
+        // Disminuir el stock del paquete
+        int stockActual = paquete.getStock();
+        if (stockActual > 0) {
+            paquete.setStock(stockActual - 1);
+            paqueteServicio.savePaquete(paquete);
+        } else {
+            return new ResponseEntity<>("No hay stock disponible para el paquete seleccionado", HttpStatus.BAD_REQUEST);
+        }
 
         ordenServicio.saveOrden(orden);
 
@@ -142,60 +151,40 @@ public class PaqueteControlador {
 
     //con logica similar hago el eliminar paquetes:
     @DeleteMapping("/api/clientes/current/eliminar-paquete")
-    public ResponseEntity<Object> eliminarPaquete (@RequestParam long idPaquete, Authentication authentication) {
+    public ResponseEntity<Object> eliminarPaquete(@RequestParam Long idPaquete, Authentication authentication) {
         Cliente cliente = clienteServicio.findByEmail(authentication.getName());
+        Paquete paquete = paqueteServicio.findById(idPaquete);
+
         if (cliente == null) {
             return new ResponseEntity<>("Cliente no encontrado", HttpStatus.NOT_FOUND);
         }
 
+        if (paquete == null) {
+            return new ResponseEntity<>("Paquete no encontrado", HttpStatus.NOT_FOUND);
+        }
+
         List<Orden> ordenes = cliente.getOrdenes().stream()
-                .filter(orden -> !orden.getPaquetes().isEmpty())
+                .filter(orden -> orden.isActiva())
                 .collect(toList());
 
-        if (ordenes.isEmpty()) {
-            return new ResponseEntity<>("No tienes paquetes asignados en ninguna orden", HttpStatus.FORBIDDEN);
+        if (ordenes.isEmpty() || !ordenes.get(0).isActiva()) {
+            return new ResponseEntity<>("No tienes una orden activa", HttpStatus.FORBIDDEN);
         }
 
         Orden orden = ordenes.get(0);
+        boolean paqueteEliminado = orden.eliminarPaquete(paquete);
 
-        Paquete paqueteAEliminar = orden.getPaquetes().stream()
-                .filter(paquete -> Objects.equals(paquete.getId(), idPaquete))
-                .findFirst()
-                .orElse(null);
+        if (paqueteEliminado) {
+            // Incrementar el stock del paquete
+            int stockActual = paquete.getStock();
+            paquete.setStock(stockActual + 1);
+            paqueteServicio.savePaquete(paquete);
 
-        if (paqueteAEliminar == null) {
-            return new ResponseEntity<>("Paquete no encontrado en la orden", HttpStatus.NOT_FOUND);
+            ordenServicio.saveOrden(orden);
+            return new ResponseEntity<>("Paquete eliminado de la orden", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("El paquete no está presente en la orden", HttpStatus.BAD_REQUEST);
         }
-
-        // Incrementar la cantidad de stock de los hoteles
-        Destino destino = paqueteAEliminar.getDestino();
-        Set<Hotel> hoteles = destino.getHoteles();
-        for (Hotel hotel : hoteles) {
-            hotel.setCantidadStock(hotel.getCantidadStock() + 1);
-            hotelServicio.saveHotel(hotel);
-        }
-
-        // Incrementar la cantidad de stock de las excursiones
-        Set<Excursion> excursiones = destino.getExcursiones();
-        for (Excursion excursion : excursiones) {
-            excursion.setCantidadStock(excursion.getCantidadStock() + 1);
-            excursionServicio.saveExcursion(excursion);
-        }
-
-        // Incrementar la cantidad de stock del pasaje
-        Pasaje pasaje = paqueteAEliminar.getPasaje();
-        pasaje.setCantidadStock(pasaje.getCantidadStock() + 1);
-        pasajeServicio.savePasaje(pasaje);
-
-        orden.getPaquetes().remove(paqueteAEliminar);
-        orden.setCantidadPasajeros(orden.getCantidadPasajeros());
-        orden.setPrecioTotalPaquete(orden.getPrecioTotalPaquete() - paqueteAEliminar.getPrecioTotalUnitario());
-        orden.setPrecioTotalOrden(orden.getPrecioTotalOrden() - paqueteAEliminar.getPrecioTotalUnitario());
-        orden.setPrecioTotalOrden(orden.getPrecioTotalOrden() * orden.getCantidadPasajeros());
-
-        ordenServicio.saveOrden(orden);
-
-        return new ResponseEntity<>("Paquete eliminado", HttpStatus.OK);
     }
 
 }
