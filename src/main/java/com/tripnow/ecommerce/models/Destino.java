@@ -103,10 +103,15 @@ public class Destino {
 
     // Método para añadir un paquete:
 
-    public void añadirDestinoAlPaquete(Paquete paquete){ //para añadir un destino al paquete
+  /*  public void añadirDestinoAlPaquete(Paquete paquete){ //para añadir un destino al paquete
         paquete.setDestino(this);
         paquetes.add(paquete); // paquetes es el Set
+    }*/
+    public void añadirDestinoAlPaquete(Paquete paquete) {
+        if (!paquetes.contains(paquete)) {
+            paquete.setDestino(this);
+            paquetes.add(paquete);
+        }
     }
-
 
 }

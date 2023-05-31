@@ -14,11 +14,11 @@ public class Paquete {
     private String nombrePaquete;
     private int dias;
     private double precioTotalUnitario;
+    private int stock;
 
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="orden_id")
-    private Orden orden;
+    @ManyToMany(mappedBy = "paquetes", fetch = FetchType.EAGER)
+    private Set<Orden> ordenes = new HashSet<>();
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "pasaje_id" )
@@ -29,10 +29,11 @@ public class Paquete {
     private Destino destino;
 
     public Paquete(){}
-    public Paquete(String nombrePaquete, int dias, double precioTotalUnitario){
+    public Paquete(String nombrePaquete, int dias, double precioTotalUnitario, int stock){
         this.nombrePaquete = nombrePaquete;
         this.dias = dias;
         this.precioTotalUnitario= precioTotalUnitario;
+        this.stock = stock;
 
     }
 
@@ -81,15 +82,23 @@ public class Paquete {
         this.destino = destino;
     }
 
-    public Orden getOrden() {
-        return orden;
+    public Set<Orden> getOrdenes() {
+        return ordenes;
     }
 
-    public void setOrden(Orden orden) {
-        this.orden = orden;
+    public void setOrdenes(Set<Orden> ordenes) {
+        this.ordenes = ordenes;
     }
 
-//Metodos creados:
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
+
+    //Metodos creados:
 
 
 

@@ -23,10 +23,13 @@ public class Orden {
     @JoinColumn(name="client_id")
     private Cliente cliente;
 
-    @OneToMany(mappedBy="orden", fetch= FetchType.EAGER) //asociado a orden definido en la clase Paquete, fijarse q
-    // este el mappedBy para que no genere una tabla intermedia en blanco
-    private Set<Paquete> paquetes = new HashSet<>(); // set para evitar datos duplicados
-    //paquetes como nueva propiedad de la tabla Orden
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "orden_paquete", // nombre de la tabla intermedia
+            joinColumns = @JoinColumn(name = "orden_id"),
+            inverseJoinColumns = @JoinColumn(name = "paquete_id")
+    )
+    private Set<Paquete> paquetes = new HashSet<>();
 
 
 
@@ -119,9 +122,9 @@ public class Orden {
 //Metodos creados:
 
     // Método para añadir una ordenPaquete:
-    public void añadirPaquete(Paquete paquete){
-        paquete.setOrden(this);
-        paquetes.add(paquete); // paquetes es el Set
+    public void añadirPaquete(Paquete paquete) {
+        paquetes.add(paquete);
+        paquete.getOrdenes().add(this);
     }
 
 }

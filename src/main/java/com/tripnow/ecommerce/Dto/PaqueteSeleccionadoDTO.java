@@ -1,5 +1,7 @@
 package com.tripnow.ecommerce.Dto;
 
+import com.tripnow.ecommerce.models.Cliente;
+import com.tripnow.ecommerce.models.Orden;
 import com.tripnow.ecommerce.models.Paquete;
 
 public class PaqueteSeleccionadoDTO {
@@ -11,10 +13,12 @@ public class PaqueteSeleccionadoDTO {
 
     public PaqueteSeleccionadoDTO(){};
     public PaqueteSeleccionadoDTO(Paquete paquete) {
-        this.id = paquete.getOrden().getCliente().getId();
+        Orden orden = paquete.getOrdenes().iterator().next(); // Obtener una de las órdenes asociadas al paquete
+        Cliente cliente = orden.getCliente(); // Obtener el cliente de la orden
+
+        this.id = cliente.getId();
         this.nombrePaquete = paquete.getNombrePaquete();
         this.dias = paquete.getDias();
-
     }
 
     public long getId() {

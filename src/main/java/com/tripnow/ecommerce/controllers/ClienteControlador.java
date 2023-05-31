@@ -88,7 +88,7 @@ public class ClienteControlador {
 
         }
 
-        Cliente nuevoCliente = new Cliente(nombre, apellido, pasaporte, direccion, telefono, email, contrasena, fechaNac);
+        Cliente nuevoCliente = new Cliente(nombre, apellido, pasaporte, direccion, telefono, email, passwordEncoder.encode(contrasena), fechaNac);
         clienteServicio.saveCliente(nuevoCliente);
         return new ResponseEntity<>(HttpStatus.CREATED); //código de estado HTTP 201 creado
 

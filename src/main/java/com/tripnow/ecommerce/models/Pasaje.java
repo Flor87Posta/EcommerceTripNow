@@ -79,8 +79,14 @@ public class Pasaje {
     }
 
     // Método para añadir pasaje al paquete:
-    public void añadirPasajeAlPaquete(Paquete paquete){ //para añadir un pasaje al paquete
+   /* public void añadirPasajeAlPaquete(Paquete paquete){ //para añadir un pasaje al paquete
         paquete.setPasaje(this);
         paquetes.add(paquete); //paquetes es el Set
-    }
+    }*/
+
+    public void añadirPasajeAlPaquete(Paquete paquete) {
+        if (!paquetes.contains(paquete)) {
+            paquete.setPasaje(this);
+            paquetes.add(paquete);
+        }}
 }

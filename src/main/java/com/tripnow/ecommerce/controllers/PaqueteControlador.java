@@ -43,6 +43,38 @@ public class PaqueteControlador {
         return paqueteServicio.getPaquetesDTO();
     }
 
+
+    @PostMapping("/api/clientes/current/seleccionar-paquete")
+    public ResponseEntity<Object> seleccionarPaquete(@RequestParam Long idPaquete, Authentication authentication) {
+        Cliente cliente = clienteServicio.findByEmail(authentication.getName());
+        Paquete paquete = paqueteServicio.findById(idPaquete);
+
+        if (cliente == null) {
+            return new ResponseEntity<>("Cliente no encontrado", HttpStatus.NOT_FOUND);
+        }
+
+        if (paquete == null) {
+            return new ResponseEntity<>("Paquete no encontrado", HttpStatus.NOT_FOUND);
+        }
+
+        List<Orden> ordenes = cliente.getOrdenes().stream()
+                .filter(orden -> orden.isActiva())
+                .collect(toList());
+
+        if (!ordenes.get(0).isActiva()) {
+            return new ResponseEntity<>("No tienes una orden activa", HttpStatus.FORBIDDEN);
+        }
+
+        Orden orden = ordenes.get(0);
+        orden.añadirPaquete(paquete);
+        orden.setPrecioTotalPaquete(paquete.getPrecioTotalUnitario());
+        orden.setPrecioTotalOrden(orden.getPrecioTotalOrden() + (paquete.getPrecioTotalUnitario()* orden.getCantidadPasajeros()));
+
+        ordenServicio.saveOrden(orden);
+
+        return new ResponseEntity<>("Paquete añadido a la orden", HttpStatus.CREATED);
+    }
+
     @PostMapping("/api/clientes/current/agregar-paquete")
     public ResponseEntity<Object> añadirPaquete(@RequestBody PaqueteSeleccionadoDTO paqueteSeleccionadoDTO) {
         Cliente cliente = clienteServicio.findById(paqueteSeleccionadoDTO.getId());
@@ -66,7 +98,7 @@ public class PaqueteControlador {
             return new ResponseEntity<>("Destino o pasaje no encontrado", HttpStatus.NOT_FOUND);
         }
 
-        Paquete nuevoPaquete = new Paquete(paqueteSeleccionadoDTO.getNombrePaquete(), paqueteSeleccionadoDTO.getDias(), destino.getPrecioHotelExcursion() + pasaje.getPrecioPasaje());
+        Paquete nuevoPaquete = new Paquete(paqueteSeleccionadoDTO.getNombrePaquete(), paqueteSeleccionadoDTO.getDias(), destino.getPrecioHotelExcursion() + pasaje.getPrecioPasaje(), 10);
         nuevoPaquete.setDestino(destino);
         nuevoPaquete.setPasaje(pasaje);
 

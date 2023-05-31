@@ -109,10 +109,10 @@ public class EcommerceApplication {
 			destinoRepositorio.save(destino3);
 			destinoRepositorio.save(destino4);
 
-			Paquete paquete1 = new Paquete ("Volá y conocé Mendoza", 13, destino3.getPrecioHotelExcursion()+pasaje1.getPrecioPasaje() );
-			Paquete paquete2 = new Paquete ("Volá y conocé Cataratas", 6, destino4.getPrecioHotelExcursion()+pasaje1.getPrecioPasaje() );
-			Paquete paquete3 = new Paquete ("Conoce Bariloche via FlechaBus", 8, destino2.getPrecioHotelExcursion()+pasaje4.getPrecioPasaje() );
-			Paquete paquete4 = new Paquete ("Conoce Santa Cruz con Flybondi", 5, destino1.getPrecioHotelExcursion()+pasaje3.getPrecioPasaje() );
+			Paquete paquete1 = new Paquete ("Volá y conocé Mendoza", 13, destino3.getPrecioHotelExcursion()+pasaje1.getPrecioPasaje(), 10);
+			Paquete paquete2 = new Paquete ("Volá y conocé Cataratas", 6, destino4.getPrecioHotelExcursion()+pasaje2.getPrecioPasaje(),10);
+			Paquete paquete3 = new Paquete ("Conoce Bariloche via FlechaBus", 8, destino2.getPrecioHotelExcursion()+pasaje4.getPrecioPasaje(),10);
+			Paquete paquete4 = new Paquete ("Conoce Santa Cruz con Flybondi", 5, destino1.getPrecioHotelExcursion()+pasaje3.getPrecioPasaje(),10);
 
 			paqueteRepositorio.save(paquete1);
 			paqueteRepositorio.save(paquete2);
@@ -152,20 +152,11 @@ public class EcommerceApplication {
 			Orden orden3 = new Orden(LocalDateTime.now(), true, 4, paquete3.getPrecioTotalUnitario()*paquete3.getDias(), paquete3.getPrecioTotalUnitario()*paquete3.getDias()*4, false);
 			Orden orden4 = new Orden(LocalDateTime.now(), true, 4, paquete4.getPrecioTotalUnitario()*paquete4.getDias(), paquete4.getPrecioTotalUnitario()*paquete4.getDias()*2,false);
 
-			ordenRepositorio.save(orden1);
-			ordenRepositorio.save(orden2);
-			ordenRepositorio.save(orden3);
-			ordenRepositorio.save(orden4);
 
 			orden1.añadirPaquete(paquete1);
 			orden2.añadirPaquete(paquete2);
 			orden3.añadirPaquete(paquete3);
 			orden4.añadirPaquete(paquete4);
-
-			ordenRepositorio.save(orden1);
-			ordenRepositorio.save(orden2);
-			ordenRepositorio.save(orden3);
-			ordenRepositorio.save(orden4);
 
 
 			paqueteRepositorio.save(paquete1);
