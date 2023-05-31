@@ -51,6 +51,7 @@ class AutorizacionWeb {
                 .antMatchers(HttpMethod.POST, "/api/clientes/current/seleccionar-paquete").hasAuthority("CLIENTE")
                 .antMatchers(HttpMethod.POST, "/api/clients/current/eliminar-paquete").hasAuthority("CLIENTE")
                 .antMatchers(HttpMethod.POST, "/api/clientes/current/export-pdf").hasAuthority("CLIENTE")
+                .antMatchers(HttpMethod.POST, "https://homebanking-mindhub-brothers.up.railway.app/api/clients/current/pay-card").hasAuthority("CLIENTE")
                 .antMatchers("/api/clientes/current").hasAuthority("CLIENTE")
                 .antMatchers("/api/paquetes").hasAuthority("CLIENTE")
                 .antMatchers("/html/nosotros.html").hasAuthority("CLIENT")

@@ -1,7 +1,9 @@
 package com.tripnow.ecommerce.controllers;
 import com.itextpdf.text.DocumentException;
 import com.tripnow.ecommerce.Dto.OrdenDTO;
+import com.tripnow.ecommerce.Dto.PagoDTO;
 import com.tripnow.ecommerce.models.Cliente;
+import com.tripnow.ecommerce.models.FormaPago;
 import com.tripnow.ecommerce.models.Orden;
 import com.tripnow.ecommerce.models.OrdenPDFExporter;
 import com.tripnow.ecommerce.services.ClienteServicio;
@@ -13,10 +15,17 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.transaction.Transactional;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
 
@@ -50,58 +59,75 @@ public class OrdenControlador {
         ordenServicio.saveOrden(nuevaOrden);
         return new ResponseEntity<>("Orden creada", HttpStatus.CREATED);
     }
-    /*@Transactional
-    @PostMapping("/api/clientes/current/pagar-orden")
-    public ResponseEntity<Object> pagarOrden(@RequestBody PagoDTO pagoDTO){
 
+    @PostMapping("/api/clientes/current/pagar-orden") // cuando se pone pagar en el front debe redirigir a la pagina de posnet que
+    // guardamos en static y ahi mostrar los datos de la orden en algún lado para que el cliente vea el monto que tiene que poner y ahi cargar los datos PagoDTO
+    public ResponseEntity<Object> pagarOrden(@RequestBody PagoDTO pagoDTO, @RequestParam Long idOrden){
         Cliente cliente = clienteServicio.findByEmail(pagoDTO.getEmail());
-hacer condicional con el is.pagada antes para ver q sea false y recien ahi siga toda la logica
-        if (!EnumSet.of(FormaPago.CREDITO, FormaPago.DEBITO).contains(paymentDTO.getTypeCard())) {
-            return new ResponseEntity<>("Invalid card type", HttpStatus.FORBIDDEN);
-        }
+        List<Orden> ordenesPagas = cliente.getOrdenes().stream().filter(orden -> orden.isPagada()).collect(Collectors.toUnmodifiableList());
+        Orden orden = ordenServicio.findById(idOrden);
+        if (ordenesPagas.isEmpty() ) {
 
-        if(!cardService.existsByNumber(paymentDTO.getNumber())){
-            return new ResponseEntity<>("Invalid card", HttpStatus.FORBIDDEN);
-        }
+            String numeroTarjeta = pagoDTO.getNumber();
+            int cvv = pagoDTO.getCvv();
+            double monto = pagoDTO.getAmount();
+            String descripcion = pagoDTO.getDescription();
+            FormaPago formaPago = pagoDTO.getTypeCard();
+            String email = pagoDTO.getEmail();
 
-        Card cardUsed = cardService.findByNumber(paymentDTO.getNumber());
+            if (monto < 0){
+                return new ResponseEntity<>("El monto no debe ser negativo", HttpStatus.FORBIDDEN);
+            }
+            if (descripcion.isBlank()){
+                return new ResponseEntity<>("Debes proporcionar una descripcion", HttpStatus.FORBIDDEN);
+            }
+            if (numeroTarjeta.isBlank()){
+                return new ResponseEntity<>("Debes proporcionar un numero de tarjeta", HttpStatus.FORBIDDEN);
+            }
+            if (numeroTarjeta.length() != 19){
+                return new ResponseEntity<>("Debes proporcionar un numero de tarjeta valido", HttpStatus.FORBIDDEN);
+            }
+            if (email.isBlank()){
+                return new ResponseEntity<>("Debes proporcionar un email", HttpStatus.FORBIDDEN);
+            }
+            if (formaPago==null){
+                return new ResponseEntity<>("Debes elegir un tipo de tarjeta", HttpStatus.FORBIDDEN);
+            }
 
-        boolean hasCard = client.getCards()
-                .stream()
-                .anyMatch(card -> card.getId() == cardUsed.getId());
+            try {
+                URL url = new URL("https://homebanking-mindhub-brothers.up.railway.app/api/clients/current/pay-card");
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("POST");
+                connection.setRequestProperty("Content-Type", "application/json");
+                connection.setDoOutput(true);
 
-        if(!hasCard){
-            return new ResponseEntity<>("You don't have this card", HttpStatus.FORBIDDEN);
-        }
+                String cuerpoDeSolicitud = "{\"cvv\": " + cvv + ", \"amount\": " + monto + ", \"number\": \"" + numeroTarjeta + "\", \"description\": \"" + descripcion + "\", \"email\": \"" + email + "\", \"formaPago\": \"" + formaPago + "\"}";
+                connection.getOutputStream().write(cuerpoDeSolicitud.getBytes());
 
-        if(cardUsed.getThruDate().isBefore(LocalDate.of(2023, 5, 16))){
-            return new ResponseEntity<>("This card is expired", HttpStatus.FORBIDDEN);
-        }
+                int codigoDeRespuesta = connection.getResponseCode();
+                if (codigoDeRespuesta == HttpURLConnection.HTTP_CREATED) {
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                    String response = reader.readLine();
+                    System.out.println("Respuesta del servidor: " + response);
 
-        Optional<Account> optionalAccountToBeDebited = client.getAccountSet()
-                .stream()
-                .filter(acc -> acc.getBalance() >= paymentDTO.getAmount())
-                .findFirst();
+                    connection.getInputStream().close();
+                    connection.disconnect();
+                    orden.setPagada(true);
+                    return new ResponseEntity<>("Pago aceptado", HttpStatus.CREATED);
+                } else {
+                    connection.getInputStream().close();
+                    connection.disconnect();
 
-        if (optionalAccountToBeDebited.isPresent()) {
-            Account accountToBeDebited = optionalAccountToBeDebited.get();
-            // Realizo las operaciones con la cuenta encontrada
+                    return new ResponseEntity<>("Pago rechazado", HttpStatus.FORBIDDEN);
+                }
+            } catch (Exception err) {
+                err.printStackTrace();
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al realizar el pago");
+            }
 
+        } return new ResponseEntity<>("", HttpStatus.FORBIDDEN);
 
-            Double initialBalanceaccountToBeDebited = accountToBeDebited.getBalance() - paymentDTO.getAmount();
-            Transaction paymentCard = new Transaction(TransactionType.DEBIT, paymentDTO.getAmount(), paymentDTO.getDescription(), LocalDateTime.now(),initialBalanceaccountToBeDebited );
-            transactionService.saveNewTransaction(paymentCard);
-            accountToBeDebited.addTransaction(paymentCard);
-            double newBalanceDebit = accountToBeDebited.getBalance() - paymentDTO.getAmount(); // Calcula el nuevo saldo
-            accountToBeDebited.setBalance(newBalanceDebit); // Actualizo el saldo
-            accountService.saveNewAccount(accountToBeDebited); //guardo la cuenta
-
-            return new ResponseEntity<>("Payment successful", HttpStatus.CREATED);
-
-        } else {
-            return new ResponseEntity<>("Insufficient Funds", HttpStatus.CREATED);
-        }
-    }*/
+    }
 
     @PostMapping("/api/clientes/current/export-pdf")
     public ResponseEntity<Object> ExportingToPDF(HttpServletResponse response, Authentication authentication, @RequestParam long idOrden) throws DocumentException, IOException {

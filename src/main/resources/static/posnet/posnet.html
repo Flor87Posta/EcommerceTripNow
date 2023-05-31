@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Homebanking MindHub.Brothers</title>
+        <link href="./style.css">
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css" rel="stylesheet">
+    </head>
+    <header>
+        <h1>Sales Point Manager</h1>
+    </header>
+    <body>
+        <div id="app">
+            <form @submit.prevent>
+                <div>
+                    <div>
+                        
+    
+                        <h2>Pay</h2>
+    
+                        <div>
+                            <label>Card digits
+                                <input type="text" placeholder="card digits"  maxlength="50"  v-model="digits">
+                            </label>
+                        </div>
+                        <div>
+                            <h4>Card type:</h4>
+                                    <label for='q1'>
+                                        <input id='q1' name='q' type='radio' value="CREDIT" v-model="typeCard">
+                                        CREDIT
+                                    </label>
+                                    <label for='q2'>
+                                        <input id='q2' name='q' type='radio' value="DEBIT" v-model="typeCard">
+                                        DEBIT
+                                    </label>
+                        </div>
+                        <div >
+                            <label >CVV
+                                <input type="number" placeholder="cvv"   v-model="cvv">
+                            </label>
+                        </div>
+                        <div>
+                            <label >Email
+                                <input type="text" placeholder="email"  maxlength="50"  v-model="email">
+                            </label>
+                        </div>
+                        <div >
+                            <label >Amount 
+                                <input type="number" placeholder="amount"    v-model="amount">
+                            </label>
+                        </div>
+                        <div>
+                            <label >Description
+                                <input type="text" placeholder="description"    v-model="description">
+                            </label>
+                        </div>
+    
+    
+                        <div>
+                            <button class="button" @click="postPay">Send</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+    
+        </div>
+
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="./posnet.js"></script>
+    
+    </body>
+</html>
