@@ -15,11 +15,7 @@ public class Pasaje {
     private long id;
     private TipoPasaje tipo;
     private String compania;
-
-    private LocalDate fechaSalida;
-    private LocalDate fechaRegreso;
     private double precioPasaje;
-
     private int cantidadStock;
 
 
@@ -28,11 +24,9 @@ public class Pasaje {
 
 
     public Pasaje(){ }
-    public Pasaje(TipoPasaje tipo, String compania, LocalDate fechaSalida, LocalDate fechaRegreso, double precioPasaje, int cantidadStock){
+    public Pasaje(TipoPasaje tipo, String compania,  double precioPasaje, int cantidadStock){
         this.tipo= tipo;
         this.compania=compania;
-        this.fechaSalida= fechaSalida;
-        this.fechaRegreso=fechaRegreso;
         this.precioPasaje = precioPasaje;
         this.cantidadStock = cantidadStock;
     }
@@ -59,21 +53,6 @@ public class Pasaje {
         this.compania = compania;
     }
 
-    public LocalDate getFechaSalida() {
-        return fechaSalida;
-    }
-
-    public void setFechaSalida(LocalDate fechaSalida) {
-        this.fechaSalida = fechaSalida;
-    }
-
-    public LocalDate getFechaRegreso() {
-        return fechaRegreso;
-    }
-
-    public void setFechaRegreso(LocalDate fechaRegreso) {
-        this.fechaRegreso = fechaRegreso;
-    }
 
     public double getPrecioPasaje() {
         return precioPasaje;
@@ -100,8 +79,14 @@ public class Pasaje {
     }
 
     // Método para añadir pasaje al paquete:
-    public void añadirPasaje(Paquete paquete){
+   /* public void añadirPasajeAlPaquete(Paquete paquete){ //para añadir un pasaje al paquete
         paquete.setPasaje(this);
         paquetes.add(paquete); //paquetes es el Set
-    }
+    }*/
+
+    public void añadirPasajeAlPaquete(Paquete paquete) {
+        if (!paquetes.contains(paquete)) {
+            paquete.setPasaje(this);
+            paquetes.add(paquete);
+        }}
 }

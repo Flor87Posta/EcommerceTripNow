@@ -16,8 +16,9 @@ public class Destino {
     @Column(name="Dias")
     List<Integer> cantidadDias;
     private double precioHotelExcursion;
+
     @OneToMany(mappedBy = "destino", fetch = FetchType.EAGER)
-    Set<DestinoExcursion> destinosExcursiones = new HashSet<>();
+    Set<Excursion> excursiones = new HashSet<>();
     @OneToMany(mappedBy = "destino", fetch = FetchType.EAGER)
     Set<Hotel> hoteles = new HashSet<>();
     @OneToMany(mappedBy = "destino", fetch = FetchType.EAGER)
@@ -62,12 +63,13 @@ public class Destino {
         this.precioHotelExcursion = precioHotelExcursion;
     }
 
-    public Set<DestinoExcursion> getDestinosExcursiones() {
-        return destinosExcursiones;
+
+    public Set<Excursion> getExcursiones() {
+        return excursiones;
     }
 
-    public void setDestinosExcursiones(Set<DestinoExcursion> destinosExcursiones) {
-        this.destinosExcursiones = destinosExcursiones;
+    public void setExcursiones(Set<Excursion> excursiones) {
+        this.excursiones = excursiones;
     }
 
     public Set<Hotel> getHoteles() {
@@ -86,24 +88,30 @@ public class Destino {
         this.paquetes = paquetes;
     }
 
-    // Método para añadir un destinoExcursion:
-    public void añadirDestinoExcursion(DestinoExcursion destinoExcursion){
-        destinoExcursion.setDestino(this);
-        destinosExcursiones.add(destinoExcursion); // destinosExcursiones es el Set
+    // Método para añadir una excursion:
+    public void añadirExcursion(Excursion excursion){
+        excursion.setDestino(this);
+        excursiones.add(excursion); // excursiones es el Set
     }
 
     // Método para añadir un hotel:
 
     public void añadirHotel(Hotel hotel){
         hotel.setDestino(this);
-        hoteles.add(hotel); // destinosExcursiones es el Set
+        hoteles.add(hotel); // hoteles es el Set
     }
 
-    // Método para añadir un hotel:
+    // Método para añadir un paquete:
 
-    public void añadirPaquete(Paquete paquete){
+  /*  public void añadirDestinoAlPaquete(Paquete paquete){ //para añadir un destino al paquete
         paquete.setDestino(this);
-        paquetes.add(paquete); // destinosExcursiones es el Set
+        paquetes.add(paquete); // paquetes es el Set
+    }*/
+    public void añadirDestinoAlPaquete(Paquete paquete) {
+        if (!paquetes.contains(paquete)) {
+            paquete.setDestino(this);
+            paquetes.add(paquete);
+        }
     }
 
 }

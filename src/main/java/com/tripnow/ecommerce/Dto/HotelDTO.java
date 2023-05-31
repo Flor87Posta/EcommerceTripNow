@@ -1,14 +1,9 @@
-package com.tripnow.ecommerce.models;
-import org.hibernate.annotations.GenericGenerator;
-import javax.persistence.*;
-import java.time.LocalDate;
+package com.tripnow.ecommerce.Dto;
 
-@Entity
-public class Hotel {
+import com.tripnow.ecommerce.models.Hotel;
+import com.tripnow.ecommerce.models.HotelCategoria;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
-    @GenericGenerator(name = "native", strategy = "native")
+public class HotelDTO {
     private long id;
     private String nombre;
     private HotelCategoria categoria;
@@ -18,25 +13,26 @@ public class Hotel {
     private double precioHotel;
     private int cantidadStock;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "destino_id")
-    private Destino destino;
+    public HotelDTO(){
+    }
 
-
-    public Hotel(){ }
-    public Hotel(String nombre, HotelCategoria categoria, boolean allInclusive, boolean desayuno, boolean mediaPension, double precioHotel, int cantidadStock){
-        this.nombre=nombre;
-        this.categoria=categoria;
-        this.allInclusive= allInclusive;
-        this.desayuno=desayuno;
-        this.mediaPension=mediaPension;
-        this.precioHotel=precioHotel;
-        this.cantidadStock=cantidadStock;
-
+    public HotelDTO(Hotel hotel){
+        this.id = hotel.getId();
+        this.nombre = hotel.getNombre();
+        this.categoria = hotel.getCategoria();
+        this.allInclusive = hotel.isAllInclusive();
+        this.desayuno = hotel.isDesayuno();
+        this.mediaPension = hotel.isMediaPension();
+        this.precioHotel = hotel.getPrecioHotel();
+        this.cantidadStock = hotel.getCantidadStock();
     }
 
     public long getId() {
         return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -94,13 +90,4 @@ public class Hotel {
     public void setCantidadStock(int cantidadStock) {
         this.cantidadStock = cantidadStock;
     }
-    public Destino getDestino() {
-        return destino;
-    }
-
-    public void setDestino(Destino destino) {
-        this.destino = destino;
-    }
-
-
 }

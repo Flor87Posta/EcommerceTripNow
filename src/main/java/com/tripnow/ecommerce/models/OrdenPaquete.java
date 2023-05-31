@@ -2,6 +2,7 @@ package com.tripnow.ecommerce.models;
 import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 
+/*
 @Entity
 public class OrdenPaquete {
 
@@ -9,7 +10,6 @@ public class OrdenPaquete {
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name="native", strategy = "native")
     private long id;
-    private double precioPaquete;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="orden_id")
@@ -21,9 +21,6 @@ public class OrdenPaquete {
 
     public OrdenPaquete(){};
 
-    public OrdenPaquete(double precioPaquete){
-        this.precioPaquete=precioPaquete;
-    };
 
     //Metodos accesores:
 
@@ -34,14 +31,6 @@ public class OrdenPaquete {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public double getPrecioPaquete() {
-        return precioPaquete;
-    }
-
-    public void setPrecioPaquete(double precioPaquete) {
-        this.precioPaquete = precioPaquete;
     }
 
     public Orden getOrden() {
@@ -59,6 +48,4 @@ public class OrdenPaquete {
     public void setPaquete(Paquete paquete) {
         this.paquete = paquete;
     }
-
-
-}
+}*/

@@ -1,14 +1,17 @@
 package com.tripnow.ecommerce.services.implement;
 
+import com.tripnow.ecommerce.Dto.ClienteDTO;
 import com.tripnow.ecommerce.Dto.OrdenDTO;
+import com.tripnow.ecommerce.models.Cliente;
 import com.tripnow.ecommerce.models.Orden;
 import com.tripnow.ecommerce.repositories.OrdenRepositorio;
-import com.tripnow.ecommerce.services.ClienteServicio;
 import com.tripnow.ecommerce.services.OrdenServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
+import static java.util.stream.Collectors.toList;
 
 @Service
 public class OrdenServicioImplementacion implements OrdenServicio {
@@ -18,23 +21,19 @@ public class OrdenServicioImplementacion implements OrdenServicio {
 
     @Override
     public List<OrdenDTO> getOrdenesDTO() {
-        return null;
+        return ordenRepositorio.findAll().stream().map(orden -> new OrdenDTO(orden)).collect(toList());
     }
 
     @Override
     public OrdenDTO getOrdenDTO(Long id) {
-        return null;
+        return new OrdenDTO(this.findById(id));
     }
 
     @Override
     public Orden findById(Long id) {
-        return null;
+        return ordenRepositorio.findById(id).orElse(null);
     }
 
-    @Override
-    public boolean existsByNumber(String number) {
-        return false;
-    }
 
     @Override
     public void saveOrden(Orden orden) {
@@ -42,7 +41,12 @@ public class OrdenServicioImplementacion implements OrdenServicio {
     }
 
     @Override
-    public List<Orden> findByClient(Orden orden) {
-        return null;
+    public void deleteOrden(Orden orden) {
+        ordenRepositorio.delete(orden);
     }
+
+/*    @Override
+    public List<Orden> findByClient(Cliente cliente) {
+        return this.ordenRepositorio.findByClient(cliente);
+    }*/
 }
