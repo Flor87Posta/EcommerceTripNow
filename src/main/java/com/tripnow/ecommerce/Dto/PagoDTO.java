@@ -1,7 +1,6 @@
 package com.tripnow.ecommerce.Dto;
-
 import com.tripnow.ecommerce.models.FormaPago;
-import com.tripnow.ecommerce.models.Orden;
+
 
 public class PagoDTO {
 
