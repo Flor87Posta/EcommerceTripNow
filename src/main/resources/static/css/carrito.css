@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family:"Poppins", sans-serif;
+}
+
+body{
+    background-image: linear-gradient(rgba(193, 218, 252, 0.425),rgba(193, 218, 252, 0.425)), url(../assets/pexels-eberhard-grossgasteiger-443446.jpg);
+    background-position-y:40% ; 
+    background-position-x:50% ;   
+}
+header{
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 100px;
+  transition: 0.5s ease;
+  background-color: rgba(0, 0, 0, 0.288);
+  border-radius:20px ;
+  min-height: 10vh;
+}
+header .brand {
+  color: white;
+  font-size: 1.7em;
+  font-weight: 700;
+  text-decoration: none;
+  text-shadow: 2px 2px 2px black;
+}
+  .carrito{
+    padding: 1 rem;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: rgba(245, 245, 220, 0.767);
+  }
+  main{
+    min-height: 90vh;
+
+  }
+.box-principal{
+    min-height: 70vh;
+    display: flex;
+    background: rgba(255, 255, 255, 0.329);
+    border: 2px solid rgba(255, 255, 255, .5);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3rem;
+
+ 
+}
+table{
+    padding-top: 2rem;
+    margin-top: 1rem;
+}
+table th{
+    background-color: rgb(7, 135, 139) !important;
+}

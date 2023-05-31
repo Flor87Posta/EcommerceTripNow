@@ -8,10 +8,49 @@ const app = createApp({
   },
   methods:{
     Login(){
-      axios.post('/api/')
+      axios.post('/api/login', `email=${this.email}&contrasena=${this.contrasena}`)
+      .then(response => window.location.href= '/html/paquetes.html')
+      .catch(error => {
+        const swalWithBootstrapButtons = Swal.mixin({
+          customClass: {
+            confirmButton: 'btn btn-success ms-1',
+            cancelButton: 'btn btn-danger ms-1'
+          },
+          buttonsStyling: false
+        })
+        swalWithBootstrapButtons.fire({
+          title: 'Tienes cuenta?',
+          text: "No puedes acceder sin ella!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonText: 'Si tengo',
+          cancelButtonText: "No tengo",
+          reverseButtons: true
+        })
+        .then((result) => {
+          if (result.isConfirmed) {
+            swalWithBootstrapButtons.fire({
+              icon:'error',
+              title: 'Estas segur@?',
+              text: 'Esta infromación es incorrecta, intenta nuevamente!',
+            }
+            )
+          } else if (
+            result.dismiss === Swal.DismissReason.cancel
+          ) {
+            swalWithBootstrapButtons.fire(
+              'Cancelado',
+              'Create una cuenta por favor :)',
+              'error'
+            )
+          }
+        })
+      })
     }
   }
 })
+
+app.mount('#app');
 
 const wrapper = document.querySelector('.wrapper');
 const loginLink = document.querySelector('.login-link');
