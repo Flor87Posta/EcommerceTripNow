@@ -61,8 +61,8 @@ public class PaqueteControlador {
                 .filter(orden -> orden.isActiva())
                 .collect(toList());
 
-        if (!ordenes.get(0).isActiva()) {
-            return new ResponseEntity<>("No tienes una orden activa", HttpStatus.FORBIDDEN);
+        if (ordenes.isEmpty() || !ordenes.get(0).isActiva()) {
+            return new ResponseEntity<>("No tienes una orden o la orden no esta activa", HttpStatus.FORBIDDEN);
         }
 
         Orden orden = ordenes.get(0);
