@@ -101,7 +101,7 @@ public class OrdenControlador {
                 connection.setRequestProperty("Content-Type", "application/json");
                 connection.setDoOutput(true);
 
-                String cuerpoDeSolicitud = "{\"cvv\": " + cvv + ", \"amount\": " + monto + ", \"number\": \"" + numeroTarjeta + "\", \"description\": \"" + descripcion + "\", \"email\": \"" + email + "\", \"formaPago\": \"" + formaPago + "\"}";
+                String cuerpoDeSolicitud = "{\"cvv\": " + cvv + ", \"amount\": " + monto + ", \"number\": \"" + numeroTarjeta + "\", \"description\": \"" + descripcion + "\", \"email\": \"" + email + "\", \"typeCard\": \"" + formaPago + "\"}";
                 connection.getOutputStream().write(cuerpoDeSolicitud.getBytes());
 
                 int codigoDeRespuesta = connection.getResponseCode();
