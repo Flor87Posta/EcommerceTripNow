@@ -48,6 +48,7 @@ class AutorizacionWeb {
                 .antMatchers(HttpMethod.POST, "/api/clientes/current/orden").hasAuthority("CLIENTE")
                 .antMatchers(HttpMethod.POST, "/api/clientes/current/pagar-orden").hasAuthority("CLIENTE")
                 .antMatchers(HttpMethod.POST, "/api/clientes/current/agregar-paquete").hasAuthority("CLIENTE")
+                .antMatchers(HttpMethod.POST, "/api/clientes/current/seleccionar-paquete").hasAuthority("CLIENTE")
                 .antMatchers(HttpMethod.POST, "/api/clients/current/eliminar-paquete").hasAuthority("CLIENTE")
                 .antMatchers(HttpMethod.POST, "/api/clientes/current/export-pdf").hasAuthority("CLIENTE")
                 .antMatchers("/api/clientes/current").hasAuthority("CLIENTE")

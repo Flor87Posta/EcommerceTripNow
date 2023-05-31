@@ -8,6 +8,7 @@ public class PaqueteDTO {
     private String nombrePaquete;
     private int dias;
     private double precioTotalUnitario;
+    private int stock;
 
     public PaqueteDTO(){};
     public PaqueteDTO(Paquete paquete) {
@@ -15,6 +16,7 @@ public class PaqueteDTO {
         this.nombrePaquete = paquete.getNombrePaquete();
         this.dias = paquete.getDias();
         this.precioTotalUnitario = paquete.getPrecioTotalUnitario();
+        this.stock = paquete.getStock();
     }
 
     public long getId() {
@@ -47,5 +49,13 @@ public class PaqueteDTO {
 
     public void setPrecioTotalUnitario(double precioTotalUnitario) {
         this.precioTotalUnitario = precioTotalUnitario;
+    }
+
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
     }
 }

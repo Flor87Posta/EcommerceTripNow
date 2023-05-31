@@ -26,4 +26,8 @@ public class PaqueteServicioImplementacion implements PaqueteServicio {
     public void deletePaquete(Paquete paquete) {
         paqueteRepositorio.delete(paquete);
     }
+    @Override
+    public Paquete findById(Long id) {
+        return paqueteRepositorio.findById(id).orElse(null);
+    }
 }
