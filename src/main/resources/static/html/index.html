@@ -1,157 +1,277 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/style.css">
-    <title>TripNow</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/style.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+  <title>TripNow</title>
+  <link rel="shortcut icon" href="../assets/logo.png" type="image/x-icon">
 </head>
+
 <body>
-    <nav class="flex-nav">
-        <div class="container">
-          <div class="grid">
-            <div class="column-xs-9 column-md-8">
-              <p id="logo">TripNow<span id="highlight">.</span></p>
+  <div class="contenedor">
+    <div class="inicio">
+      <div class="wrapper">
+        <span class="icon-close">
+          <ion-icon name="close-circle"></ion-icon>
+        </span>
+  
+        <div class="form-box loguearse">
+          <p class="iniciar">Iniciar Sesión</p>
+          <form @submit.prevent="Login">
+            <div class="input-box">
+              <span class="icon"><ion-icon name="mail"></ion-icon></span>
+              <input type="email" v-model="email" required>
+              <label>Email</label>
             </div>
-            <div class="column-xs-3 column-md-4">
-              <a href="#" class="toggle-nav">Menu <i class="ion-navicon-round"></i></a>
-              <ul>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Discover</a></li>
-                <li><a href="#">Plan Your Trip</a></li>
-              </ul>
+            <div class="input-box">
+              <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+              <input type="password" v-model="password" required>
+              <label>Contraseña</label>
+            </div>
+            <div class="remember-forgot">
+              <label><input type="checkbox">Recordarme</label>
+              <a href="#">Olvidaste tu contraseña?</a>
+            </div>
+            <button type="submit" class="botn">Iniciar Sesión</button>
+            <div class="login-register">
+              <p>No tienes cuenta?<a href="#" class="register-link ps-2">Registrarse</a></p>
+            </div>
+          </form>
+        </div>
+        <div class="form-box register">
+          <p class="iniciar">Registration</p>
+          <form @submit.prevent="Register">
+            <div class="input-box">
+              <span class="icon"><ion-icon name="person"></ion-icon></span>
+              <input type="text" v-model="name" required>
+              <label>Name</label>
+            </div>
+            <div class="input-box">
+              <span class="icon"><ion-icon name="person"></ion-icon></span>
+              <input type="text" v-model="lastName" required>
+              <label>Last Name</label>
+            </div>
+            <div class="input-box">
+              <span class="icon"><ion-icon name="mail"></ion-icon></span>
+              <input type="email" v-model="email2" required>
+              <label>Email</label>
+            </div>
+            <div class="input-box">
+              <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+              <input type="password" v-model="password2" required>
+              <label>Password</label>
+            </div>
+            <div class="remember-forgot">
+              <label><input type="checkbox">I agree to the terms & conditions</label>
+            </div>
+            <button type="submit" class="botn">Register</button>
+            <div class="login-register">
+              <p>Already have an account?<a href="#" class="login-link ps-2">Iniciar Sesión</a></p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="levantado">
+      <video src="../assets/pexels-fl-studio-imageline-3094026-3840x2160-30fps.mp4" autoplay muted loop></video>
+      <header>
+        <div class="d-flex align-items-center">
+          <img src="../assets/logo.png" class="logo" width="100" alt="">
+          <a href="#" class="brand">TRIPNOW</a>
+        </div>
+        <div class="navigation">
+          <div class="navigation-items">
+            <a href="#destinos">Destinos</a>
+            <a href="#sobreNosotros">Sobre Nosotros</a>
+            <button class="btnLogin-popup">Iniciar Sesión</button>
+          </div>
+        </div>
+      </header>
+      <div class="contenido">
+        <div>
+          <p class="titulo">Viaja con</p>
+          <p class="titulo2">TRIPNOW</p>
+        </div>
+        <div class="invita">
+          <p>"¿Listo para escapar de la rutina? Permítenos llevarte a lugares mágicos y llenos de encanto, deja que tu
+            espiritu aventurero se despierte.
+
+            El mundo es un libro abierto y aquellos que no viajan solo leen una página. ¡Descubre nuevas historias con
+            nosotros" </p>
+        </div>
+        <div>
+          <a class="boton" href="#destinos">Conoce más</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div class="separador">
+      <p class="titulo4 text-center">NUESTROS DESTINOS MÁS FAMOSOS</p>
+    </div>
+    <div id="destinos" class="destinos">
+
+      <div id="carouselExampleSlidesOnly" class="carousel slide mb-4" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active" data-bs-interval="3000">
+
+            <div class="d-flex box">
+              <div class="d-flex flex-column justify-content-center">
+                <p class="titulo3">Mendoza</p>
+                <p class="invita">Mendoza el corazón de la zona vitivinícola argentina, famosa por sus
+                  Malbecs y otros vinos tintos. Sus distintas bodegas ofrecen degustaciones y visitas guiadas, con
+                  lugares imperdibles para visitar como el cerro de los siete colores, el puente del inca, entre
+                  otros.</p>
+                <a href="" class="boton2">Ver más</a>
+              </div>
+              <img src="../assets/mendoza.jpg" class="d-block imagenDestino">
+            </div>
+
+          </div>
+          <div class="carousel-item" data-bs-interval="5000">
+            <div class="d-flex box">
+              <div class="d-flex flex-column justify-content-center">
+                <p class="titulo3">Cataratas</p>
+                <p class="invita">Con una fauna que está compuesta por 450 especies de aves, 80 especies de
+                  mamíferos, gran variedad de insectos y dentro de la fauna fluvial podemos encontrar yacarés,
+                  tortugas, garzas y peces.Las cataratas están formadas por 275 saltos; el 80 % de ellos se ubican
+                  del lado argentino. veni a disfrutar una de las siete maravillas del mundo.</p>
+                <a href="" class="boton2">Ver más</a>
+              </div>
+              <img src="../assets/cataratas.jpg" class="d-block imagenDestino">
+            </div>
+          </div>
+          <div class="carousel-item" data-bs-interval="5000">
+            <div class="d-flex box">
+              <div class="d-flex flex-column justify-content-center">
+                <p class="titulo3">Bariloche</p>
+                <p class="invita">Veni a conocer y disfrutar de Bariloche, con sus hermosos y coloridos
+                  paisajes, con varias actividades como para disfrutar en familia.</p>
+                <a href="" class="boton2">Ver más</a>
+              </div>
+              <img src="../assets/Y2OOAJJJ5NFGVJTHJRJB7HRFRU.jpg" class="d-block imagenDestino">
+            </div>
+          </div>
+          <div class="carousel-item" data-bs-interval="5000">
+            <div class="d-flex box">
+              <div class="d-flex flex-column justify-content-center">
+                <p class="titulo3">Parque Nacional Los Glaciares</p>
+                <p class="invita">Protege las extensiones patagónicas salvajes de Argentina de glaciares
+                  helados y lagos de montaña. Con 47 glaciares masivos, la capa de hielo andina es la más grande
+                  fuera de la Antártida y Groenlandia. Este sitio declarado Patrimonio de la Humanidad por la
+                  UNESCO alberga varias maravillas naturales, como el glaciar Perito Moreno y el monte Fitz Roy.</p>
+                <a href="" class="boton2">Ver más</a>
+              </div>
+              <img src="../assets/Glaciar2.jpg" class="d-block imagenDestino" alt="...">
             </div>
           </div>
         </div>
-      </nav>
-      <main class="intro-section">
-        <div class="container">
-          <div class="grid">
-            <div class="column-xs-12">
-              <ul class="slider">
-                <li class="slider-item active">
-                  <div class="grid vertical">
-                    <div class="column-xs-12 column-md-2 hide-mobile">
-                      <div class="intro">
-                        <a href="#">
-                          <h1 class="title"><span class="underline">Explore Bariloche</span></h1>
-                        </a>
-                      </div>
-                    </div>
-                    <div class="column-xs-12 column-md-10">
-                      <div class="image-holder">
-                        <img src="https://source.unsplash.com/cddaZDt6uRw">
-                      </div>
-                      <div class="grid">
-                        <div class="column-xs-12 column-md-9">
-                          <div class="intro show-mobile">
-                            <a href="#">
-                              <h1 class="title"><span class="underline">Explore Tokyo</span></h1>
-                            </a>
-                          </div>
-                          <p class="description">Tokyo, Japan’s busy capital, mixes the ultramodern and the traditional, from neon-lit skyscrapers to historic temples.</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-                <li class="slider-item">
-                  <div class="grid vertical">
-                    <div class="column-xs-12 column-md-2 hide-mobile">
-                      <div class="intro">
-                        <a href="#">
-                          <h1 class="title"><span class="underline">Explore Kyoto</span></h1>
-                        </a>
-                      </div>
-                    </div>
-                    <div class="column-xs-12 column-md-10">
-                      <div class="image-holder">
-                        <img src="https://source.unsplash.com/Pz3EHf-KJfc">
-                      </div>
-                      <div class="grid">
-                        <div class="column-xs-12 column-md-9">
-                          <div class="intro show-mobile">
-                            <a href="#">
-                              <h1 class="title"><span class="underline">Explore Kyoto</span></h1>
-                            </a>
-                          </div>
-                          <p class="description">Kyoto is famous for its numerous classical Buddhist temples, gardens, imperial palaces, Shinto shrines and traditional wooden houses.</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-                <li class="slider-item">
-                  <div class="grid vertical">
-                    <div class="column-xs-12 column-md-2 hide-mobile">
-                      <div class="intro">
-                        <a href="#">
-                           <h1 class="title"><span class="underline">Explore Osaka</span></h1>
-                        </a>
-                      </div>
-                    </div>
-                    <div class="column-xs-12 column-md-10">
-                      <div class="image-holder">
-                        <img src="https://source.unsplash.com/peYW3VwICpE">
-                      </div>
-                      <div class="grid">
-                        <div class="column-xs-12 column-md-9">
-                          <div class="intro show-mobile">
-                            <a href="#">
-                              <h1 class="title"><span class="underline">Explore Osaka</span></h1>
-                            </a>
-                          </div>
-                          <p class="description">Osaka is a large port city and commercial center known for its modern architecture, nightlife and hearty street food.</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-                <li class="slider-item">
-                  <div class="grid vertical">
-                    <div class="column-xs-12 column-md-2 hide-mobile">
-                      <div class="intro">
-                        <a href="#">
-                          <h1 class="title"><span class="underline">Explore Hokkaido</span></h1>
-                        </a>
-                      </div>
-                    </div>
-                    <div class="column-xs-12 column-md-10">
-                      <div class="image-holder">
-                        <img src="https://source.unsplash.com/VmeOZQjTVGE">
-                      </div>
-                      <div class="grid">
-                        <div class="column-xs-12 column-md-9">
-                          <div class="intro show-mobile">
-                            <a href="#">
-                              <h1 class="title"><span class="underline">Explore Hokkaido</span></h1>
-                            </a>
-                          </div>
-                          <p class="description">Hokkaido, the northernmost of Japan’s main islands, is known for its volcanoes, natural hot springs ("onsen") and ski areas.</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            <div class="grid">
-              <div class="column-xs-12">
-                <div class="controls">
-                    <button class="previous">
-                      <span class="visually-hidden">Previous</span>
-                      <span class="icon arrow-left" aria-hidden="true"></span>
-                    </a>
-                    <button class="next">
-                      <span class="visually-hidden">Next</span>
-                      <span class="icon arrow-right" aria-hidden="true"></span>
-                    </a>
-                  </div>
-                </div>
-            </div>
-          </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="separador">
+      <p class="titulo4 text-center">SOBRE NOSOTROS</p>
+    </div>
+    <div class="sobreNosotros d-flex flex-column align-items-center" id="sobreNosotros">
+      <div class="d-flex w-100 justify-content-evenly">
+        <div class="w-50 tarjeta">
+          <p class="titulo3"> Misión</p>
+          <p class="texto">Ser el socio confiable y experto en viajes de nuestros clientes, brindando experiencias
+            excepcionales y personalizadas que les permitan descubrir el mundo, conectarse con diferentes culturas y
+            crear recuerdos inolvidables.
+          </p>
         </div>
-      </main>
+        <div class="w-50 tarjeta">
+          <p class="titulo3"> Visión</p>
+          <p class="texto">Convertirnos en la agencia de viajes líder a nivel mundial, reconocida por nuestra excelencia
+            en el servicio al cliente,la creación de experiencias únicas y nuestra contribución positiva al desarrollo
+            sostenible del turismo. </p>
+        </div>
+      </div>
+      <div class="d-flex w-100 justify-content-evenly">
+        <div class="w-50 tarjeta">
+          <p class="titulo3 ">Historia</p>
+          <p class="texto">Somos una agencia líder en la industria del turismo, especializada en la planificación y
+            organización de viajes inolvidables Con una trayectoria de más de 10 años en el mercado, nos hemos ganado
+            una sólida reputación por ofrecer servicios de alta calidad y por brindar experiencias únicas y
+            pesonalizadas.</p>
+        </div>
+        <div class="w-50 tarjeta">
+          <p class="titulo3">Previaje</p>
+          <p class="texto"> Estamos adheridos al PreViaje. Para mas informacion detallada ingresa aqui <a
+              href="https://previaje.gob.ar/">www.previaje.gob.ar </a></p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div>
+    <div class="final">
+      <footer>
+        <div>
+          <p>Contáctanos</p>
+          <p>Ofertas de temporada</p>
+          <p>Opiniones</p>
+        </div>
+        <div>
+          <p>Ayuda</p>
+          <p>Preguntas Frecuentes</p>
+          <p>Terminos y Condiciones</p>
+        </div>
+        <div>
+          <div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-facebook" width="44"
+              height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-instagram" width="44"
+              height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M4 4m0 4a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4z" />
+              <path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
+              <path d="M16.5 7.5l0 .01" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-whatsapp" width="44"
+              height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9" />
+              <path
+                d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1" />
+            </svg>
+          </div>
+          <p>Copyright © 2023 TripNow.</p>
+          <p>Todos los derechos reservados</p>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <!-- boton -->
+  <button class="back-to-top hidden">
+    <svg xmlns="http://www.w3.org/2000/svg" class="back-to-top-icon" fill="none" viewBox="0 0 24 24"
+      stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11l5-5m0 0l5 5m-5-5v12" />
+    </svg>
+  </button>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+    crossorigin="anonymous"></script>
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
   <script src="../js/index.js"></script>
 </body>
+
 </html>

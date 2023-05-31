@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family:"Poppins", sans-serif;
+}
+
+body{
+    background-image: linear-gradient(rgba(193, 218, 252, 0.425),rgba(193, 218, 252, 0.425)), url(../assets/pexels-james-wheeler-417074.jpg);
+    background-position-y:21% ;   
+}
+header{
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 100px;
+    transition: 0.5s ease;
+    background-color: rgba(0, 0, 0, 0.288);
+    border-radius:20px ;
+    min-height: 10vh;
+  }
+header .brand {
+    color: white;
+    font-size: 1.7em;
+    font-weight: 700;
+    text-decoration: none;
+    text-shadow: 2px 2px 2px black;
+  }
+header .navigation .navigation-items a {
+    color: white;
+    position: relative;
+    font-size: 1.1em;
+    font-weight: 500;
+    text-decoration: none;
+    margin-left: 30px;
+    transition: 0.3s ease;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 2px black;
+  }
+  
+  header .navigation .navigation-items a:hover{
+    color: rgb(171, 228, 255);
+  }
+  #tarjeta-paquete{
+    width: 25rem;
+    height: 18rem;
+    border-radius: 10px;
+  }
+  .paquete{
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    width: 28rem;
+    background: rgba(255, 255, 255, 0.281);
+    border: 2px solid rgba(255, 255, 255, .5);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+  }
+  .principal{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+    flex-wrap: wrap;
+  }
+  .secundario{
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .titulo2{
+    margin-top: 0 !important;
+    color: transparent;
+    -webkit-text-stroke: 3px white;
+    font-size: 6em;
+    text-shadow: 5px 5px 5px rgb(50, 237, 250);
+  }
+  #carrito{
+    width: 2rem;
+  }
+.botones{
+  padding: 0.5rem;
+  border-radius: 5px;
+  border:none;
+  background-color: #0DB4F3;
+  color: white;
+}
+.botones2{
+  padding: 0.5rem;
+  border-radius: 5px;
+  border:none;
+  background-color: #00E194;
+  color: white
+}
