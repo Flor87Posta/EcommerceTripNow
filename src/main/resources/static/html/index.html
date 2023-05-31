@@ -13,40 +13,15 @@
 </head>
 
 <body>
-  <header class="encabezado">
-    <nav class="navbar navbar-expand-lg">
-      <div class="container-fluid">
-
-        <div class="d-flex align-items-center">
-          <img class="logo" src="../assets/logo.png" alt="">
-          <h1 id="logo" class="me-5">TripNow<span id="highlight">.</span></h1>
-        </div>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-          aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav d-flex gap-4 align-items-center">
-            <a class="nav-link text-white" href="#destinos">Destinos</a>
-            <a class="nav-link text-white" href="#sobreNosotros">Sobre Nosotros</a>
-            <a class="nav-link text-white" href="#preguntas">Preguntas Frecuentes</a>
-            <button class="login btnLogin-popup w-50">Iniciar Sesión</button>
-          </div>
-        </div>
-      </div>
-    </nav>
-
-  </header>
-
-  <main class="intro-section d-flex justify-content-center flex-wrap">
+  <div class="contenedor">
     <div class="inicio">
       <div class="wrapper">
         <span class="icon-close">
           <ion-icon name="close-circle"></ion-icon>
         </span>
-
-        <div class="caja-form loguearse">
-          <h2>Iniciar Sesión</h2>
+  
+        <div class="form-box loguearse">
+          <p class="iniciar">Iniciar Sesión</p>
           <form @submit.prevent="Login">
             <div class="input-box">
               <span class="icon"><ion-icon name="mail"></ion-icon></span>
@@ -58,266 +33,239 @@
               <input type="password" v-model="password" required>
               <label>Contraseña</label>
             </div>
-            <div class="remember-forgot d-flex flex-wrap gap-2">
-              <label><input type="checkbox">Recuerdame</label>
+            <div class="remember-forgot">
+              <label><input type="checkbox">Recordarme</label>
               <a href="#">Olvidaste tu contraseña?</a>
             </div>
             <button type="submit" class="botn">Iniciar Sesión</button>
+            <div class="login-register">
+              <p>No tienes cuenta?<a href="#" class="register-link ps-2">Registrarse</a></p>
+            </div>
+          </form>
+        </div>
+        <div class="form-box register">
+          <p class="iniciar">Registration</p>
+          <form @submit.prevent="Register">
+            <div class="input-box">
+              <span class="icon"><ion-icon name="person"></ion-icon></span>
+              <input type="text" v-model="name" required>
+              <label>Name</label>
+            </div>
+            <div class="input-box">
+              <span class="icon"><ion-icon name="person"></ion-icon></span>
+              <input type="text" v-model="lastName" required>
+              <label>Last Name</label>
+            </div>
+            <div class="input-box">
+              <span class="icon"><ion-icon name="mail"></ion-icon></span>
+              <input type="email" v-model="email2" required>
+              <label>Email</label>
+            </div>
+            <div class="input-box">
+              <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+              <input type="password" v-model="password2" required>
+              <label>Password</label>
+            </div>
+            <div class="remember-forgot">
+              <label><input type="checkbox">I agree to the terms & conditions</label>
+            </div>
+            <button type="submit" class="botn">Register</button>
+            <div class="login-register">
+              <p>Already have an account?<a href="#" class="login-link ps-2">Iniciar Sesión</a></p>
+            </div>
           </form>
         </div>
       </div>
     </div>
-    <div class="d-flex flex-column gap-3 pt-4 column-xs-11 column-sm-8 column-lg-8 column-md-8">
-      <div class="grid d-flex" id="destinos">
+    <div class="levantado">
+      <video src="../assets/pexels-fl-studio-imageline-3094026-3840x2160-30fps.mp4" autoplay muted loop></video>
+      <header>
+        <div class="d-flex align-items-center">
+          <img src="../assets/logo.png" class="logo" width="100" alt="">
+          <a href="#" class="brand">TRIPNOW</a>
+        </div>
+        <div class="navigation">
+          <div class="navigation-items">
+            <a href="#destinos">Destinos</a>
+            <a href="#sobreNosotros">Sobre Nosotros</a>
+            <button class="btnLogin-popup">Iniciar Sesión</button>
+          </div>
+        </div>
+      </header>
+      <div class="contenido">
         <div>
-          <ul class="slider">
-            <li class="slider-item active">
-              <div class="grid vertical">
-                <div class="column-xs-12 column-md-2 hide-mobile">
-                  <div class="intro">
-                    <a href="#">
-                      <h2 class="title"><span class="underline">Bariloche</span></h2>
-                    </a>
-                  </div>
-                </div>
-                <div class="column-xs-12 column-md-10">
-                  <div class="image-holder">
-                    <img src="../assets/Y2OOAJJJ5NFGVJTHJRJB7HRFRU.jpg">
-                  </div>
-                  <div class="grid">
-                    <div class="column-xs-12 column-md-9">
-                      <div class="intro show-mobile">
-                        <a href="#">
-                          <h2 class="title"><span class="underline">Bariloche</span></h2>
-                        </a>
-                      </div>
-                      <p class="description">Veni a conocer y disfrutar de Bariloche, con sus hermosos y coloridos
-                        paisajes, con varias actividades como para disfrutar en familia..</p>
-                    </div>
-                  </div>
-                </div>
+          <p class="titulo">Viaja con</p>
+          <p class="titulo2">TRIPNOW</p>
+        </div>
+        <div class="invita">
+          <p>"¿Listo para escapar de la rutina? Permítenos llevarte a lugares mágicos y llenos de encanto, deja que tu
+            espiritu aventurero se despierte.
+
+            El mundo es un libro abierto y aquellos que no viajan solo leen una página. ¡Descubre nuevas historias con
+            nosotros" </p>
+        </div>
+        <div>
+          <a class="boton" href="#destinos">Conoce más</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div class="separador">
+      <p class="titulo4 text-center">NUESTROS DESTINOS MÁS FAMOSOS</p>
+    </div>
+    <div id="destinos" class="destinos">
+
+      <div id="carouselExampleSlidesOnly" class="carousel slide mb-4" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active" data-bs-interval="3000">
+
+            <div class="d-flex box">
+              <div class="d-flex flex-column justify-content-center">
+                <p class="titulo3">Mendoza</p>
+                <p class="invita">Mendoza el corazón de la zona vitivinícola argentina, famosa por sus
+                  Malbecs y otros vinos tintos. Sus distintas bodegas ofrecen degustaciones y visitas guiadas, con
+                  lugares imperdibles para visitar como el cerro de los siete colores, el puente del inca, entre
+                  otros.</p>
+                <a href="" class="boton2">Ver más</a>
               </div>
-            </li>
-            <li class="slider-item">
-              <div class="grid vertical">
-                <div class="column-xs-12 column-md-2 hide-mobile">
-                  <div class="intro">
-                    <a href="#">
-                      <h2 class="title"><span class="underline">Cataratas</span></h2>
-                    </a>
-                  </div>
-                </div>
-                <div class="column-xs-12 column-md-10">
-                  <div class="image-holder">
-                    <img src="../assets/cataratas.jpg">
-                  </div>
-                  <div class="grid">
-                    <div class="column-xs-12 column-md-9">
-                      <div class="intro show-mobile">
-                        <a href="#">
-                          <h2 class="title"><span class="underline">Cataratas</span></h2>
-                        </a>
-                      </div>
-                      <p class="description">Con una fauna que está compuesta por 450 especies de aves, 80 especies de
-                        mamíferos, gran variedad de insectos y dentro de la fauna fluvial podemos encontrar yacarés,
-                        tortugas, garzas y peces.Las cataratas están formadas por 275 saltos; el 80 % de ellos se ubican
-                        del lado argentino. veni a disfrutar una de las siete maravillas del mundo.</p>
-                    </div>
-                  </div>
-                </div>
+              <img src="../assets/mendoza.jpg" class="d-block imagenDestino">
+            </div>
+
+          </div>
+          <div class="carousel-item" data-bs-interval="5000">
+            <div class="d-flex box">
+              <div class="d-flex flex-column justify-content-center">
+                <p class="titulo3">Cataratas</p>
+                <p class="invita">Con una fauna que está compuesta por 450 especies de aves, 80 especies de
+                  mamíferos, gran variedad de insectos y dentro de la fauna fluvial podemos encontrar yacarés,
+                  tortugas, garzas y peces.Las cataratas están formadas por 275 saltos; el 80 % de ellos se ubican
+                  del lado argentino. veni a disfrutar una de las siete maravillas del mundo.</p>
+                <a href="" class="boton2">Ver más</a>
               </div>
-            </li>
-            <li class="slider-item">
-              <div class="grid vertical">
-                <div class="column-xs-12 column-md-2 hide-mobile">
-                  <div class="intro">
-                    <a href="#">
-                      <h2 class="title"><span class="underline">Mendoza</span></h2>
-                    </a>
-                  </div>
-                </div>
-                <div class="column-xs-12 column-md-10">
-                  <div class="image-holder">
-                    <img src="../assets/mendoza.jpg">
-                  </div>
-                  <div class="grid">
-                    <div class="column-xs-12 column-md-9">
-                      <div class="intro show-mobile">
-                        <a href="#">
-                          <h2 class="title"><span class="underline">Mendoza</span></h2>
-                        </a>
-                      </div>
-                      <p class="description">Mendoza el corazón de la zona vitivinícola argentina, famosa por sus
-                        Malbecs y otros vinos tintos. Sus distintas bodegas ofrecen degustaciones y visitas guiadas, con
-                        lugares imperdibles para visitar como el cerro de los siete colores, el puente del inca, entre
-                        otros.</p>
-                    </div>
-                  </div>
-                </div>
+              <img src="../assets/cataratas.jpg" class="d-block imagenDestino">
+            </div>
+          </div>
+          <div class="carousel-item" data-bs-interval="5000">
+            <div class="d-flex box">
+              <div class="d-flex flex-column justify-content-center">
+                <p class="titulo3">Bariloche</p>
+                <p class="invita">Veni a conocer y disfrutar de Bariloche, con sus hermosos y coloridos
+                  paisajes, con varias actividades como para disfrutar en familia.</p>
+                <a href="" class="boton2">Ver más</a>
               </div>
-            </li>
-            <li class="slider-item">
-              <div class="grid vertical">
-                <div class="column-xs-12 column-md-2 hide-mobile">
-                  <div class="intro">
-                    <a href="#">
-                      <h3 class="title"><span class="underline">Parque Nacional los Glaciares</span></h3>
-                    </a>
-                  </div>
-                </div>
-                <div class="column-xs-12 column-md-10">
-                  <div class="image-holder">
-                    <img src="../assets/Glaciar2.jpg">
-                  </div>
-                  <div class="grid">
-                    <div class="column-xs-12 column-md-9">
-                      <div class="intro show-mobile">
-                        <a href="#">
-                          <h2 class="title"><span class="underline">Parque Nacional los Glaciares</span></h2>
-                        </a>
-                      </div>
-                      <p class="description">Protege las extensiones patagónicas salvajes de Argentina de glaciares
-                        helados y lagos de montaña. Con 47 glaciares masivos, la capa de hielo andina es la más grande
-                        fuera de la Antártida y Groenlandia. Este sitio declarado Patrimonio de la Humanidad por la
-                        UNESCO alberga varias maravillas naturales, como el glaciar Perito Moreno y el monte Fitz Roy.
-                      </p>
-                    </div>
-                  </div>
-                </div>
+              <img src="../assets/Y2OOAJJJ5NFGVJTHJRJB7HRFRU.jpg" class="d-block imagenDestino">
+            </div>
+          </div>
+          <div class="carousel-item" data-bs-interval="5000">
+            <div class="d-flex box">
+              <div class="d-flex flex-column justify-content-center">
+                <p class="titulo3">Parque Nacional Los Glaciares</p>
+                <p class="invita">Protege las extensiones patagónicas salvajes de Argentina de glaciares
+                  helados y lagos de montaña. Con 47 glaciares masivos, la capa de hielo andina es la más grande
+                  fuera de la Antártida y Groenlandia. Este sitio declarado Patrimonio de la Humanidad por la
+                  UNESCO alberga varias maravillas naturales, como el glaciar Perito Moreno y el monte Fitz Roy.</p>
+                <a href="" class="boton2">Ver más</a>
               </div>
-            </li>
-          </ul>
-          <div class="grid">
-            <div class="column-xs-12">
-              <div class="controls">
-                <button class="previous">
-                  <span class="visually-hidden">Previous</span>
-                  <span class="icon arrow-left" aria-hidden="true"></span>
-                  </a>
-                  <button class="next">
-                    <span class="visually-hidden">Next</span>
-                    <span class="icon arrow-right" aria-hidden="true"></span>
-                    </a>
-              </div>
+              <img src="../assets/Glaciar2.jpg" class="d-block imagenDestino" alt="...">
             </div>
           </div>
         </div>
       </div>
-      <!--  -------------------- sobre nosotros --------------------  -->
-      <div id="sobreNosotros" class="m-4">
-        <h2 class="sobreNosotros">Sobre Nosotros</h2>
-        <div class="d-flex justify-content-center m-2">
-          <img id="sobreNos" src="../assets/04_Agente_de_viajes_hombre.jpeg" alt="">
+    </div>
+  </div>
+  <div>
+    <div class="separador">
+      <p class="titulo4 text-center">SOBRE NOSOTROS</p>
+    </div>
+    <div class="sobreNosotros d-flex flex-column align-items-center" id="sobreNosotros">
+      <div class="d-flex w-100 justify-content-evenly">
+        <div class="w-50 tarjeta">
+          <p class="titulo3"> Misión</p>
+          <p class="texto">Ser el socio confiable y experto en viajes de nuestros clientes, brindando experiencias
+            excepcionales y personalizadas que les permitan descubrir el mundo, conectarse con diferentes culturas y
+            crear recuerdos inolvidables.
+          </p>
+        </div>
+        <div class="w-50 tarjeta">
+          <p class="titulo3"> Visión</p>
+          <p class="texto">Convertirnos en la agencia de viajes líder a nivel mundial, reconocida por nuestra excelencia
+            en el servicio al cliente,la creación de experiencias únicas y nuestra contribución positiva al desarrollo
+            sostenible del turismo. </p>
+        </div>
+      </div>
+      <div class="d-flex w-100 justify-content-evenly">
+        <div class="w-50 tarjeta">
+          <p class="titulo3 ">Historia</p>
+          <p class="texto">Somos una agencia líder en la industria del turismo, especializada en la planificación y
+            organización de viajes inolvidables Con una trayectoria de más de 10 años en el mercado, nos hemos ganado
+            una sólida reputación por ofrecer servicios de alta calidad y por brindar experiencias únicas y
+            pesonalizadas.</p>
+        </div>
+        <div class="w-50 tarjeta">
+          <p class="titulo3">Previaje</p>
+          <p class="texto"> Estamos adheridos al PreViaje. Para mas informacion detallada ingresa aqui <a
+              href="https://previaje.gob.ar/">www.previaje.gob.ar </a></p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div>
+    <div class="final">
+      <footer>
+        <div>
+          <p>Contáctanos</p>
+          <p>Ofertas de temporada</p>
+          <p>Opiniones</p>
         </div>
         <div>
-          <p>
-            "TripNow" es una agencia líder en la industria del turismo, especializada en la planificación y organización
-            de viajes inolvidables para sus clientes. Con una trayectoria de más de 10 años en el mercado, 
-            TripNow se ha ganado una sólida reputación por ofrecer servicios de alta calidad y por brindar
-            experiencias únicas y pesonalizadas a sus viajeros.
-          </p>
-          <p>
-            La empresa cuenta con un equipo de expertos en viajes, conformado por agentes de viajes experimentados,
-            asesores turísticos y guías locales, quienes están comprometidos en hacer realidad los sueños de sus clientes.
-            Su profundo conocimiento de destinos nacionales e internacionales les permite diseñar itinerarios a medida,
-            adaptados a los intereses y preferencias de cada cliente.
-          </p>
-  
-          <p>Con un enfoque en la excelencia, la innovación y la creación de recuerdos duraderos, TripNow se ha
-            convertido en la elección preferida de aquellos que buscan vivir experiencias únicas y descubrir el mundo de
-            manera cómoda y segura.
-          </p>
+          <p>Ayuda</p>
+          <p>Preguntas Frecuentes</p>
+          <p>Terminos y Condiciones</p>
         </div>
-      </div>
-      <div id="preguntas">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit similique illo pariatur totam est, explicabo, ducimus error quibusdam amet corporis vitae architecto incidunt odio quasi aspernatur ab. Iste, facilis sit?</p>
-
-      </div>
+        <div>
+          <div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-facebook" width="44"
+              height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-instagram" width="44"
+              height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M4 4m0 4a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4z" />
+              <path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
+              <path d="M16.5 7.5l0 .01" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-whatsapp" width="44"
+              height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9" />
+              <path
+                d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1" />
+            </svg>
+          </div>
+          <p>Copyright © 2023 TripNow.</p>
+          <p>Todos los derechos reservados</p>
+        </div>
+      </footer>
     </div>
-    <aside class="column-xs-11 column-lg-4 column-md-4 column-sm-4  mb-3 ps-5">
-      <div class="registro">
-        <div class="d-flex flex-column form-box register">
-          <h2>Registrate</h2>
-          <form>
-            <div class="mt-3 d-flex gap-1">
-              <label class="espacio">
-                <input class="espacio" type="text" v-model="Name" placeholder="Nombre" required>
-              </label>
-              <label class="espacio">
-                <input class="espacio" type="text" v-model="lastName" placeholder="Apellido" required>
-              </label>
-            </div>
-            <div class="">
-              <label class=" text-white w-100">
-                Fecha de nacimiento:
-                <input class=" w-100" type="date" v-model="email2" required>
-              </label>
-            </div>
-            <label class="espacio">
-              <input class="espacio" type="email" v-model="password2" placeholder="Direccion" required>
-            </label>
+  </div>
 
-            <div class="d-flex gap-1">
-              <label class="espacio">
-                <input class="espacio" type="number" v-model="email2" placeholder="Telefono" required>
-              </label>
+  <!-- boton -->
+  <button class="back-to-top hidden">
+    <svg xmlns="http://www.w3.org/2000/svg" class="back-to-top-icon" fill="none" viewBox="0 0 24 24"
+      stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11l5-5m0 0l5 5m-5-5v12" />
+    </svg>
+  </button>
 
-              <label class="espacio">
-                <input class="espacio" type="text" v-model="password2" placeholder="Pasaporte" required>
-              </label>
-            </div>
-            <div class="d-flex gap-1">
-              <label class="espacio">
-                <input class="espacio" type="email" v-model="email2" placeholder="Email" required>
-              </label>
-
-              <label class="espacio">
-                <input class="espacio" type="email" v-model="password2" placeholder="Contraseña" required>
-              </label>
-            </div>
-            <div>
-              <label>
-                <input type="checkbox" class="me-2 mt-2">Estoy de acuerdo con los terminos y condiciones
-              </label>
-            </div>
-            <button type="submit" class="botn mb-2">Registrarse</button>
-            <div>
-              <p>Ya tienes cuenta?<a href="#" class="login-link ps-2">Inicia Sesión</a></p>
-            </div>
-          </form>
-        </div>
-      </div>
-      <div class="ps-5">
-        <img src="../assets/publicidad-viaje.jpeg" class="publicidad-mendoza" alt="">
-      </div>
-    </aside>
-
-
-  </main>
-  <footer>
-    <div class="d-flex justify-content-evenly pt-3 flex-wrap">
-      <div>
-          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-facebook" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
-            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-            <path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" />
-            </svg>
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-instagram" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
-            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-            <path d="M4 4m0 4a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4z" />
-            <path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
-            <path d="M16.5 7.5l0 .01" />
-            </svg>
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-whatsapp" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
-            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-            <path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9" />
-            <path d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1" />
-            </svg>
-       </div>
-      <p>Copyright © 2023 TripNow.
-      Todos los derechos reservados</p>
-</div>
-    
-  </footer>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
     crossorigin="anonymous"></script>
