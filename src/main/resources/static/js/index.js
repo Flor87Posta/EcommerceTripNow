@@ -4,6 +4,14 @@ const app = createApp({
     return{
       email:'',
       contrasena:'',
+      email2: '',
+      contrasena2:'',
+      nombre:'',
+      apellido:'',
+      pasaporte:'',
+      direccion:'',
+      telefono:'',
+      fechaNac:'',
     }
   },
   methods:{
@@ -46,6 +54,23 @@ const app = createApp({
           }
         })
       })
+    },
+    Register() {
+      axios
+        .post('/api/clientes', `nombre=${this.nombre}&apellido=${this.apellido}&pasaporte=${this.pasaporte}&direccion=${this.direccion}&telefono=${this.telefono}&email=${this.email2}&contrasena=${this.contrasena2}&fechaNac=${this.fechaNac}`)
+        .then(response => axios.post('/api/login', `email=${this.email2}&contrasena=${this.contrasena2}`)
+          .then(response => window.location.href = '/html/paquetes.html')
+          .catch(error => {
+            Swal.fire({
+                icon: 'error',
+                text: error.response.data}
+            )}))
+            .catch(error => {
+              Swal.fire({
+                  icon: 'error',
+                  text: error.response.data}
+              )
+          })
     }
   }
 })
