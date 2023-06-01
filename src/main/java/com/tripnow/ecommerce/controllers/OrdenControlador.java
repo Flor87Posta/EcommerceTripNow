@@ -2,10 +2,7 @@ package com.tripnow.ecommerce.controllers;
 import com.itextpdf.text.DocumentException;
 import com.tripnow.ecommerce.Dto.OrdenDTO;
 import com.tripnow.ecommerce.Dto.PagoDTO;
-import com.tripnow.ecommerce.models.Cliente;
-import com.tripnow.ecommerce.models.FormaPago;
-import com.tripnow.ecommerce.models.Orden;
-import com.tripnow.ecommerce.models.OrdenPDFExporter;
+import com.tripnow.ecommerce.models.*;
 import com.tripnow.ecommerce.services.ClienteServicio;
 import com.tripnow.ecommerce.services.OrdenServicio;
 import org.springframework.security.core.Authentication;
@@ -16,10 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.time.LocalDateTime;
@@ -36,6 +30,9 @@ public class OrdenControlador {
     OrdenServicio ordenServicio;
     @Autowired
     ClienteServicio clienteServicio;
+
+    @Autowired
+    EmailService emailService;
 
     @GetMapping("/api/clientes/orden/{id}")
     public List<OrdenDTO> obtenerOrdenesDTO(@PathVariable Long id ){
@@ -143,17 +140,15 @@ public class OrdenControlador {
             return new ResponseEntity<>("Id de orden inválido", HttpStatus.FORBIDDEN);
         }
 
-        response.setContentType("application/pdf");
+        // Generar el archivo PDF en memoria
+        ByteArrayOutputStream pdfOutputStream = new ByteArrayOutputStream();
+        OrdenPDFExporter ordenExporter = new OrdenPDFExporter(cliente, orden);
+        ordenExporter.usePDFExport(pdfOutputStream);
 
-        String headerKey = "Content-Disposition";
-        String headerValue = "attachment; filename=Transactions" + idOrden + ".pdf";
-        response.setHeader(headerKey, headerValue);
+        // Enviar el archivo PDF por correo electrónico al cliente
+        emailService.sendConfirmationEmail(cliente.getEmail(), "token_de_confirmacion", pdfOutputStream);
 
-
-       OrdenPDFExporter ordenExporter = new OrdenPDFExporter(cliente, orden);
-        ordenExporter.usePDFExport(response); // Genera el archivo PDF y envíalo como respuesta
-
-        return new ResponseEntity<>("PDF is created", HttpStatus.CREATED);
+        return new ResponseEntity<>("PDF is created and sent", HttpStatus.CREATED);
     }
 
 }

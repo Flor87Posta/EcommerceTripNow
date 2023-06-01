@@ -40,7 +40,7 @@ class AutorizacionWeb {
                 .antMatchers("/api/clientes").hasAuthority("ADMIN")
                 .antMatchers("/api/paquetes").hasAuthority("ADMIN")
                 .antMatchers("/manager/manager.html").hasAuthority("ADMIN")
-                .antMatchers("/h2-console").hasAuthority("ADMIN")
+                .antMatchers("http://localhost:8080/h2-console").hasAuthority("ADMIN")
                 .antMatchers("/rest/**").hasAuthority("ADMIN")
 
 //                CLIENT
@@ -54,8 +54,8 @@ class AutorizacionWeb {
                 .antMatchers(HttpMethod.POST, "https://homebanking-mindhub-brothers.up.railway.app/api/clients/current/pay-card").hasAuthority("CLIENTE")
                 .antMatchers("/api/clientes/current").hasAuthority("CLIENTE")
                 .antMatchers("/api/paquetes").hasAuthority("CLIENTE")
-                .antMatchers("/html/nosotros.html").hasAuthority("CLIENT")
-                .antMatchers("/html/conocemas.html").hasAuthority("CLIENT");
+                .antMatchers("/html/nosotros.html").hasAuthority("CLIENTE")
+                .antMatchers("/html/conocemas.html").hasAuthority("CLIENTE");
 //                .anyRequest().denyAll().and();
 
 
