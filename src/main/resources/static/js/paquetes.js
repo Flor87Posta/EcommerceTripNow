@@ -2,15 +2,19 @@ const {createApp}= Vue;
 const app = createApp({
   data(){
     return{
-      email:'',
-      contrasena:'',
+      cantidadPasajeros: '',
+      paquetes:{}
     }
   },
   methods:{
-    loadData(){
-
+    loadDataPaquetes(){
+        axios.get('/api/paquetes')
+        .then(response => {
+          this.paquetes = response.data;
+          console.log(this.paquetes)
+        })
     },
-    logout() {
+    logout(){
         Swal.fire({
             title: 'Seguro que desea cerrar sesion?',
             inputAttributes: {
@@ -22,7 +26,7 @@ const app = createApp({
             preConfirm: () => {
                 return axios.post('/api/logout')
                     .then(response => {
-                        window.location.href = "/html/index.html"
+                        window.location.href = '/html/index.html'
                     })
                     .catch(error => {
                         Swal.showValidationMessage(
@@ -33,8 +37,15 @@ const app = createApp({
             allowOutsideClick: () => !Swal.isLoading()
         })
     },
-    crearOrden(){
-
+    crearOrden(){ 
+      axios.post('/api/clientes/current/orden',`cantidadPasajeros=${this.cantidadPasajeros}`)
+      .then(response => window.location.href = '/html/carrito.html')
+      .catch(error => {
+        Swal.fire({
+          icon: 'error',
+          text: error.response.data
+      })
+      })
     },
 
   }

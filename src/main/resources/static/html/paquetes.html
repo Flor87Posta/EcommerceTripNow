@@ -12,7 +12,7 @@
   <title>Paquetes</title>
   <link rel="shortcut icon" href="../assets/logo.png" type="image/x-icon">
 </head>
-   <body>
+   <body id="app">
    <header>
         <div class="d-flex align-items-center">
           <img src="../assets/logo.png" class="logo" width="100" alt="">
@@ -23,7 +23,7 @@
             <a href="../html/carrito.html"><img id="carrito" src="../assets/cart_icon_235154.png" alt=""></a>
             <a href="#">Paquetes</a>
             <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal3">Crear Orden</a>
-            <a  @click.prevent="logout" href="">Cerrar Sesión</a>
+            <a  @click="logout" href="">Cerrar Sesión</a>
           </div>
         </div>
       </header>
@@ -58,8 +58,7 @@
                 <h4>Hotel:</h4>
                 <h4>Excursion:</h4>
                 <div class="d-flex justify-content-evenly pb-2 gap-5">
-                  <button class="botones"><img id="carrito" src="../assets/cart_icon_235154.png" alt=""> Añadir</button>
-                  <button  type="button" class="botones2">pagar</button>
+                  <button class="botones"><img id="carrito" src="../assets/cart_icon_235154.png" alt=""> Añadir</button>                 
                 </div>
               </div> 
             </div>
@@ -90,7 +89,6 @@
                 <h4>Excursion:</h4>
                 <div class="d-flex justify-content-evenly pb-2 gap-5">
                   <button class="botones"><img id="carrito" src="../assets/cart_icon_235154.png" alt=""> Añadir</button>
-                  <button  type="button" class="botones2">pagar</button>
                 </div>
               </div>      
             </div>
@@ -121,7 +119,6 @@
                 <h4>Excursion:</h4>
                 <div class="d-flex justify-content-evenly pb-2 gap-5">
                 <button class=" botones"><img id="carrito" src="../assets/cart_icon_235154.png" alt=""> Añadir</button>
-                  <button  type="button" class="botones2">pagar</button>
                 </div>
               </div>    
             </div>
@@ -149,10 +146,9 @@
               </div>
               <div class="p-2">
                 <h4>Hotel:</h4>
-                <h4>Excursion:</h4>
+                <h4>Excursión:</h4>
                 <div class="d-flex justify-content-evenly pb-2 gap-5">
                   <button class=" botones"><img id="carrito" src="../assets/cart_icon_235154.png" alt=""> Añadir</button>
-                  <button  class="botones2">pagar</button>
                 </div>
               </div> 
             </div>
@@ -164,17 +160,25 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel3">Crear orden de compra</h1>
+                        <h1 class="modal-title fs-5 titulo3" id="exampleModalLabel3">Crear orden de compra</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form class="d-flex justify-content-center align-items-center" @submit.prevent="crearOrden">
-                            <div class="form-check">
+                        <form class="d-flex justify-content-center align-items-center flex-column" @submit.prevent="crearOrden">
+                            
                                 <div>
-                                  <p class=""> Por favor ingrese el numero de pasajeros para su orden</p>                                   
+                                  <p class=""> Por favor ingrese el numero de pasajeros para su orden</p>
+                                  <select v-model="cantidadPasajeros" class="form-select" required>
+                                    <option selected value="">Selecciona el numero de pasajeros</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                  </select>                                   
                                 </div>                          
-                            </div>                        
-                            <button type="submit" class="btn btn-outline-success mb-3 mt-3 fs-4">Crear</button>
+                                                    
+                            <button type="submit" class="btn btn-outline-success  mb-3 mt-3 ">Crear</button>
                         </form>                  
                     </div>
                 </div>
