@@ -31,11 +31,12 @@ public class EcommerceApplication {
 			Cliente cliente1 = new Cliente("Melba", "Morel", "X12455888", "Lomas de Zamora 222", "011-41216666", "melba@mindhub.com", passwordEncoder.encode("555669812"), new Date(56/06/06));
 			Cliente cliente2 = new Cliente("Lucia", "Lopez", "X33134665", "Los Paraisos 556", "0351-4224455", "lucia@mindhub.com", passwordEncoder.encode("555666"), new Date(87/11/06) );
 			Cliente cliente3 = new Cliente("Ines", "Garcia", "X40111666", "Tintines 22", "0344-4258899", "ines@mindhub.com", passwordEncoder.encode("111555"), new Date(90/10/10));
-			Cliente admin = new Cliente ("Admin", "Admin", "X8754785487", "Admin", "45698-55465", "admin@admin.com", passwordEncoder.encode("admin"), new Date (90/05/02));
+			Cliente admin = new Cliente ("Admin", "Admin", "X8754785487", "Admin", "45698-55465", "florys_211@hotmail.com", passwordEncoder.encode("admin"), new Date (90/05/02));
 
 			clienteRepositorio.save(cliente1);
 			clienteRepositorio.save(cliente2);
 			clienteRepositorio.save(cliente3);
+			clienteRepositorio.save(admin);
 
 			Hotel hotel1 = new Hotel("Andes Retreat", HotelCategoria.TRESESTRELLAS, false, false,true, 50000, 10);
 			Hotel hotel2 = new Hotel("Mariposa Bay Resort", HotelCategoria.CINCOESTRELLAS, true, true, true, 100000, 10);

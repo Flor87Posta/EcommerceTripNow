@@ -2,12 +2,15 @@ package com.tripnow.ecommerce.models;
 import com.itextpdf.text.*;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.pdf.PdfWriter;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import com.itextpdf.text.Image;
 import org.apache.commons.io.IOUtils;
-import javax.servlet.http.HttpServletResponse;
+import org.springframework.stereotype.Component;
+
+
 
 
 public class OrdenPDFExporter {
@@ -22,9 +25,9 @@ public class OrdenPDFExporter {
 
     private static final String LOGO_PATH = new File("C:Users/Usuarios/Desktop/ecommerceMerge/src/main/resources/static/assets/logoTripNow.png").getAbsolutePath();
 
-    public void usePDFExport(HttpServletResponse response) throws DocumentException, IOException {
+    public void usePDFExport(ByteArrayOutputStream pdfOutputStream) throws DocumentException, IOException {
         Document document = new Document(PageSize.A4);
-        PdfWriter.getInstance(document, response.getOutputStream());
+        PdfWriter.getInstance(document, pdfOutputStream);
         document.open();
 
         // Agregar contenido al documento PDF
