@@ -8,8 +8,8 @@
 }
 
 body{
-    background-image: linear-gradient(rgba(193, 218, 252, 0.425),rgba(193, 218, 252, 0.425)), url(../assets/pexels-james-wheeler-417074.jpg);
-    background-position-y:21% ;   
+    background-image: linear-gradient(rgba(193, 218, 252, 0.425),rgba(193, 218, 252, 0.425)), url(../assets/fondo-video-img.jpg);
+    background-size: cover; 
 }
 header{
     position: absolute;
@@ -158,4 +158,10 @@ border-radius: 15px;
    box-shadow: none;
  }
 
+}
+
+.titulo3{
+  margin-top: 0 !important;
+  color: rgb(2, 133, 255);
+  font-size: 1.5em;
 }
