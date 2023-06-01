@@ -100,3 +100,62 @@ header .navigation .navigation-items a {
   background-color: #00E194;
   color: white
 }
+.final{
+  background: rgba(255, 255, 255, 0.281);
+ padding: 3rem;
+ display: flex;
+ justify-content: center; 
+ backdrop-filter: blur(10px);
+}
+footer{
+border-radius: 15px;
+ box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.466);
+ margin: 1rem;
+ width: 80vw;
+ display: flex;
+ justify-content: space-evenly;
+ flex-wrap: wrap;
+}
+
+@media(max-width: 768px){
+ .titulo2{
+   font-size: 3rem;
+  
+ }
+ header{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   transition: 0.5s ease;
+   min-height: 10vh;
+   flex-direction: column;
+   background: none;
+ }
+ .navigation-items a {
+   color: white;
+   font-size: 1.1em;
+   text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+   
+ }
+ .principal{
+   min-height: 80vh;
+   padding: 0.1rem;
+   display: flex;
+   flex-direction: column;
+   padding-top: 12rem;
+ }
+ .secundario{
+   width: 25rem;
+   padding-bottom: 2rem;
+ }
+ footer{
+   margin: 0;
+   border-radius: none;
+   box-shadow: none;
+ }
+
+}
