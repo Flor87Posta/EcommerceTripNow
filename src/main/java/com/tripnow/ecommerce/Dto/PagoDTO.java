@@ -1,54 +1,58 @@
 package com.tripnow.ecommerce.Dto;
 import com.tripnow.ecommerce.models.FormaPago;
-import java.time.LocalDateTime;
+
 
 public class PagoDTO {
 
-    private FormaPago tipoTc;
-    private String numeroTarjeta;
-    private int numeroCVV;
+    private String number;
+    private int cvv;
+    private double amount;
+    private String description;
+    private FormaPago typeCard;
     private String email;
-    private double monto;
-    private String descripcion;
-    private LocalDateTime fechaPago;
 
     public PagoDTO() {
     }
 
-    public PagoDTO(FormaPago tipoTc, String numeroTarjeta, int numeroCVV, String email, double monto, String descripcion, LocalDateTime fechaPago) {
-        this.tipoTc = tipoTc;
-        this.numeroTarjeta = numeroTarjeta;
-        this.numeroCVV = numeroCVV;
-        this.email = email;
-        this.monto = monto;
-        this.descripcion = descripcion;
-        this.fechaPago = fechaPago;
-    }
-
     //getter y setter:
-
-    public FormaPago getTipoTc() {
-        return tipoTc;
+    public String getNumber() {
+        return number;
     }
 
-    public void setTipoTc(FormaPago tipoTc) {
-        this.tipoTc = tipoTc;
+    public void setNumber(String number) {
+        this.number = number;
     }
 
-    public String getNumeroTarjeta() {
-        return numeroTarjeta;
+    public int getCvv() {
+        return cvv;
     }
 
-    public void setNumeroTarjeta(String numeroTarjeta) {
-        this.numeroTarjeta = numeroTarjeta;
+    public void setCvv(int cvv) {
+        this.cvv = cvv;
     }
 
-    public int getNumeroCVV() {
-        return numeroCVV;
+    public double getAmount() {
+        return amount;
     }
 
-    public void setNumeroCVV(int numeroCVV) {
-        this.numeroCVV = numeroCVV;
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public FormaPago getTypeCard() {
+        return typeCard;
+    }
+
+    public void setTypeCard(FormaPago typeCard) {
+        this.typeCard = typeCard;
     }
 
     public String getEmail() {
@@ -59,27 +63,12 @@ public class PagoDTO {
         this.email = email;
     }
 
-    public double getMonto() {
-        return monto;
-    }
+    public PagoDTO(String number, int cvv, double amount, String description, FormaPago typeCard, String email){
+        this.number=number;
+        this.cvv=cvv;
+        this.description=description;
+        this.typeCard=typeCard;
+        this.email=email;
 
-    public void setMonto(double monto) {
-        this.monto = monto;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public LocalDateTime getFechaPago() {
-        return fechaPago;
-    }
-
-    public void setFechaPago(LocalDateTime fechaPago) {
-        this.fechaPago = fechaPago;
     }
 }

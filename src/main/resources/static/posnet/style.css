@@ -1,0 +1,21 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+    background-color: aqua;
+}
+body {
+
+    width: 100%;
+    background-color: aqua;
+    min-height: 100vh; /* Ajusta el contenedor para que tenga al menos el alto de la ventana del navegador */
+    display: flex; /* Utilizamos flexbox para alinear y centrar el contenido */
+    flex-direction: column;
+    align-items: center; /* Centra verticalmente el contenido */
+    font-family: 'Russo One', sans-serif;
+    color: white;
+}
+
+
+

@@ -1,5 +1,7 @@
 package com.tripnow.ecommerce.models;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.stereotype.Component;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Date;
