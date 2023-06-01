@@ -3,6 +3,7 @@ import com.tripnow.ecommerce.Dto.ClienteDTO;
 import com.tripnow.ecommerce.models.Cliente;
 import com.tripnow.ecommerce.services.ClienteServicio;
 import com.tripnow.ecommerce.services.OrdenServicio;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -42,7 +43,7 @@ public class ClienteControlador {
             @RequestParam String nombre, @RequestParam String apellido,
             @RequestParam String pasaporte, @RequestParam String direccion,
             @RequestParam String telefono,
-            @RequestParam String email, @RequestParam String contrasena, @RequestParam Date fechaNac) { //son todos los parámetros que envía el usuario al registrarse
+            @RequestParam String email, @RequestParam String contrasena, @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaNac) { //son todos los parámetros que envía el usuario al registrarse
 
         // Registra al usuario y genera un token de verificación
 
