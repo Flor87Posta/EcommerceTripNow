@@ -156,7 +156,7 @@ public class PaqueteControlador {
     //Y al final, se devuelve una respuesta exitosa.
 
     //con logica similar hago el eliminar paquetes:
-    @DeleteMapping("/api/clientes/current/eliminar-paquete")
+    @PostMapping("/api/clientes/current/eliminar-paquete")
     public ResponseEntity<Object> eliminarPaquete(@RequestParam Long idPaquete, Authentication authentication) {
         Cliente cliente = clienteServicio.findByEmail(authentication.getName());
         Paquete paquete = paqueteServicio.findById(idPaquete);
@@ -185,7 +185,10 @@ public class PaqueteControlador {
             int stockActual = paquete.getStock();
             paquete.setStock(stockActual + 1);
             paqueteServicio.savePaquete(paquete);
-
+            double precioPaqueteEliminado = paquete.getPrecioTotalUnitario();
+            int cantidadPasajeros = orden.getCantidadPasajeros();
+            double precioTotalOrden = orden.getPrecioTotalOrden();
+            orden.setPrecioTotalOrden(precioTotalOrden - (precioPaqueteEliminado * cantidadPasajeros));
             ordenServicio.saveOrden(orden);
             return new ResponseEntity<>("Paquete eliminado de la orden", HttpStatus.OK);
         } else {
