@@ -16,6 +16,10 @@ public class Paquete {
     private double precioTotalUnitario;
     private int stock;
 
+    private String imagen1;
+    private String imagen2;
+    private String imagen3;
+
 
     @ManyToMany(mappedBy = "paquetes", fetch = FetchType.EAGER)
     private Set<Orden> ordenes = new HashSet<>();
@@ -29,11 +33,14 @@ public class Paquete {
     private Destino destino;
 
     public Paquete(){}
-    public Paquete(String nombrePaquete, int dias, double precioTotalUnitario, int stock){
+    public Paquete(String nombrePaquete, int dias, double precioTotalUnitario, int stock,   String imagen1, String imagen2,  String imagen3){
         this.nombrePaquete = nombrePaquete;
         this.dias = dias;
         this.precioTotalUnitario= precioTotalUnitario;
         this.stock = stock;
+        this.imagen1=imagen1;
+        this.imagen2=imagen2;
+        this.imagen3=imagen3;
 
     }
 
@@ -96,6 +103,30 @@ public class Paquete {
 
     public void setStock(int stock) {
         this.stock = stock;
+    }
+
+    public String getImagen1() {
+        return imagen1;
+    }
+
+    public void setImagen1(String imagen1) {
+        this.imagen1 = imagen1;
+    }
+
+    public String getImagen2() {
+        return imagen2;
+    }
+
+    public void setImagen2(String imagen2) {
+        this.imagen2 = imagen2;
+    }
+
+    public String getImagen3() {
+        return imagen3;
+    }
+
+    public void setImagen3(String imagen3) {
+        this.imagen3 = imagen3;
     }
 
     //Metodos creados:

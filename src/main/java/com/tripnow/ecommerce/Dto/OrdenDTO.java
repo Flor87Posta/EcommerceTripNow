@@ -56,5 +56,41 @@ public class OrdenDTO {
     public boolean isPagada() {
         return pagada;
     }
+
+    public void setFechaCreacion(LocalDateTime fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
+    }
+
+    public void setActiva(boolean activa) {
+        this.activa = activa;
+    }
+
+    public void setCantidadPasajeros(int cantidadPasajeros) {
+        this.cantidadPasajeros = cantidadPasajeros;
+    }
+
+    public void setPrecioTotalPaquete(double precioTotalPaquete) {
+        this.precioTotalPaquete = precioTotalPaquete;
+    }
+
+    public double getPrecioTotalOrden() {
+        return precioTotalOrden;
+    }
+
+    public void setPrecioTotalOrden(double precioTotalOrden) {
+        this.precioTotalOrden = precioTotalOrden;
+    }
+
+    public void setPagada(boolean pagada) {
+        this.pagada = pagada;
+    }
+
+    public List<PaqueteDTO> getPaquetesDTO() {
+        return paquetesDTO;
+    }
+
+    public void setPaquetesDTO(List<PaqueteDTO> paquetesDTO) {
+        this.paquetesDTO = paquetesDTO;
+    }
 }
 

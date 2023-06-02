@@ -3,16 +3,20 @@ const {createApp}= Vue;
 const app = createApp({
         data(){
             return{
-                orden:[],
+                ordenes:[],          
             }
         },
+
+        created() {
+           
+            axios.get('/api/clientes/orden')
+            .then(response =>{
+                this.ordenes = response.data
+                console.log(this.ordenes);
+            })
+          },
+          
         methodos:{
-            loadDataOrdenes(){
-                axios.get('/api/clientes/current/orden')
-                .then(response => {
-                    this.orden = response.data
-                    console.log(this.orden);
-                })
-            }
         }
-      })
+    })
+    app.mount('#app')

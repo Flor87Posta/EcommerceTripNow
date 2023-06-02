@@ -110,10 +110,10 @@ public class EcommerceApplication {
 			destinoRepositorio.save(destino3);
 			destinoRepositorio.save(destino4);
 
-			Paquete paquete1 = new Paquete ("Volá y conocé Mendoza", 13, destino3.getPrecioHotelExcursion()+pasaje1.getPrecioPasaje(), 10);
-			Paquete paquete2 = new Paquete ("Volá y conocé Cataratas", 6, destino4.getPrecioHotelExcursion()+pasaje2.getPrecioPasaje(),10);
-			Paquete paquete3 = new Paquete ("Conoce Bariloche via FlechaBus", 8, destino2.getPrecioHotelExcursion()+pasaje4.getPrecioPasaje(),10);
-			Paquete paquete4 = new Paquete ("Conoce Santa Cruz con Flybondi", 5, destino1.getPrecioHotelExcursion()+pasaje3.getPrecioPasaje(),10);
+			Paquete paquete1 = new Paquete ("Volá y conocé Mendoza", 13, destino3.getPrecioHotelExcursion()+pasaje1.getPrecioPasaje(), 10, "/assets/mendoza.jpg","/assets/mendoza.jpg","/assets/mendoza.jpg");
+			Paquete paquete2 = new Paquete ("Volá y conocé Cataratas", 6, destino4.getPrecioHotelExcursion()+pasaje2.getPrecioPasaje(),10, "/assets/cataratas.jpg","/assets/cataratas.jpg","/assets/cataratas.jpg");
+			Paquete paquete3 = new Paquete ("Conoce Bariloche via FlechaBus", 8, destino2.getPrecioHotelExcursion()+pasaje4.getPrecioPasaje(),10, "/assets/Centro_Civico_y_Puerto_San_Carlos_en_Bariloche.jpg","/assets/Centro_Civico_y_Puerto_San_Carlos_en_Bariloche.jpg","static/assets/Centro_Civico_y_Puerto_San_Carlos_en_Bariloche.jpg");
+			Paquete paquete4 = new Paquete ("Conoce Santa Cruz con Flybondi", 5, destino1.getPrecioHotelExcursion()+pasaje3.getPrecioPasaje(),10, "/assets/Glaciar2.jpg","/assets/Glaciar2.jpg","/assets/Glaciar2.jpg");
 
 			paqueteRepositorio.save(paquete1);
 			paqueteRepositorio.save(paquete2);

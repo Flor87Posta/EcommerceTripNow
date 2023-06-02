@@ -73,8 +73,13 @@ public class PaqueteControlador {
         // Disminuir el stock del paquete
         int stockActual = paquete.getStock();
         if (stockActual > 0) {
-            paquete.setStock(stockActual - 1);
-            paqueteServicio.savePaquete(paquete);
+            int cantidadPasajeros = orden.getCantidadPasajeros();
+            if (stockActual >= cantidadPasajeros) {
+                paquete.setStock(stockActual - cantidadPasajeros);
+                paqueteServicio.savePaquete(paquete);
+            } else {
+                return new ResponseEntity<>("No hay suficiente stock disponible para la cantidad de pasajeros", HttpStatus.BAD_REQUEST);
+            }
         } else {
             return new ResponseEntity<>("No hay stock disponible para el paquete seleccionado", HttpStatus.BAD_REQUEST);
         }
@@ -107,7 +112,7 @@ public class PaqueteControlador {
             return new ResponseEntity<>("Destino o pasaje no encontrado", HttpStatus.NOT_FOUND);
         }
 
-        Paquete nuevoPaquete = new Paquete(paqueteSeleccionadoDTO.getNombrePaquete(), paqueteSeleccionadoDTO.getDias(), destino.getPrecioHotelExcursion() + pasaje.getPrecioPasaje(), 10);
+        Paquete nuevoPaquete = new Paquete(paqueteSeleccionadoDTO.getNombrePaquete(), paqueteSeleccionadoDTO.getDias(), destino.getPrecioHotelExcursion() + pasaje.getPrecioPasaje(), 10, "/assets/hotel.jpg","/assets/hotel.jpg","/assets/hotel.jpg");
         nuevoPaquete.setDestino(destino);
         nuevoPaquete.setPasaje(pasaje);
 

@@ -18,7 +18,7 @@
   <link rel="shortcut icon" href="../assets/logo.png" type="image/x-icon">
 </head>
 <body id="app">
-  <header>
+  <!-- <header>
     <div class="d-flex align-items-center">
       <img src="../assets/logo.png" class="logo" width="100" alt="">
       <a href="#" class="brand">TRIPNOW</a>
@@ -31,7 +31,7 @@
         <a  @click="logout" href="">Cerrar Sesión</a>
       </div>
     </div>
-  </header>
+  </header> -->
     <main> 
         
         <div class="box-principal container">
@@ -40,20 +40,22 @@
                 <table class="table">
                     <thead>
                       <tr>
-                        <th scope="col" class="text-white">Paquete</th>
-                        <th scope="col" class="text-white">Pasaje</th>
-                        <th scope="col"class="text-white">Hotel</th>
-                        <th scope="col" class="text-white">Excursion</th>
-                        <th scope="col" class="text-white">Sub total</th>
+                        <th scope="col" class="text-white">Cantidad Pasajeros</th>
+                        <th scope="col" class="text-white">Fecha de Creacion</th>
+                        <th scope="col"class="text-white">Precio Total Paquete</p></th>
+                        <th scope="col" class="text-white">Precio Total Orden</th>
+                        <th scope="col" class="text-white">¿Pagada?</th>
+
                       </tr>
                     </thead>
                     <tbody>
-                         <!-- datos de que van a obtener -->
-                      <tr>
-                        <td scope="row">1</td>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
+                        <!-- datos de que van a obtener -->
+                      <tr v-for="orden in ordenes"> 
+                        <td scope="row">{{orden.cantidadPasajeros}}</td>
+                        <td>{{orden.fechaCreacion}}</td>
+                        <td>{{orden.precioTotalPaquete}}</td>
+                        <td>{{orden.precioTotalPaquete * orden.cantidadPasajeros}}</td>
+                        <td>{{orden.pagada}}</td>
                         <td><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="30" height="30" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                             <path d="M4 7l16 0" />
@@ -65,8 +67,9 @@
                       </tr>
                     </tbody>
                   </table>
-                  <div class="d-flex justify-content-end pb-2">
-                    <button  type="button" class="btn btn-outline-success">pagar</button>
+                  <div class="d-flex justify-content-evenly pb-2">
+                    <button  type="button" class="btn btn-outline-success" onclick="window.location.href='/posnet/posnet.html'">pagar</button>
+                    <button  type="button" class="btn btn-outline-success" onclick="window.location.href='/html/paquetes.html'">Volver</button>
                   </div>
             </div>
         </div>
@@ -77,9 +80,10 @@
     integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
     crossorigin="anonymous"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-  <script src="./carrito.js"></script>
+  <script src="../js/carrito.js"></script>
 </body>
 
 </html>
