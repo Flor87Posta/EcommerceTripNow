@@ -1,11 +1,8 @@
 package com.tripnow.ecommerce.Dto;
 
 import com.tripnow.ecommerce.models.Destino;
-import com.tripnow.ecommerce.models.Excursion;
-import com.tripnow.ecommerce.models.Hotel;
 
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 public class DestinoDTO {
@@ -18,6 +15,7 @@ public class DestinoDTO {
 
     public DestinoDTO() {
     }
+
     public DestinoDTO(Destino destino){
         this.id = destino.getId();
         this.nombre = destino.getNombre();

@@ -1,14 +1,21 @@
 package com.tripnow.ecommerce.Dto;
 
-import com.tripnow.ecommerce.models.Cliente;
-import com.tripnow.ecommerce.models.Orden;
-import com.tripnow.ecommerce.models.Paquete;
+import com.tripnow.ecommerce.models.*;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 public class PaqueteSeleccionadoDTO {
 
     private long id;
     private String nombrePaquete;
     private int dias;
+    private Hotel hotel;
+    private Destino destino;
+    private Excursion excursion;
+    private Pasaje pasaje;
+
 
 
     public PaqueteSeleccionadoDTO(){};
@@ -19,6 +26,11 @@ public class PaqueteSeleccionadoDTO {
         this.id = cliente.getId();
         this.nombrePaquete = paquete.getNombrePaquete();
         this.dias = paquete.getDias();
+        this.hotel = hotel;
+        this.destino = destino;
+        this.excursion = excursion;
+        this.pasaje = pasaje;
+
     }
 
     public long getId() {
@@ -43,5 +55,37 @@ public class PaqueteSeleccionadoDTO {
 
     public void setDias(int dias) {
         this.dias = dias;
+    }
+
+    public Hotel getHotel() {
+        return hotel;
+    }
+
+    public void setHotel(Hotel hotel) {
+        this.hotel = hotel;
+    }
+
+    public Destino getDestino() {
+        return destino;
+    }
+
+    public void setDestino(Destino destino) {
+        this.destino = destino;
+    }
+
+    public Excursion getExcursion() {
+        return excursion;
+    }
+
+    public void setExcursion(Excursion excursion) {
+        this.excursion = excursion;
+    }
+
+    public Pasaje getPasaje() {
+        return pasaje;
+    }
+
+    public void setPasaje(Pasaje pasaje) {
+        this.pasaje = pasaje;
     }
 }

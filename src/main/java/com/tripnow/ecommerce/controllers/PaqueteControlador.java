@@ -1,4 +1,7 @@
 package com.tripnow.ecommerce.controllers;
+
+import com.tripnow.ecommerce.Dto.DestinoDTO;
+import com.tripnow.ecommerce.Dto.HotelDTO;
 import com.tripnow.ecommerce.Dto.PaqueteDTO;
 import com.tripnow.ecommerce.Dto.PaqueteSeleccionadoDTO;
 import com.tripnow.ecommerce.models.*;
@@ -8,9 +11,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+
 import static java.util.stream.Collectors.toList;
 
 
@@ -86,12 +91,11 @@ public class PaqueteControlador {
         }
 
 
-
         return new ResponseEntity<>("Paquete añadido a la orden", HttpStatus.CREATED);
     }
 
     @PostMapping("/api/clientes/current/agregar-paquete")
-    public ResponseEntity<Object> añadirPaquete(@RequestBody PaqueteSeleccionadoDTO paqueteSeleccionadoDTO) {
+    public ResponseEntity<Object> crearPaquete(@RequestBody PaqueteSeleccionadoDTO paqueteSeleccionadoDTO) {
         Cliente cliente = clienteServicio.findById(paqueteSeleccionadoDTO.getId());
         if (cliente == null) {
             return new ResponseEntity<>("Cliente no encontrado", HttpStatus.NOT_FOUND);
@@ -113,7 +117,7 @@ public class PaqueteControlador {
             return new ResponseEntity<>("Destino o pasaje no encontrado", HttpStatus.NOT_FOUND);
         }
 
-        Paquete nuevoPaquete = new Paquete(paqueteSeleccionadoDTO.getNombrePaquete(), paqueteSeleccionadoDTO.getDias(), destino.getPrecioHotelExcursion() + pasaje.getPrecioPasaje(), 10, "/assets/hotel.jpg","/assets/hotel.jpg","/assets/hotel.jpg");
+        Paquete nuevoPaquete = new Paquete(paqueteSeleccionadoDTO.getNombrePaquete(), paqueteSeleccionadoDTO.getDias(), destino.getPrecioHotelExcursion() + pasaje.getPrecioPasaje(), 10, "/assets/hotel.jpg", "/assets/hotel.jpg", "/assets/hotel.jpg");
         nuevoPaquete.setDestino(destino);
         nuevoPaquete.setPasaje(pasaje);
 
@@ -140,13 +144,15 @@ public class PaqueteControlador {
         orden.añadirPaquete(nuevoPaquete);
 //        orden.setCantidadPasajeros(orden.getCantidadPasajeros());
         orden.setPrecioTotalPaquete(nuevoPaquete.getPrecioTotalUnitario());
-        orden.setPrecioTotalOrden(orden.getPrecioTotalOrden() + (nuevoPaquete.getPrecioTotalUnitario()* orden.getCantidadPasajeros()));
+        orden.setPrecioTotalOrden(orden.getPrecioTotalOrden() + (nuevoPaquete.getPrecioTotalUnitario() * orden.getCantidadPasajeros()));
 
 
         ordenServicio.saveOrden(orden);
 
-        return new ResponseEntity<>("Paquete añadido", HttpStatus.CREATED);
+        return new ResponseEntity<>("Paquete creado", HttpStatus.CREATED);
     }
+
+
     //En el método añadirPaquete, primero verifico si el cliente existe. Luego, filtro las órdenes activas del
     // cliente y compruebo si hay alguna disponible. Si no hay ninguna orden activa, se devuelve una respuesta de error.
     //Luego, creo un nuevo objeto Paquete utilizando los datos proporcionados en el PaqueteDTO.
@@ -191,6 +197,19 @@ public class PaqueteControlador {
         } else {
             return new ResponseEntity<>("El paquete no está presente en la orden", HttpStatus.BAD_REQUEST);
         }
+    }
+    @PostMapping("/api/admin/paquete")
+    public ResponseEntity<Object> crearPaquete(@RequestBody Paquete paquete) {
+
+        Paquete nuevoPaquete = new Paquete(paquete.getNombrePaquete(),
+                paquete.getDias(),
+                paquete.getPrecioTotalUnitario(),
+                paquete.getStock(),
+                paquete.getImagen1(),
+                paquete.getImagen2(),
+                paquete.getImagen3());
+        paqueteServicio.savePaquete(nuevoPaquete);
+        return new ResponseEntity<>("Paquete creado con éxito", HttpStatus.CREATED);
     }
 
 }
