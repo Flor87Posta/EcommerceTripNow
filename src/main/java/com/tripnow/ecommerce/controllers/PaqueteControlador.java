@@ -198,6 +198,7 @@ public class PaqueteControlador {
             return new ResponseEntity<>("El paquete no está presente en la orden", HttpStatus.BAD_REQUEST);
         }
     }
+
     @PostMapping("/api/admin/paquete")
     public ResponseEntity<Object> crearPaquete(@RequestBody Paquete paquete) {
 
@@ -211,5 +212,6 @@ public class PaqueteControlador {
         paqueteServicio.savePaquete(nuevoPaquete);
         return new ResponseEntity<>("Paquete creado con éxito", HttpStatus.CREATED);
     }
+
 
 }
