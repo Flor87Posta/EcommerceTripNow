@@ -65,15 +65,53 @@
     
                         <div>
                             <button class="button" @click="postPay">Pagar</button>
-                            <button class="button" @click="">Enviar ticket por mail</button>
+                            <button class="button" @click="enviarPDF(idOrden)">Enviar ticket por mail</button>
                             <button class="button" onclick="window.location.href='/html/carrito.html'">Volver</button>
                         </div>
                     </div>
                 </div>
             </form>
+
+            
+    <div class="box-principal container">
+        <h2 class="text-center ">Detalle de Compraa pagar</h2>
+        <div class="container carrito">
+          <table class="table">
+            <thead>
+              <tr>
+  
+              </tr>
+            </thead>
+            <tbody>
+  
+            </tbody>
+          </table>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col" class="text-white">Cantidad Pasajeros</th>
+                <th scope="col" class="text-white">Fecha de Creacion</th>
+                <th scope="col" class="text-white">Precio Total Orden</th>
+                <th scope="col" class="text-white">Numero de Orden</th>
+              </tr>
+            </thead>
+            <tbody>
+              <template v-for="orden in ordenes">
+                <tr>
+                  <td scope="row">{{ orden.cantidadPasajeros }}</td>
+                  <td>{{ orden.fechaCreacion }}</td>
+                  <td>${{ orden.precioTotalOrden }}</td>
+                  <td>{{ orden.id }}</td>
+                </tr>
+              </template>
+            </tbody>
+          </table>
+        </div>
+      </div>
     
         </div>
 
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <script src="./posnet.js"></script>

@@ -9,6 +9,7 @@ createApp({
        typeCard:null,
        email:null,
        idOrden:null,
+       ordenes:[],
 
         }
     },
@@ -16,6 +17,11 @@ createApp({
 
     },
     created() {
+        axios.get('/api/clientes/orden')
+        .then(response =>{
+            this.ordenes = response.data
+            console.log(this.ordenes);
+        })
 
     },
 
@@ -83,6 +89,43 @@ createApp({
                 }
             });
         },
+
+        enviarPDF(id) {
+            axios.post('/api/clientes/current/export-pdf', `idOrden=${id}`)
+              .then(response => {
+                Swal.fire({
+                  icon: 'success',
+                  title: 'PDF enviado',
+                  showCancelButton: true,
+                  confirmButtonText: 'Aceptar',
+                  timer: 6000,
+                });
+              })
+              .catch(error => {
+                if (error.response) {
+                  Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: `Error del servidor: ${error.response.data}`,
+                    timer: 6000,
+                  });
+                } else if (error.request) {
+                  Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'No se recibió respuesta del servidor',
+                    timer: 6000,
+                  });
+                } else {
+                  Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Error al realizar la solicitud',
+                    timer: 6000,
+                  });
+                }
+              });
+          },
 
 
     }

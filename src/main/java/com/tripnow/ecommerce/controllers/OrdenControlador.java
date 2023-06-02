@@ -153,13 +153,15 @@ public class OrdenControlador {
             return new ResponseEntity<>("Id de orden inválido", HttpStatus.FORBIDDEN);
         }
 
+        if(orden.isPagada()){
+
         // Generar el archivo PDF en memoria
         ByteArrayOutputStream pdfOutputStream = new ByteArrayOutputStream();
         OrdenPDFExporter ordenExporter = new OrdenPDFExporter(cliente, orden);
         ordenExporter.usePDFExport(pdfOutputStream);
 
         // Enviar el archivo PDF por correo electrónico al cliente
-        emailService.sendConfirmationEmail(cliente.getEmail(), "token_de_confirmacion", pdfOutputStream);
+        emailService.sendConfirmationEmail(cliente.getEmail(), "token_de_confirmacion", pdfOutputStream);}
 
         return new ResponseEntity<>("PDF is created and sent", HttpStatus.CREATED);
     }

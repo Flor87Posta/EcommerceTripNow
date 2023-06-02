@@ -61,28 +61,75 @@ const app = createApp({
   //     .then(response => {window.location.href = '/html/index.html'})
   // },
 
-    crearOrden(){ 
-      axios.post('/api/clientes/current/orden',`cantidadPasajeros=${this.cantidadPasajeros}`)
-      .then(response => window.location.href = '/html/carrito.html')
-      .catch(error => {
-        Swal.fire({
-          icon: 'error',
-          text: error.response.data
-      })
-      })
-    },
+  crearOrden() {
+    Swal.fire({
+      icon: 'warning',
+      title: 'Estás por crear una orden. ¿Estás seguro?',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, crear orden',
+      cancelButtonText: 'Cancelar',
+      timer: 6000,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios.post('/api/clientes/current/orden', `cantidadPasajeros=${this.cantidadPasajeros}`)
+          .then(response => {
+            window.location.href = '/html/carrito.html';
+          })
+          .catch(error => {
+            if (error.response) {
+              Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: error.response.data,
+                timer: 6000,
+              });
+            } else {
+              Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Error al crear la orden',
+                timer: 6000,
+              });
+            }
+          });
+      }
+    });
+  },
 
-    anadirPaquete(id){
-      axios.post('/api/clientes/current/seleccionar-paquete', `idPaquete=${id}` )
-      .then((result)=> window.location.href = '/html/carrito.html')
-      .catch(error => {
-        Swal.fire({
-          icon: 'error',
-          text: error.response.data
-        }
-        )
-      })
-    },
+  anadirPaquete(id) {
+    Swal.fire({
+      icon: 'warning',
+      title: 'Estás por añadir un paquete a tu orden. ¿Estás seguro?',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, añadir paquete',
+      cancelButtonText: 'Cancelar',
+      timer: 6000,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios.post('/api/clientes/current/seleccionar-paquete', `idPaquete=${id}`)
+          .then(response => {
+            window.location.href = '/html/carrito.html';
+          })
+          .catch(error => {
+            if (error.response) {
+              Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: error.response.data,
+                timer: 6000,
+              });
+            } else {
+              Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Error al añadir el paquete',
+                timer: 6000,
+              });
+            }
+          });
+      }
+    });
+  },
 
 
 

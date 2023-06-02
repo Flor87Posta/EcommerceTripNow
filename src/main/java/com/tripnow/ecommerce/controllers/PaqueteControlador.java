@@ -111,7 +111,7 @@ public class PaqueteControlador {
             return new ResponseEntity<>("Destino o pasaje no encontrado", HttpStatus.NOT_FOUND);
         }
 
-        Paquete nuevoPaquete = new Paquete(paqueteSeleccionadoDTO.getNombrePaquete(), paqueteSeleccionadoDTO.getDias(), destino.getPrecioHotelExcursion() + pasaje.getPrecioPasaje(), 10, "/assets/hotel.jpg","/assets/hotel.jpg","/assets/hotel.jpg");
+        Paquete nuevoPaquete = new Paquete(paqueteSeleccionadoDTO.getNombrePaquete(), paqueteSeleccionadoDTO.getDias(), destino.getPrecioHotelExcursion() + pasaje.getPrecioPasaje(), 10, "/assets/hotel.jpg");
         nuevoPaquete.setDestino(destino);
         nuevoPaquete.setPasaje(pasaje);
 
