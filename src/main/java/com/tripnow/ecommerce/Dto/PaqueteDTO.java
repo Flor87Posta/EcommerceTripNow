@@ -22,8 +22,7 @@ public class PaqueteDTO {
         this.precioTotalUnitario = paquete.getPrecioTotalUnitario();
         this.stock = paquete.getStock();
         this.imagen1=paquete.getImagen1();
-        this.imagen2=paquete.getImagen2();
-        this.imagen3=paquete.getImagen3();
+
     }
 
     public long getId() {
