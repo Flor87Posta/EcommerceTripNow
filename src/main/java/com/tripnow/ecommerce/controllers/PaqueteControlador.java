@@ -197,5 +197,16 @@ public class PaqueteControlador {
             return new ResponseEntity<>("El paquete no está presente en la orden", HttpStatus.BAD_REQUEST);
         }
     }
+    @PostMapping("/api/admin/paquete")
+    public ResponseEntity<Object> crearPaquete(@RequestBody Paquete paquete) {
+
+        Paquete nuevoPaquete = new Paquete(paquete.getNombrePaquete(),
+                paquete.getDias(),
+                paquete.getPrecioTotalUnitario(),
+                paquete.getStock(),
+                paquete.getImagen1());
+        paqueteServicio.savePaquete(nuevoPaquete);
+        return new ResponseEntity<>("Paquete creado con éxito", HttpStatus.CREATED);
+    }
 
 }
