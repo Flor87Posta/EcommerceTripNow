@@ -44,11 +44,7 @@ public class OrdenPDFExporter {
         logo.setAbsolutePosition(50, 770); // Reduce este valor para bajar el logo
         logo.scaleToFit(40, 40); // Ajusta el tamaño del logo
         document.add(logo);
-        /*
-        Image logo = Image.getInstance(LOGO_PATH);
-        logo.setAbsolutePosition(50, 770);
-        logo.scaleToFit(40, 40);
-        document.add(logo);*/
+
     }
 
     private void addClientInfo(Document document) throws DocumentException {

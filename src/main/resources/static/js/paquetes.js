@@ -3,17 +3,34 @@ const app = createApp({
   data(){
     return{
       cantidadPasajeros: '',
-      paquetes:{}
+      paquetes:[],
+      idPaquete: '',
+      id: null,
+
+
     }
   },
+
+  created() {
+        
+    axios.get('/api/paquetes')
+    .then(response =>{
+        this.paquetes = response.data
+        console.log(this.paquetes);
+    })
+  },
+
+
   methods:{
+
     loadDataPaquetes(){
         axios.get('/api/paquetes')
         .then(response => {
           this.paquetes = response.data;
-          console.log(this.paquetes)
+          console.log(this.response.data)
         })
     },
+
     logout(){
         Swal.fire({
             title: 'Seguro que desea cerrar sesion?',
@@ -37,6 +54,13 @@ const app = createApp({
             allowOutsideClick: () => !Swal.isLoading()
         })
     },
+
+  //   logout(){
+  //     console.log("hola")
+  //     axios.post('/api/logout')
+  //     .then(response => {window.location.href = '/html/index.html'})
+  // },
+
     crearOrden(){ 
       axios.post('/api/clientes/current/orden',`cantidadPasajeros=${this.cantidadPasajeros}`)
       .then(response => window.location.href = '/html/carrito.html')
@@ -48,7 +72,25 @@ const app = createApp({
       })
     },
 
-  }
-})
+    anadirPaquete(id){
+      axios.post('/api/clientes/current/seleccionar-paquete', `idPaquete=${id}` )
+      .then((result)=> window.location.href = '/html/carrito.html')
+      .catch(error => {
+        Swal.fire({
+          icon: 'error',
+          text: error.response.data
+        }
+        )
+      })
+    },
 
+
+
+
+
+
+  }
+
+
+})
 app.mount('#app');

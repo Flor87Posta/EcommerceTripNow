@@ -34,11 +34,15 @@ public class OrdenControlador {
     @Autowired
     EmailService emailService;
 
-    @GetMapping("/api/clientes/orden/{id}")
-    public List<OrdenDTO> obtenerOrdenesDTO(@PathVariable Long id ){
-        Cliente clientes = clienteServicio.findById(id);
-        List<OrdenDTO> ordenes = clientes.getOrdenes().stream().map(OrdenDTO::new).collect(toList());
-        return ordenes;
+    @GetMapping("/api/clientes/orden")
+    public List<OrdenDTO> obtenerOrdenesDTO(Authentication authentication ){
+        Cliente cliente = clienteServicio.findByEmail(authentication.getName());
+        List<OrdenDTO> ordenesActivas = cliente.getOrdenes()
+                .stream()
+                .filter(orden -> orden.isActiva())
+                .map(orden -> new OrdenDTO(orden))
+                .collect(Collectors.toList());
+        return ordenesActivas;
     }
 
     @PostMapping("/api/clientes/current/orden")
@@ -110,6 +114,7 @@ public class OrdenControlador {
                     connection.getInputStream().close();
                     connection.disconnect();
                     orden.setPagada(true);
+                    orden.setActiva(false);
                     return new ResponseEntity<>("Pago aceptado", HttpStatus.CREATED);
                 } else {
                     connection.getInputStream().close();
