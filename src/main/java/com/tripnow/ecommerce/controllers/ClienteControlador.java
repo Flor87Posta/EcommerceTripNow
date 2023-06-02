@@ -105,4 +105,5 @@ public class ClienteControlador {
         Cliente cliente = clienteServicio.findByEmail(authentication.getName());//Si hay un usuario conectado, authentication.getName() devolverá el nombre que la clase WebAuthentication puso en el objeto User.
         return new ClienteDTO(cliente); //al client que cree que guarda el usuario autenticado lo transformo en clientDTO que tiene todas las propiedades
     }
+    //hiuh
 }
