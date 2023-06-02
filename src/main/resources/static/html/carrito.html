@@ -42,7 +42,7 @@
                       <tr>
                         <th scope="col" class="text-white">Cantidad Pasajeros</th>
                         <th scope="col" class="text-white">Fecha de Creacion</th>
-                        <th scope="col"class="text-white">Precio Total Paquete</p></th>
+                        <!-- <th scope="col"class="text-white">Precio Total Paquete</p></th> -->
                         <th scope="col" class="text-white">Precio Total Orden</th>
                         <th scope="col" class="text-white">¿Pagada?</th>
 
@@ -53,8 +53,8 @@
                       <tr v-for="orden in ordenes"> 
                         <td scope="row">{{orden.cantidadPasajeros}}</td>
                         <td>{{orden.fechaCreacion}}</td>
-                        <td>{{orden.precioTotalPaquete}}</td>
-                        <td>{{orden.precioTotalPaquete * orden.cantidadPasajeros}}</td>
+                        <!-- <td>{{orden.precioTotalPaquete}}</td> -->
+                        <td>${{orden.precioTotalOrden}}</td>
                         <td>{{orden.pagada}}</td>
                         <td><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="30" height="30" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"/>

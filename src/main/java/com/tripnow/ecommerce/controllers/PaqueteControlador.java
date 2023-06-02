@@ -76,6 +76,7 @@ public class PaqueteControlador {
             int cantidadPasajeros = orden.getCantidadPasajeros();
             if (stockActual >= cantidadPasajeros) {
                 paquete.setStock(stockActual - cantidadPasajeros);
+                ordenServicio.saveOrden(orden);
                 paqueteServicio.savePaquete(paquete);
             } else {
                 return new ResponseEntity<>("No hay suficiente stock disponible para la cantidad de pasajeros", HttpStatus.BAD_REQUEST);
@@ -84,7 +85,7 @@ public class PaqueteControlador {
             return new ResponseEntity<>("No hay stock disponible para el paquete seleccionado", HttpStatus.BAD_REQUEST);
         }
 
-        ordenServicio.saveOrden(orden);
+
 
         return new ResponseEntity<>("Paquete añadido a la orden", HttpStatus.CREATED);
     }
