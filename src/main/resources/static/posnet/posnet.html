@@ -9,7 +9,7 @@
         <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css" rel="stylesheet">
     </head>
     <header>
-        <h1>Sales Point Manager</h1>
+        <h1></h1>
     </header>
     <body>
         <div id="app">
@@ -18,7 +18,7 @@
                     <div>
                         
     
-                        <h2>Pay</h2>
+                        <h2>Pagar Orden</h2>
     
                         <div>
                             <label>Card digits
@@ -26,14 +26,14 @@
                             </label>
                         </div>
                         <div>
-                            <h4>Card type:</h4>
+                            <h4>Tipo de Tarjeta:</h4>
                                     <label for='q1'>
                                         <input id='q1' name='q' type='radio' value="CREDIT" v-model="typeCard">
-                                        CREDIT
+                                        CREDITO
                                     </label>
                                     <label for='q2'>
                                         <input id='q2' name='q' type='radio' value="DEBIT" v-model="typeCard">
-                                        DEBIT
+                                        DEBITO
                                     </label>
                         </div>
                         <div >
@@ -47,19 +47,26 @@
                             </label>
                         </div>
                         <div >
-                            <label >Amount 
+                            <label >Monto 
                                 <input type="number" placeholder="amount"    v-model="amount">
                             </label>
                         </div>
+                        <div >
+                            <label >Numero de orden 
+                                <input type="number" placeholder="idOrden"    v-model="idOrden">
+                            </label>
+                        </div>
                         <div>
-                            <label >Description
+                            <label >Descripcion
                                 <input type="text" placeholder="description"    v-model="description">
                             </label>
                         </div>
     
     
                         <div>
-                            <button class="button" @click="postPay">Send</button>
+                            <button class="button" @click="postPay">Pagar</button>
+                            <button class="button" @click="">Enviar ticket por mail</button>
+                            <button class="button" onclick="window.location.href='/html/carrito.html'">Volver</button>
                         </div>
                     </div>
                 </div>

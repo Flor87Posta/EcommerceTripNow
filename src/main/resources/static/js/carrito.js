@@ -5,7 +5,7 @@ const app = createApp({
             return{
                 ordenes:[],    
                 id:null,
-                idPaquete:''      
+                idPaquete:'',  
             }
         },
 
@@ -28,6 +28,6 @@ const app = createApp({
                 console.error(error);
                  });
              },
-            }
+            },
     })
     app.mount('#app')

@@ -85,8 +85,6 @@ public class PaqueteControlador {
             return new ResponseEntity<>("No hay stock disponible para el paquete seleccionado", HttpStatus.BAD_REQUEST);
         }
 
-
-
         return new ResponseEntity<>("Paquete añadido a la orden", HttpStatus.CREATED);
     }
 
@@ -185,11 +183,14 @@ public class PaqueteControlador {
             int stockActual = paquete.getStock();
             paquete.setStock(stockActual + 1);
             paqueteServicio.savePaquete(paquete);
+
+            // Restar el precio del paquete eliminado al precio total de la orden
             double precioPaqueteEliminado = paquete.getPrecioTotalUnitario();
             int cantidadPasajeros = orden.getCantidadPasajeros();
             double precioTotalOrden = orden.getPrecioTotalOrden();
             orden.setPrecioTotalOrden(precioTotalOrden - (precioPaqueteEliminado * cantidadPasajeros));
             ordenServicio.saveOrden(orden);
+
             return new ResponseEntity<>("Paquete eliminado de la orden", HttpStatus.OK);
         } else {
             return new ResponseEntity<>("El paquete no está presente en la orden", HttpStatus.BAD_REQUEST);

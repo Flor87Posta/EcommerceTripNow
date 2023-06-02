@@ -61,14 +61,12 @@ public class OrdenControlador {
         return new ResponseEntity<>("Orden creada", HttpStatus.CREATED);
     }
 
-    @PostMapping("/api/clientes/current/pagar-orden") // cuando se pone pagar en el front debe redirigir a la pagina de posnet que
-    // guardamos en static y ahi mostrar los datos de la orden en algún lado para que el cliente vea el monto que tiene que poner y ahi cargar los datos PagoDTO
-    public ResponseEntity<Object> pagarOrden(@RequestBody PagoDTO pagoDTO, @RequestParam Long idOrden){
+    @PostMapping("/api/clientes/current/pagar-orden")
+    public ResponseEntity<Object> pagarOrden(@RequestBody PagoDTO pagoDTO) {
         Cliente cliente = clienteServicio.findByEmail(pagoDTO.getEmail());
-        List<Orden> ordenesPagas = cliente.getOrdenes().stream().filter(orden -> orden.isPagada()).collect(Collectors.toUnmodifiableList());
-        Orden orden = ordenServicio.findById(idOrden);
-        if (ordenesPagas.isEmpty() ) {
-
+        List<Orden> ordenesPagas = cliente.getOrdenes().stream().filter(Orden::isPagada).collect(Collectors.toUnmodifiableList());
+        Orden orden = ordenServicio.findById(pagoDTO.getIdOrden());
+        if (ordenesPagas.isEmpty()) {
             String numeroTarjeta = pagoDTO.getNumber();
             int cvv = pagoDTO.getCvv();
             double monto = pagoDTO.getAmount();
@@ -76,22 +74,25 @@ public class OrdenControlador {
             FormaPago formaPago = pagoDTO.getTypeCard();
             String email = pagoDTO.getEmail();
 
-            if (monto < 0){
+            if (monto < 0) {
                 return new ResponseEntity<>("El monto no debe ser negativo", HttpStatus.FORBIDDEN);
             }
-            if (descripcion.isBlank()){
-                return new ResponseEntity<>("Debes proporcionar una descripcion", HttpStatus.FORBIDDEN);
+            if (monto < orden.getPrecioTotalOrden()) {
+                return new ResponseEntity<>("El monto no puede ser menor al precio total de la orden", HttpStatus.FORBIDDEN);
             }
-            if (numeroTarjeta.isBlank()){
-                return new ResponseEntity<>("Debes proporcionar un numero de tarjeta", HttpStatus.FORBIDDEN);
+            if (descripcion.isBlank()) {
+                return new ResponseEntity<>("Debes proporcionar una descripción", HttpStatus.FORBIDDEN);
             }
-            if (numeroTarjeta.length() != 19){
-                return new ResponseEntity<>("Debes proporcionar un numero de tarjeta valido", HttpStatus.FORBIDDEN);
+            if (numeroTarjeta.isBlank()) {
+                return new ResponseEntity<>("Debes proporcionar un número de tarjeta", HttpStatus.FORBIDDEN);
             }
-            if (email.isBlank()){
+            if (numeroTarjeta.length() != 19) {
+                return new ResponseEntity<>("Debes proporcionar un número de tarjeta válido", HttpStatus.FORBIDDEN);
+            }
+            if (email.isBlank()) {
                 return new ResponseEntity<>("Debes proporcionar un email", HttpStatus.FORBIDDEN);
             }
-            if (formaPago==null){
+            if (formaPago == null) {
                 return new ResponseEntity<>("Debes elegir un tipo de tarjeta", HttpStatus.FORBIDDEN);
             }
 
@@ -107,6 +108,7 @@ public class OrdenControlador {
 
                 int codigoDeRespuesta = connection.getResponseCode();
                 if (codigoDeRespuesta == HttpURLConnection.HTTP_CREATED) {
+
                     BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
                     String response = reader.readLine();
                     System.out.println("Respuesta del servidor: " + response);
@@ -115,20 +117,26 @@ public class OrdenControlador {
                     connection.disconnect();
                     orden.setPagada(true);
                     orden.setActiva(false);
+                    ordenServicio.saveOrden(orden);
+
                     return new ResponseEntity<>("Pago aceptado", HttpStatus.CREATED);
                 } else {
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                    String response = reader.readLine();
+                    System.out.println("Respuesta del servidor: " + response);
+
                     connection.getInputStream().close();
                     connection.disconnect();
 
-                    return new ResponseEntity<>("Pago rechazado", HttpStatus.FORBIDDEN);
+                    return new ResponseEntity<>(response, HttpStatus.FORBIDDEN);
                 }
             } catch (Exception err) {
                 err.printStackTrace();
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al realizar el pago");
             }
 
-        } return new ResponseEntity<>("", HttpStatus.FORBIDDEN);
-
+        }
+        return new ResponseEntity<>("", HttpStatus.FORBIDDEN);
     }
 
     @PostMapping("/api/clientes/current/export-pdf")
