@@ -5,7 +5,7 @@ createApp({
        digits:null,
        cvv:null,
        amount:null,
-       description:null,
+       description: "pago orden",
        typeCard:null,
        email:null,
        idOrden:null,
@@ -18,12 +18,30 @@ createApp({
     },
     created() {
         axios.get('/api/clientes/orden')
-        .then(response =>{
-            this.ordenes = response.data
+          .then(response => {
+            this.ordenes = response.data;
             console.log(this.ordenes);
-        })
-
-    },
+      
+            // Obtener información del cliente autenticado
+            axios.get('/api/clientes/current')
+              .then(clienteResponse => {
+                const cliente = clienteResponse.data;
+      
+                // Asignar los valores de las órdenes y el email del cliente
+                if (this.ordenes.length > 0) {
+                  this.email = cliente.email;
+                  this.idOrden = this.ordenes[0].id;
+                  this.amount = this.ordenes[0].precioTotalOrden;
+                }
+              })
+              .catch(error => {
+                console.log(error);
+              });
+          })
+          .catch(error => {
+            console.log(error);
+          });
+      },
 
     methods: {
         
