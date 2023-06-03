@@ -6,6 +6,8 @@ const app = createApp({
       paquetes:[],
       idPaquete: '',
       id: null,
+      filtroBusqueda:'',
+      paquetes2:[],
 
 
     }
@@ -17,19 +19,22 @@ const app = createApp({
     .then(response =>{
         this.paquetes = response.data
         console.log(this.paquetes);
+        this.paquetes2 = this.paquetes
+        console.log(this.paquetes2);
+     
     })
   },
 
 
   methods:{
 
-    loadDataPaquetes(){
-        axios.get('/api/paquetes')
-        .then(response => {
-          this.paquetes = response.data;
-          console.log(this.response.data)
-        })
-    },
+    // loadDataPaquetes(){
+    //     axios.get('/api/paquetes')
+    //     .then(response => {
+    //       this.paquetes = response.data;
+    //       console.log(this.response.data)
+    //     })
+    // },
 
     logout(){
         Swal.fire({
@@ -84,10 +89,17 @@ const app = createApp({
       })
     },
 
+   filtro(){
+      this.paquetes = this.paquetes2.filter(paquete => paquete.nombrePaquete.toLowerCase().includes(this.filtroBusqueda.toLowerCase()))
+    }
+  },
+computed:{
 
-
-  }
-
+}
 
 })
 app.mount('#app');
+
+// filtro(){
+//   this.paquetes =this.paquetes.filter(paquete => paquete.nombrePaquete.toLowerCase().includes(this.filtroBusqueda.toLowerCase()))
+// },

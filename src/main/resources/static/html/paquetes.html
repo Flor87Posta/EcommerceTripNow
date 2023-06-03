@@ -29,11 +29,15 @@
 
 
       <main>
-        
+       
       <div class="principal gap-5" >
         <p class=" titulo2 text-center">Nuestros paquetes</p>
+        <div>
+          <form class="d-flex " role="search">
+            <input class="form-control me-2" type="text" placeholder="Search" aria-label="Search"id="inputSearch"  v-model="filtroBusqueda" @keyup="filtro" > 
+          </form>
+         </div>
           <div class=" d-flex gap-4 secundario">
-
 
             <div v-for="paquete in paquetes" :key="paquete.id" class="paquete align-items-center">
               <div id="carouselExample" class="carousel slide">
@@ -67,7 +71,7 @@
                 </div>
               </div> 
             </div>
-
+      
 
             <!-- <div class="paquete align-items-center">
               <div id="carouselExample1" class="carousel slide">
