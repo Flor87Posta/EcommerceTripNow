@@ -343,7 +343,7 @@ footer p{
 }
 
 .wrapper.active {
-  height: 95vh;
+  height: 80vh;
   width: 400px;
 }
 
@@ -659,5 +659,10 @@ footer p{
 
   footer p{
     font-size:2.4vh;
+  }
+
+  .wrapper.active {
+    height: 95vh;
+    width: 400px;
   }
 }
