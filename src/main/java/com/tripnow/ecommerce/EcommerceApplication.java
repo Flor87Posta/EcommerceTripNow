@@ -139,7 +139,7 @@ public class EcommerceApplication {
 			Paquete paquete3 = new Paquete ("Conoce Bariloche via FlechaBus", 8, destino2.getPrecioHotelExcursion()+pasaje4.getPrecioPasaje(),10, "/assets/Centro_Civico_y_Puerto_San_Carlos_en_Bariloche.jpg");
 			Paquete paquete4 = new Paquete ("Conoce Santa Cruz con Flybondi", 5, destino1.getPrecioHotelExcursion()+pasaje3.getPrecioPasaje(),10, "/assets/Glaciar2.jpg");
 			Paquete paquete5 = new Paquete("Escapada Costera a Mar del Plata", 9, destino5.getPrecioHotelExcursion()+pasaje5.getPrecioPasaje(), 10, "/assets/marDelPlata.jpg");
-			Paquete paquete6 = new Paquete("Mar y bosque, combinación perfecta en Cariló ", 8, destino6.getPrecioHotelExcursion()+pasaje6.getPrecioPasaje(), 10, "/assets/Glaciar2.jpg");
+			Paquete paquete6 = new Paquete("Mar y bosque, combinación perfecta en Cariló ", 8, destino6.getPrecioHotelExcursion()+pasaje6.getPrecioPasaje(), 10, "/assets/carilo.jpg");
 			Paquete paquete7 = new Paquete("Descubriendo el Encanto de Carlos Paz", 5, destino7.getPrecioHotelExcursion()+pasaje2.getPrecioPasaje(), 10, "/assets/carlosPaz.jpg");
 			Paquete paquete8 = new Paquete("Experiencia Multicolor en el Cerro de los Siete Colores", 15, destino8.getPrecioHotelExcursion()+pasaje1.getPrecioPasaje(), 10, "/assets/jujuy.jpg");
 
