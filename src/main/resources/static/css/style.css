@@ -619,6 +619,10 @@ footer p{
   footer p{
     font-size: 2vw;
   }
+  .wrapper.active {
+    height: 95vh;
+    width: 400px;
+  }
 }
 
 @media (max-width: 452px) {
@@ -661,6 +665,13 @@ footer p{
     font-size:2.4vh;
   }
 
+  .wrapper.active {
+    height: 95vh;
+    width: 400px;
+  }
+}
+
+@media (max-width: 1440px) {
   .wrapper.active {
     height: 95vh;
     width: 400px;
