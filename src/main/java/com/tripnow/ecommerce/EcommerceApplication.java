@@ -174,6 +174,11 @@ public class EcommerceApplication {
 			pasaje1.añadirPasajeAlPaquete(paquete2);
 			pasaje4.añadirPasajeAlPaquete(paquete3);
 			pasaje3.añadirPasajeAlPaquete(paquete4);
+			pasaje5.añadirPasajeAlPaquete(paquete5);
+			pasaje6.añadirPasajeAlPaquete(paquete6);
+			pasaje2.añadirPasajeAlPaquete(paquete7);
+			pasaje1.añadirPasajeAlPaquete(paquete8);
+
 			destino5.añadirDestinoAlPaquete(paquete5);
 			destino6.añadirDestinoAlPaquete(paquete6);
 			destino7.añadirDestinoAlPaquete(paquete7);

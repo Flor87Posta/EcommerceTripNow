@@ -199,14 +199,46 @@ public class PaqueteControlador {
     }
     @PostMapping("/api/admin/paquete")
     public ResponseEntity<Object> crearPaquete(@RequestBody Paquete paquete) {
+        // Obtén las instancias correspondientes de destino y pasaje
+        Destino destino = destinoServicio.getDestino(paquete.getDestino().getId());
+        Pasaje pasaje = pasajeServicio.getPasaje(paquete.getPasaje().getId());
 
-        Paquete nuevoPaquete = new Paquete(paquete.getNombrePaquete(),
-                paquete.getDias(),
-                paquete.getPrecioTotalUnitario(),
-                paquete.getStock(),
-                paquete.getImagen1());
-        paqueteServicio.savePaquete(nuevoPaquete);
+        // Verifica que las instancias de destino y pasaje existan
+        if (destino == null || pasaje == null) {
+            return new ResponseEntity<>("El destino o pasaje especificado no existe", HttpStatus.BAD_REQUEST);
+        }
+
+        // Asigna las instancias de destino y pasaje al paquete
+        paquete.setDestino(destino);
+        paquete.setPasaje(pasaje);
+
+        // Guarda el paquete en la base de datos
+        paqueteServicio.savePaquete(paquete);
+
         return new ResponseEntity<>("Paquete creado con éxito", HttpStatus.CREATED);
+    }
+    @PostMapping("/api/admin/destino")
+    public ResponseEntity<Object>crearDestino(@RequestBody Destino destino){
+        destinoServicio.saveDestino(destino);
+        return new ResponseEntity<>("Destino creado con éxito", HttpStatus.CREATED);
+    }
+    @PostMapping("/api/admin/hotel")
+    public ResponseEntity<Object>crearHotel(@RequestBody Hotel hotel){
+        Destino destino = destinoServicio.getDestino(hotel.getDestino().getId());
+        if (destino == null) {
+            return new ResponseEntity<>("El destino o pasaje especificado no existe", HttpStatus.BAD_REQUEST);
+        }
+        hotelServicio.saveHotel(hotel);
+        return new ResponseEntity<>("Hotel creado con éxito", HttpStatus.CREATED);
+    }
+    @PostMapping("/api/admin/excursion")
+    public ResponseEntity<Object>crearExcursion(@RequestBody Excursion excursion){
+        Destino destino = destinoServicio.getDestino(excursion.getDestino().getId());
+        if (destino == null) {
+            return new ResponseEntity<>("El destino o pasaje especificado no existe", HttpStatus.BAD_REQUEST);
+        }
+        excursionServicio.saveExcursion(excursion);
+        return new ResponseEntity<>("Excursion creada con éxito", HttpStatus.CREATED);
     }
 
 }

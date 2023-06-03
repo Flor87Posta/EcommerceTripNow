@@ -10,8 +10,6 @@ public class PaqueteDTO {
     private double precioTotalUnitario;
     private int stock;
     private String imagen1;
-    private String imagen2;
-    private String imagen3;
 
 
     public PaqueteDTO(){};
@@ -73,19 +71,5 @@ public class PaqueteDTO {
         this.imagen1 = imagen1;
     }
 
-    public String getImagen2() {
-        return imagen2;
-    }
 
-    public void setImagen2(String imagen2) {
-        this.imagen2 = imagen2;
-    }
-
-    public String getImagen3() {
-        return imagen3;
-    }
-
-    public void setImagen3(String imagen3) {
-        this.imagen3 = imagen3;
-    }
 }

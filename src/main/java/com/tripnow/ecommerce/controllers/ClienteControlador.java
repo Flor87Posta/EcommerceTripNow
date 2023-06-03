@@ -18,7 +18,6 @@ import java.util.List;
 public class ClienteControlador {
 
     @Autowired
-
     private PasswordEncoder passwordEncoder;
     @Autowired
     ClienteServicio clienteServicio;

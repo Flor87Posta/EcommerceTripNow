@@ -32,7 +32,7 @@ public class Paquete {
     private Destino destino;
 
     public Paquete(){}
-    public Paquete(String nombrePaquete, int dias, double precioTotalUnitario, int stock,   String imagen1){
+    public Paquete(String nombrePaquete, int dias, double precioTotalUnitario, int stock, String imagen1){
         this.nombrePaquete = nombrePaquete;
         this.dias = dias;
         this.precioTotalUnitario= precioTotalUnitario;
