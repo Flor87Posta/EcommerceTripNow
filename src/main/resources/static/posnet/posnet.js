@@ -48,6 +48,8 @@ createApp({
                 confirmButtonText: 'Sí, realizar pago',
                 cancelButtonText: 'Cancelar',
                 timer: 6000,
+                confirmButtonColor: '#0DB4F3',
+                cancelButtonColor: '#FF8A80',
             }).then((result) => {
                 if (result.isConfirmed) {
                     axios.post('http://localhost:8080/api/clientes/current/pagar-orden', payment)
@@ -59,6 +61,8 @@ createApp({
                                     showCancelButton: true,
                                     confirmButtonText: 'Aceptar',
                                     timer: 6000,
+                                    confirmButtonColor: '#0DB4F3',
+                                    cancelButtonColor: '#FF8A80',
                                 });
                             }
                         })
@@ -69,6 +73,8 @@ createApp({
                                     title: 'Error',
                                     text: `Error del servidor: ${error.response.data}`,
                                     timer: 6000,
+                                    confirmButtonText: 'Ok',
+                                    confirmButtonColor: '#0DB4F3',
                                 });
                             } else if (error.request) {
                                 Swal.fire({
@@ -76,6 +82,8 @@ createApp({
                                     title: 'Error',
                                     text: 'No se recibió respuesta del servidor',
                                     timer: 6000,
+                                    confirmButtonText: 'Ok',
+                                    confirmButtonColor: '#0DB4F3',
                                 });
                             } else {
                                 Swal.fire({
@@ -83,6 +91,8 @@ createApp({
                                     title: 'Error',
                                     text: 'Error al realizar la solicitud',
                                     timer: 6000,
+                                    confirmButtonText: 'Ok',
+                                    confirmButtonColor: '#0DB4F3',
                                 });
                             }
                         });
@@ -98,6 +108,7 @@ createApp({
                   title: 'PDF enviado',
                   showCancelButton: true,
                   confirmButtonText: 'Aceptar',
+                  confirmButtonColor: '#0DB4F3',
                   timer: 6000,
                 });
               })
@@ -108,6 +119,8 @@ createApp({
                     title: 'Error',
                     text: `Error del servidor: ${error.response.data}`,
                     timer: 6000,
+                    confirmButtonText: 'Ok',
+                    confirmButtonColor: '#0DB4F3',
                   });
                 } else if (error.request) {
                   Swal.fire({
@@ -115,6 +128,8 @@ createApp({
                     title: 'Error',
                     text: 'No se recibió respuesta del servidor',
                     timer: 6000,
+                    confirmButtonText: 'Ok',
+                    confirmButtonColor: '#0DB4F3',
                   });
                 } else {
                   Swal.fire({
@@ -122,6 +137,8 @@ createApp({
                     title: 'Error',
                     text: 'Error al realizar la solicitud',
                     timer: 6000,
+                    confirmButtonText: 'Ok',
+                    confirmButtonColor: '#0DB4F3',
                   });
                 }
               });

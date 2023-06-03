@@ -23,7 +23,7 @@ header{
     padding: 15px 100px;
     transition: 0.5s ease;
     background-color: rgba(0, 0, 0, 0.288);
-    border-radius:20px ;
+    /* border-radius:20px ; */
     min-height: 10vh;
   }
 header .brand {
@@ -71,6 +71,10 @@ header .navigation .navigation-items a {
     flex-direction: column;
     min-height: 100vh;
     flex-wrap: wrap;
+    margin-top: 8rem;
+    padding-bottom: 2rem;
+    padding-left: 1rem;
+  
   }
   .secundario{
     display: flex;
