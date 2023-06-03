@@ -17,7 +17,6 @@ public class Hotel {
     private boolean mediaPension;
     private double precioHotel;
     private int cantidadStock;
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "destino_id")
     private Destino destino;
