@@ -3,9 +3,9 @@ const {createApp}= Vue;
 const app = createApp({
         data(){
             return{
-                ordenes:[],    
+                ordenes:[],  
                 id:null,
-                idPaquete:'',  
+                idPaquete:'',     
             }
         },
 
@@ -19,15 +19,16 @@ const app = createApp({
           },
           
           methods:{
+            
             eliminarPaquete(id){
-            axios.post('/api/clientes/current/eliminar-paquete', `idPaquete=${id}`)
-                .then(response => {
-                 console.log(`paquete borrado`);
-                 })
-                .catch(error => {
-                console.error(error);
-                 });
-             },
-            },
+                axios.post('/api/clientes/current/eliminar-paquete', `idPaquete=${id}`)
+                    .then(response => {
+                     console.log(`paquete borrado`);
+                     })
+                    .catch(error => {
+                    console.error(error);
+                     });
+                 },
+        }
     })
     app.mount('#app')

@@ -38,13 +38,15 @@ const app = createApp({
 
     logout(){
         Swal.fire({
-            title: 'Seguro que desea cerrar sesion?',
+            title: '¿Seguro que desea cerrar sesión?',
             inputAttributes: {
                 autocapitalize: 'off'
             },
             showCancelButton: true,
-            confirmButtonText: 'Sure',
-            confirmButtonColor: "#00E194;",
+            confirmButtonText: 'Si',
+            cancelButtonText: 'No',
+            confirmButtonColor: '#0DB4F3',
+            cancelButtonColor: '#FF8A80',
             preConfirm: () => {
                 return axios.post('/api/logout')
                     .then(response => {
@@ -53,6 +55,7 @@ const app = createApp({
                     .catch(error => {
                         Swal.showValidationMessage(
                             `Request failed: ${error}`
+                            
                         )
                     })
             },
@@ -60,28 +63,94 @@ const app = createApp({
         })
     },
 
-    crearOrden(){ 
-      axios.post('/api/clientes/current/orden',`cantidadPasajeros=${this.cantidadPasajeros}`)
-      .then(response => window.location.href = '/html/carrito.html')
-      .catch(error => {
-        Swal.fire({
-          icon: 'error',
-          text: error.response.data
-      })
-      })
-    },
+  //   logout(){
+  //     console.log("hola")
+  //     axios.post('/api/logout')
+  //     .then(response => {window.location.href = '/html/index.html'})
+  // },
 
-    anadirPaquete(id){
-      axios.post('/api/clientes/current/seleccionar-paquete', `idPaquete=${id}` )
-      .then((result)=> window.location.href = '/html/carrito.html')
-      .catch(error => {
-        Swal.fire({
-          icon: 'error',
-          text: error.response.data
-        }
-        )
-      })
-    },
+  crearOrden() {
+    Swal.fire({
+      icon: 'warning',
+      title: 'Estás por crear una orden. ¿Estás seguro?',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, crear orden',
+      cancelButtonText: 'Cancelar',
+      confirmButtonColor: '#0DB4F3',
+      cancelButtonColor: '#FF8A80',
+      
+      timer: 6000,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios.post('/api/clientes/current/orden', `cantidadPasajeros=${this.cantidadPasajeros}`)
+          .then(response => {
+            window.location.href = '/html/carrito.html';
+          })
+          .catch(error => {
+            if (error.response) {
+              Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: error.response.data,
+                timer: 6000,
+                confirmButtonText: 'Ok',
+                confirmButtonColor: '#0DB4F3',
+              });
+            } else {
+              Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Error al crear la orden',
+                timer: 6000,
+                confirmButtonText: 'Ok',
+                confirmButtonColor: '#0DB4F3',
+              });
+            }
+          });
+      }
+    });
+  },
+
+  anadirPaquete(id) {
+    Swal.fire({
+      icon: 'warning',
+      title: 'Estás por añadir un paquete a tu orden. ¿Estás seguro?',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, añadir paquete',
+      cancelButtonText: 'Cancelar',
+      confirmButtonColor: '#0DB4F3',
+      cancelButtonColor: '#FF8A80',
+      timer: 6000,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios.post('/api/clientes/current/seleccionar-paquete', `idPaquete=${id}`)
+          .then(response => {
+            window.location.href = '/html/carrito.html';
+          })
+          .catch(error => {
+            if (error.response) {
+              Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: error.response.data,
+                timer: 6000,
+                confirmButtonText: 'Ok',
+                confirmButtonColor: '#0DB4F3',
+              });
+            } else {
+              Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Error al añadir el paquete',
+                timer: 6000,
+                confirmButtonText: 'Ok',
+                confirmButtonColor: '#0DB4F3',
+              });
+            }
+          });
+      }
+    });
+  },
 
    filtro(){
       this.paquetes = this.paquetes2.filter(paquete => paquete.nombrePaquete.toLowerCase().includes(this.filtroBusqueda.toLowerCase()))

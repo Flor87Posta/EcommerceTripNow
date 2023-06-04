@@ -58,12 +58,23 @@ header .brand {
     align-items: center;
     margin-top: 3rem;
 
- 
+
 }
 table{
     padding-top: 2rem;
     margin-top: 1rem;
 }
 table th{
-    background-color: rgb(7, 135, 139) !important;
+    background-color: rgb(50, 153, 250) !important;
+}
+
+.boton{
+  padding: .5rem;
+  background-color: rgb(50, 153, 250);
+  color: white;
+  font-size: 0.8vw;
+  text-decoration: none;
+  border-radius: 10px;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.466);
+  font-family:"Poppins", sans-serif;
 }

@@ -5,9 +5,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family:"Poppins", sans-serif;
 }
-
+/*fondo*/
 .contenedor{
   position: relative;
   height: 100vh;
@@ -55,19 +54,26 @@
   border-radius: 12px;
 }
 
+
+/*fin fondo*/
+
+/*header*/
 .logo{
+  width: 6vw;
+  height: 10vh;
   -webkit-filter: drop-shadow(3px 3px 3px black );
   filter: drop-shadow(3px 3px 3px black);
 }
 
 header{
   position: absolute;
+  min-height: 15vh;
   z-index: 1;
   top: 0;
   left: 0;
   display: flex;
   width: 100%;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   padding: 15px 100px;
   transition: 0.5s ease;
@@ -77,83 +83,114 @@ header{
 
 header .brand {
   color: white;
-  font-size: 1.7em;
+  font-size: 2.2vw;
   font-weight: 700;
   text-decoration: none;
   text-shadow: 2px 2px 2px black;
+  font-family:"Poppins", sans-serif;
 }
 
-header .navigation{
-  position: relative;
-  
-}
 
-header .navigation .navigation-items a {
-  color: white;
+header .nav-link {
+  color: white !important;
   position: relative;
-  font-size: 1.1em;
-  font-weight: 500;
+  font-size: 1.5vw;
+  font-weight: 300;
   text-decoration: none;
-  margin-left: 30px;
   transition: 0.3s ease;
   text-transform: uppercase;
   text-shadow: 2px 2px 2px black;
+  text-align: center;
+  font-family:"Poppins", sans-serif;
 }
 
-header .navigation .navigation-items a:hover{
+header .nav-link a:hover{
   color: rgb(171, 228, 255);
  
 }
 
+.navbar-toggler{
+  color: white !important;
+  z-index: 2;
+  background-color: white !important;
+}
+.btnLogin-popup{
+  background-color: transparent;
+  border: none;
+  color: white;
+  position: relative;
+  font-size: 1.5vw;
+  font-weight: 300;
+  transition: 0.3s ease;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 2px black;
+  font-family:"Poppins", sans-serif;
+}
+
+
+/*fin header*/
+
 .contenido{
   position: absolute;
   z-index: 1;
-  top: 30%;
+  top: 28%;
   left: 10%;
-  width: 50%;
+  width: 60%;
   color: white;
-  background-color: rgba(0, 0, 0, 0.151);
+  background-color: rgba(0, 0, 0, 0.295);
+  padding: 1rem;
   border-radius: 10px;
 }
 
 .titulo{
-  font-size: 3em;
+  font-size: 3vw;
   margin-bottom: 0 !important;
   text-shadow: 5px 5px 5px black;
+  font-family:"Poppins", sans-serif;
 }
 
 .titulo2{
   margin-top: 0 !important;
   color: transparent;
   -webkit-text-stroke: 3px white;
-  font-size: 6em;
+  font-size: 4.5vw;
   text-shadow: 5px 5px 5px rgb(50, 153, 250);
+  font-family:"Poppins", sans-serif;
 }
 
 .invita{
-  font-size: 1.3em;
+  font-size: 1.3vw;
   font-weight: none;
+}
+
+.invita2{
+  font-size: 1.3vw;
+  font-weight: none;
+  font-family:"Poppins", sans-serif;
 }
 
 .boton{
   padding: .5rem;
   background-color: rgb(50, 153, 250);
   color: white;
+  font-size: 1vw;
   text-decoration: none;
   border-radius: 10px;
   box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.466);
+  font-family:"Poppins", sans-serif;
 }
 
 
 .imagenDestino{
   width: 90vh;
   height: 70vh;
+  border-radius: 10px;
 }
 
 .destinos{
   height: 100vh;
-  padding-left: 12rem;
-  padding-right: 12rem;
+  padding-left: 15vw;
+  padding-right: 15vw;
   background-image:linear-gradient(rgba(193, 218, 252, 0.425),rgba(193, 218, 252, 0.425)), url(../assets/fondo2-video-img.jpg);
   background-size: cover;
   background-repeat: no-repeat;
@@ -168,38 +205,31 @@ header .navigation .navigation-items a:hover{
   gap: 1rem;
 }
 
+
 .carousel {
+  width: 90vw;
   background: rgba(255, 255, 255, 0.685);
-  padding: 2rem;
+  padding: 1rem;
   border-radius: 15px;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(20px);
   box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.466);
 }
 
 .titulo3{
   margin-top: 0 !important;
-  color: transparent;
-  -webkit-text-stroke: 3px black;
-  font-size: 4em;
-  text-shadow: 5px 5px 5px rgb(50, 237, 250);
+  color: rgb(50, 237, 250);
+  -webkit-text-stroke: 1px black;
+  font-size: 4vw;
+  font-family:"Poppins", sans-serif;
 }
 
-.boton2{
-  width:5.5rem ;
-  padding: .5rem;
-  background-color: rgb(0, 238, 255);
-  color: black;
-  text-decoration: none;
-  border-radius: 10px;
-  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.466);
-}
 
 .titulo4{
   margin-top: 0 !important;
-  color: transparent;
-  -webkit-text-stroke: 3px black;
-  font-size: 4em;
-  text-shadow: 5px 5px 5px rgb(0, 175, 245);
+  color: rgb(0, 175, 245);
+  font-size: 3.5vw;
+  font-family:"Poppins", sans-serif;
+
 }
 .separador{
   border-top: 1px solid black;
@@ -207,9 +237,9 @@ header .navigation .navigation-items a:hover{
 }
 
 .sobreNosotros{
-    height: 100vh;
-    padding-left: 12rem;
-    padding-right: 12rem;
+    min-height: 100vh;
+    padding-left: 10vw;
+    padding-right: 10vw;
     background-image:linear-gradient(rgba(193, 218, 252, 0.425),rgba(193, 218, 252, 0.425)), url(../assets/pexels-pok-rie-2049422.jpg);
     background-size: cover;
     background-repeat: no-repeat;
@@ -218,17 +248,18 @@ header .navigation .navigation-items a:hover{
     align-items: center;
 }
 
+
+
 .tarjeta {
   background: rgba(255, 255, 255, 0.685);
-  padding: 3rem;
   border-radius: 15px;
   backdrop-filter: blur(10px);
   box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.466);
-  margin: 1rem;
+  margin: 10px;
 }
 
 .texto{
-  font-size: 1.2em;
+  font-size: 1.2vw;
 }
 
 .back-to-top {
@@ -256,9 +287,9 @@ header .navigation .navigation-items a:hover{
 }
 
 .final{
-  height: 15h;
-  padding-left: 12rem;
-  padding-right: 12rem;
+  min-height: 30vh;
+  padding-left: 9.6vw;
+  padding-right: 9.6vw;
   background-image:linear-gradient(rgba(193, 218, 252, 0.637),rgba(193, 218, 252, 0.664)), url(../assets/fondo-video-img.jpg);
   background-size: cover;
   background-repeat: no-repeat;
@@ -270,25 +301,31 @@ header .navigation .navigation-items a:hover{
 
 footer{
   background: rgba(255, 255, 255, 0.685);
-  padding: 3rem;
+  padding: 0.5rem;
   border-radius: 15px;
   backdrop-filter: blur(10px);
   box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.466);
   margin: 1rem;
-  width: 80vw;
+  width: 100vw;
   display: flex;
   justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+footer p{
+  font-size: 1.2vw;
 }
 
 /* loguearse */
 .inicio {
   position: absolute;
-  z-index: 3;
+  width: 90vw;
+  z-index: 4;
 }
 .wrapper {
   position: relative;
-  width: 500px;
-  height: 440px;
+  width: 400px;
+  height: 400px;
   background: rgba(255, 255, 255, 0.555);
   border: 2px solid rgba(255, 255, 255, .5);
   border-radius: 20px;
@@ -306,8 +343,8 @@ footer{
 }
 
 .wrapper.active {
-  height: 650px;
-  width: 500px;
+  height: 80vh;
+  width: 400px;
 }
 
 .wrapper .form-box {
@@ -322,12 +359,12 @@ footer{
 
 .wrapper.active .form-box.loguearse {
   transition: none;
-  transform: translateX(-500px);
+  transform: translateX(-400px);
 }
 
 .wrapper .form-box.register{
   position: absolute;
-  transform: translateX(500px);
+  transform: translateX(400px);
 }
 .wrapper.active .form-box.register {
   transition: transform .18s ease;
@@ -348,19 +385,19 @@ footer{
   z-index: 1;
 }
 .form-box .iniciar{
-   font-size: 2em;
-   color: transparent;
-  -webkit-text-stroke: 1.5px black;
-  text-shadow: 2px 2px 2px rgb(50, 153, 250);
+   font-size: 5vh;
+   color: rgb(50, 153, 250);
+  -webkit-text-stroke: 0.5px black;
    text-align: center;
+   font-family:"Poppins", sans-serif;
 }
 
 .input-box{
   position: relative;
   width: 100%;
-  height: 50px;
+  height: 40px;
   border-bottom: 2px solid #162938;
-  margin: 20px 0;
+  margin: 10px 0;
 }
 
 .input-box label {
@@ -373,6 +410,7 @@ footer{
   font-weight:500 ;
   pointer-events: none;
   transition:  .5s;
+  font-family:"Poppins", sans-serif;
 }
 
 .input-box input:focus~label,
@@ -397,7 +435,7 @@ footer{
   right: 8px;
   font-size: 1.2em;
   color: #162938;
-  line-height: 57px;
+  line-height: 27px;
 }
 
 .remember-forgot {
@@ -407,6 +445,7 @@ footer{
   margin: -15px 0 15px;
   display: flex;
   justify-content: space-between;
+  font-family:"Poppins", sans-serif;
 }
 
 .remember-forgot label input {
@@ -425,7 +464,7 @@ footer{
 
 .botn {
   width: 100%;
-  height: 45px;
+  height: 5vh;
   background: rgb(50, 153, 250) ;
   border: none;
   outline: none;
@@ -442,30 +481,21 @@ footer{
   text-align: center;
   font-weight:500;
   margin: 25px 0 10px;
+  font-family:"Poppins", sans-serif;
 }
 
 .loguearse-register p a {
   color: #162938;
   text-decoration: none;
   font-weight:800;
+  font-family:"Poppins", sans-serif;
 }
 
 .register-link, .login-link{
   text-decoration: none;
+  font-family:"Poppins", sans-serif;
 }
 
-.btnLogin-popup{
-  background-color: transparent;
-  border: none;
-  color: white;
-  position: relative;
-  font-size: 1.1em;
-  font-weight: 500;
-  margin-left: 30px;
-  transition: 0.3s ease;
-  text-transform: uppercase;
-  text-shadow: 2px 2px 2px black;
-}
 
 .input-box2{
   position: relative;
@@ -475,7 +505,8 @@ footer{
   margin: 5px 0;
   display: flex;
   align-items: center;
-  gap: 40px;
+  gap: 10px;
+  font-family:"Poppins", sans-serif;
 }
 
 .input-box2 input{
@@ -484,4 +515,165 @@ footer{
   font-size: 1em;
   color: #162938;
   font-weight: 600;
+  font-family:"Poppins", sans-serif;
+}
+
+@media (max-width: 1073px){
+  .levantado video{
+    display: none;
+  }
+}
+
+@media (max-width:1073px) {
+  .levantado .fondo {
+    width: 100%;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.377);
+    border-radius: 12px;
+  }
+}
+
+@media (min-width:1073px) {
+  .levantado .fondo {
+    display: none;
+  }
+}
+
+@media  (max-width:768px) {
+  .levantado {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+  }
+  .fondo{
+    height: 100vh;
+  }
+
+  header {
+    border-radius: 0px;
+  }
+
+  header .brand {
+    font-size: 5vh;
+  }
+
+  header .nav-link, .btnLogin-popup {
+    font-size: 2vh;
+  }
+
+  .logo{
+    width: 9vw;
+  }
+
+  .contenido{
+    top: 34%;
+    width: 70%;
+    height: 60vh;
+  }
+
+  .titulo{
+    font-size: 4vh;
+  }
+
+  .titulo2{
+    font-size: 6vh;
+    -webkit-text-stroke: 2px white;
+  }
+
+  .invita2{
+    font-size: 2.5vh;
+  }
+
+  .boton{
+    font-size: 2vh;
+  }
+
+  .box{
+    flex-wrap: wrap-reverse;
+    justify-content: center;
+  }
+
+  .imagenDestino{
+    width: 80vh;
+    height: 50vh;
+    border-radius: 10px;
+  }
+  .titulo3{
+    font-size: 4vw;
+    -webkit-text-stroke: 0.5px rgb(0, 0, 0);
+  }
+
+ .invita{
+  font-size: 3vw;
+ }
+
+ .caja3{
+  flex-wrap: wrap;
+ }
+  .texto{
+    font-size: 3vw;
+  }
+  .titulo4{
+    font-size: 3vw;
+  }
+
+  footer p{
+    font-size: 2vw;
+  }
+  .wrapper.active {
+    height: 95vh;
+    width: 400px;
+  }
+}
+
+@media (max-width: 452px) {
+  .logo{
+    width: 20vw;
+  }
+  .titulo{
+    font-size: 3vh;
+  }
+
+  .titulo2{
+    font-size:5vh ;
+  }
+
+  .invita2{
+    font-size: 2.4vh;
+  }
+  .invita{
+    font-size: 2.4vh;
+  }
+  .titulo4{
+    font-size: 7vw;
+  }
+
+  .titulo3{
+    font-size: 6vw;
+    -webkit-text-stroke: 0.5px rgb(0, 0, 0);
+  }
+  .texto{
+    font-size:2.4vh;
+  }
+  
+  .contenido{
+    width: 90%;
+    left: 2%;
+    height: 60vh;
+  }
+
+  footer p{
+    font-size:2.4vh;
+  }
+
+  .wrapper.active {
+    height: 95vh;
+    width: 400px;
+  }
+}
+
+@media (max-width: 1440px) {
+  .wrapper.active {
+    height: 95vh;
+    width: 400px;
+  }
 }

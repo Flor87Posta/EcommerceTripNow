@@ -27,20 +27,24 @@ const app = createApp({
           buttonsStyling: false
         })
         swalWithBootstrapButtons.fire({
-          title: 'Tienes cuenta?',
-          text: "No puedes acceder sin ella!",
+          title: '¿Tienes cuenta?',
+          text: "No puedes acceder sin ella",
           icon: 'warning',
           showCancelButton: true,
           confirmButtonText: 'Si tengo',
           cancelButtonText: "No tengo",
+          confirmButtonColor: '#0DB4F3',
+          cancelButtonColor: '#FF8A80',
           reverseButtons: true
         })
         .then((result) => {
           if (result.isConfirmed) {
             swalWithBootstrapButtons.fire({
               icon:'error',
-              title: 'Estas segur@?',
-              text: 'Esta infromación es incorrecta, intenta nuevamente!',
+              title: '¿Estas seguro?',
+              text: 'Esta infromación es incorrecta, intenta nuevamente por favor',
+              confirmButtonText: 'Ok',
+              confirmButtonColor: '#0DB4F3',
             }
             )
           } else if (
@@ -48,8 +52,8 @@ const app = createApp({
           ) {
             swalWithBootstrapButtons.fire(
               'Cancelado',
-              'Create una cuenta por favor :)',
-              'error'
+              'Create una cuenta por favor',
+              'Error'
             )
           }
         })
@@ -63,12 +67,16 @@ const app = createApp({
           .catch(error => {
             Swal.fire({
                 icon: 'error',
-                text: error.response.data}
+                text: error.response.data,
+                confirmButtonText: 'Ok',
+                confirmButtonColor: '#0DB4F3',}
             )}))
             .catch(error => {
               Swal.fire({
                   icon: 'error',
-                  text: error.response.data}
+                  text: error.response.data,
+                  confirmButtonText: 'Ok',
+                  confirmButtonColor: '#0DB4F3',}
               )
           })
     }

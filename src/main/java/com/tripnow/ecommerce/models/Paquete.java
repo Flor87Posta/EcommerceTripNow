@@ -17,8 +17,7 @@ public class Paquete {
     private int stock;
 
     private String imagen1;
-    private String imagen2;
-    private String imagen3;
+
 
 
     @ManyToMany(mappedBy = "paquetes", fetch = FetchType.EAGER)
@@ -33,14 +32,13 @@ public class Paquete {
     private Destino destino;
 
     public Paquete(){}
-    public Paquete(String nombrePaquete, int dias, double precioTotalUnitario, int stock,   String imagen1, String imagen2,  String imagen3){
+    public Paquete(String nombrePaquete, int dias, double precioTotalUnitario, int stock, String imagen1){
         this.nombrePaquete = nombrePaquete;
         this.dias = dias;
         this.precioTotalUnitario= precioTotalUnitario;
         this.stock = stock;
         this.imagen1=imagen1;
-        this.imagen2=imagen2;
-        this.imagen3=imagen3;
+
 
     }
 
@@ -113,21 +111,6 @@ public class Paquete {
         this.imagen1 = imagen1;
     }
 
-    public String getImagen2() {
-        return imagen2;
-    }
-
-    public void setImagen2(String imagen2) {
-        this.imagen2 = imagen2;
-    }
-
-    public String getImagen3() {
-        return imagen3;
-    }
-
-    public void setImagen3(String imagen3) {
-        this.imagen3 = imagen3;
-    }
 
     //Metodos creados:
 

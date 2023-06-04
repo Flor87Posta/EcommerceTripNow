@@ -23,7 +23,7 @@ public class OrdenPDFExporter {
 
     }
 
-    private static final String LOGO_PATH = new File("C:Users/Usuarios/Desktop/ecommerceMerge/src/main/resources/static/assets/logoTripNow.png").getAbsolutePath();
+    private static final String LOGO_PATH = new File("C:Users/Usuarios/Desktop/ecommerceMerge/src/main/resources/static/assets/logo.png").getAbsolutePath();
 
     public void usePDFExport(ByteArrayOutputStream pdfOutputStream) throws DocumentException, IOException {
         Document document = new Document(PageSize.A4);
@@ -39,7 +39,7 @@ public class OrdenPDFExporter {
     }
 
     private void addLogo(Document document) throws IOException, DocumentException {
-        InputStream is = getClass().getResourceAsStream("/static/assets/logoTripNow.png");
+        InputStream is = getClass().getResourceAsStream("/static/assets/logo.png");
         Image logo = Image.getInstance(IOUtils.toByteArray(is));
         logo.setAbsolutePosition(50, 770); // Reduce este valor para bajar el logo
         logo.scaleToFit(40, 40); // Ajusta el tamaño del logo

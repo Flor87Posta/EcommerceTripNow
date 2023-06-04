@@ -4,76 +4,102 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Homebanking MindHub.Brothers</title>
-        <link href="./style.css">
+        <link rel="stylesheet" href="../css/carrito.css">
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"></script>
         <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css" rel="stylesheet">
     </head>
-    <header>
-        <h1></h1>
-    </header>
+    <!-- <header>
+
+    </header> -->
     <body>
         <div id="app">
-            <form @submit.prevent>
-                <div>
-                    <div>
-                        
-    
-                        <h2>Pagar Orden</h2>
-    
-                        <div>
-                            <label>Card digits
-                                <input type="text" placeholder="card digits"  maxlength="50"  v-model="digits">
-                            </label>
-                        </div>
-                        <div>
-                            <h4>Tipo de Tarjeta:</h4>
-                                    <label for='q1'>
-                                        <input id='q1' name='q' type='radio' value="CREDIT" v-model="typeCard">
-                                        CREDITO
-                                    </label>
-                                    <label for='q2'>
-                                        <input id='q2' name='q' type='radio' value="DEBIT" v-model="typeCard">
-                                        DEBITO
-                                    </label>
-                        </div>
-                        <div >
-                            <label >CVV
-                                <input type="number" placeholder="cvv"   v-model="cvv">
-                            </label>
-                        </div>
-                        <div>
-                            <label >Email
-                                <input type="text" placeholder="email"  maxlength="50"  v-model="email">
-                            </label>
-                        </div>
-                        <div >
-                            <label >Monto 
-                                <input type="number" placeholder="amount"    v-model="amount">
-                            </label>
-                        </div>
-                        <div >
-                            <label >Numero de orden 
-                                <input type="number" placeholder="idOrden"    v-model="idOrden">
-                            </label>
-                        </div>
-                        <div>
-                            <label >Descripcion
-                                <input type="text" placeholder="description"    v-model="description">
-                            </label>
-                        </div>
-    
-    
-                        <div>
-                            <button class="button" @click="postPay">Pagar</button>
-                            <button class="button" @click="">Enviar ticket por mail</button>
-                            <button class="button" onclick="window.location.href='/html/carrito.html'">Volver</button>
-                        </div>
+
+
+            
+                <div class="box-principal container">
+
+                    <h2 class="text-center ">Detalle de Compra a pagar</h2>
+                    <div class="container carrito">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col" class="text-white">Cantidad Pasajeros</th>
+                            <th scope="col" class="text-white">Fecha de Creacion</th>
+                            <th scope="col" class="text-white">Precio Total Orden</th>
+                            <th scope="col" class="text-white">Numero de Orden</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <template v-for="orden in ordenes">
+                            <tr>
+                            <td scope="row">{{ orden.cantidadPasajeros }}</td>
+                            <td>{{ orden.fechaCreacion.slice(0, 10) }}</td>
+                            <td>${{ orden.precioTotalOrden }}</td>
+                            <td>{{ orden.id }}</td>
+                            </tr>
+                        </template>
+                        </tbody>
+                    </table>
                     </div>
+
+                    <h2 class="text-center ">Pagar Orden</h2>
+                    <form @submit.prevent class="container carrito">
+                        <div>
+                            <div>
+                                <div>
+                                    <label>Numero de Tarjeta:
+                                        <input type="text" placeholder="Numero de Tarjeta"  maxlength="50"  v-model="digits">
+                                    </label>
+                                </div>
+                                <div>
+                                    <h4>Tipo de Tarjeta:</h4>
+                                            <label for='q1'>
+                                                <input id='q1' name='q' type='radio' value="CREDIT" v-model="typeCard">
+                                                CREDITO
+                                            </label>
+                                            <label for='q2'>
+                                                <input id='q2' name='q' type='radio' value="DEBIT" v-model="typeCard">
+                                                DEBITO
+                                            </label>
+                                </div>
+                                <div >
+                                    <label >CVV
+                                        <input type="number" placeholder="cvv"   v-model="cvv">
+                                    </label>
+                                </div>
+                                <div>
+                                    <label >Email
+                                        <input type="email" placeholder="email"  maxlength="50"  v-model="email">
+                                    </label>
+                                </div>
+                                <div >
+                                    <label >Monto 
+                                        <input type="number" placeholder="monto"    v-model="amount">
+                                    </label>
+                                </div>
+                                <div>
+                                    <label>Numero de orden 
+                                        <input type="number" placeholder="numero de orden" v-model="idOrden">
+                                    </label>
+                                </div>
+                                <div>
+                                    <label >Descripcion
+                                        <input type="text" placeholder="descripcion"    v-model="description">
+                                    </label>
+                                </div>
+                                <div>
+                                    <button class="boton" @click="postPay">Pagar</button>
+                                    <button class="boton" @click="enviarPDF(idOrden)">Enviar ticket por mail</button>
+                                    <button class="boton" onclick="window.location.href='/html/carrito.html'">Volver</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-            </form>
     
         </div>
 
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <script src="./posnet.js"></script>
