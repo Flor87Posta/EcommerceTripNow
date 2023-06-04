@@ -1,9 +1,9 @@
 package com.tripnow.ecommerce.models;
 
 public enum HotelCategoria {
-    CINCOESTRELLAS,
-    CUATROESTRELLAS,
-    TRESESTRELLAS,
-    DOSESTRELLAS,
-    UNAESTRELLA;
+    Cinco_Estrellas,
+    Cuatro_Estrellas,
+    Tres_Estrellas,
+    Dos_Estrellas,
+    Una_Estrella;
 }
