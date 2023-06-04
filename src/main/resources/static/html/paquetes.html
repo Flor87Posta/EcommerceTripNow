@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,146 +8,330 @@
   <link rel="stylesheet" href="../css/paquetes.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <title>Paquetes</title>
   <link rel="shortcut icon" href="../assets/logo.png" type="image/x-icon">
 </head>
-   <body id="app">
 
-   <header>
-        <div class="d-flex align-items-center">
-          <img src="../assets/logo.png" class="logo" width="100" alt="">
-          <a href="#" class="brand">TRIPNOW</a>
-        </div>
-        <div class="navigation">
-          <div class="navigation-items">
-            <a href="../html/carrito.html"><img id="carrito" src="../assets/cart_icon_235154.png" alt=""></a>
-            <a href="#">Paquetes</a>
-            <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal3">Crear Orden</a>
-            <a href="#" @click="logout">Cerrar Sesión</a>
-          </div>
-        </div>
-      </header>
+<body id="app">
 
-
-      <main>
-        
-      <div class="principal gap-5" >
-        <p class=" titulo2 text-center">Nuestros paquetes</p>
-          <div class=" d-flex gap-4 secundario">
+  <header>
+    <div class="d-flex align-items-center">
+      <img src="../assets/logo.png" class="logo" width="100" alt="">
+      <a href="#" class="brand">TRIPNOW</a>
+    </div>
+    <div class="navigation">
+      <div class="navigation-items">
+        <a href="../html/carrito.html"><img id="carrito" src="../assets/cart_icon_235154.png" alt=""></a>
+        <a href="#">Paquetes</a>
+        <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal3">Crear Orden</a>
+        <a href="#" @click="logout">Cerrar Sesión</a>
+      </div>
+    </div>
+  </header>
 
 
-            <div v-for="paquete in paquetes" :key="paquete.id" class="paquete align-items-center">
-              <div id="carouselExample" class="carousel slide">
-                <div class="carousel-inner">
-                  <div class="carousel-item active">
-                    <img id="tarjeta-paquete" :src="paquete.imagen1" class="d-block w-100" alt="...">
-                  </div>
-                  <div class="carousel-item">
-                    <img id="tarjeta-paquete" :src="paquete.imagen2" class="d-block w-100" alt="...">
-                  </div>
-                  <div class="carousel-item">
-                    <img id="tarjeta-paquete" :src="paquete.imagen3" class="d-block w-100" alt="...">
-                  </div>
-                </div>
+  <main>
+
+    <div class="principal gap-5">
+      <p class=" titulo2 text-center">Nuestros paquetes</p>
+      <div>
+        <form class="d-flex " role="search">
+          <input class="form-control me-2" type="text" placeholder="Search" aria-label="Search" id="inputSearch"
+            v-model="filtroBusqueda" @keyup="filtro">
+        </form>
+      </div>
+      <div class=" d-flex gap-4 secundario">
+
+        <div v-for="paquete in paquetes" :key="paquete.id" class="paquete align-items-center">
+          <div id="carouselExample" class="carousel slide">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img id="tarjeta-paquete" :src="paquete.imagen1" class="d-block w-100" alt="...">
               </div>
-              <div class="p-2">
-                <h4>{{ paquete.nombrePaquete }}</h4>
-                <h5>Cantidad de Dias: {{ paquete.dias }}</h5>
-                <h5>Precio por Persona: ${{ paquete.precioTotalUnitario }}</h5>
-              
-                <div class="d-flex justify-content-evenly pb-2 gap-5">
-                  <button class="botones"  @click="anadirPaquete(paquete.id)"><img id="carrito" src="../assets/cart_icon_235154.png" alt="">Añadir</button>                 
-                </div>
-              </div> 
+              <div class="carousel-item">
+                <img id="tarjeta-paquete" :src="paquete.imagen2" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item">
+                <img id="tarjeta-paquete" :src="paquete.imagen3" class="d-block w-100" alt="...">
+              </div>
             </div>
-
           </div>
-      </div>
-            <!-- ---------- Modal ---------- -->
-            <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel3"
-            aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5 titulo3" id="exampleModalLabel3">Crear orden de compra</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form class="d-flex justify-content-center align-items-center flex-column" @submit.prevent="crearOrden">
-                            
-                                <div>
-                                  <p class=""> Por favor ingrese el numero de pasajeros para su orden</p>
-                                  <select v-model="cantidadPasajeros" class="form-select" required>
-                                    <option selected value="">Selecciona el numero de pasajeros</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                  </select>                                   
-                                </div>                          
-                                                    
-                            <button type="submit" class="botones mb-3 mt-3 ">Crear</button>
-                        </form>                  
-                    </div>
-                </div>
+          <div class="p-2">
+            <h4>{{ paquete.nombrePaquete }}</h4>
+            <h5>Cantidad de Dias: {{ paquete.dias }}</h5>
+            <h5>Precio por Persona: ${{ paquete.precioTotalUnitario }}</h5>
+
+            <div class="d-flex justify-content-evenly pb-2 gap-5">
+              <button class="botones" @click="anadirPaquete(paquete.id)"><img id="carrito"
+                  src="../assets/cart_icon_235154.png" alt="">Añadir</button>
             </div>
+          </div>
         </div>
-      </main>
-      <div class="final">
-        <footer>
-          <div>
-            <p>Contáctanos</p>
-            <p>Ofertas de temporada</p>
-            <p>Opiniones</p>
-          </div>
-          <div>
-            <p>Ayuda</p>
-            <p>Preguntas Frecuentes</p>
-            <p>Terminos y Condiciones</p>
-          </div>
-          <div>
-            <div>
-              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-facebook" width="44"
-                height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" />
-              </svg>
-              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-instagram" width="44"
-                height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M4 4m0 4a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4z" />
-                <path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
-                <path d="M16.5 7.5l0 .01" />
-              </svg>
-              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-whatsapp" width="44"
-                height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9" />
-                <path
-                  d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1" />
-              </svg>
-            </div>
-            <p>Copyright © 2023 TripNow.</p>
-            <p>Todos los derechos reservados</p>
-          </div>
-        </footer>
       </div>
-    
-  
+    </div>
+    <!-- ---------- Modal ---------- -->
+    <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel3" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5 titulo3" id="exampleModalLabel3">Crear orden de compra</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form class="d-flex justify-content-center align-items-center flex-column" @submit.prevent="crearOrden">
 
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
-      crossorigin="anonymous"></script>
-      <script defer src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-      <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-      <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <script src="../js/paquetes.js"></script>
-  </body>
-  
-  </html>
+              <div>
+                <p class=""> Por favor ingrese el numero de pasajeros para su orden</p>
+                <select v-model="cantidadPasajeros" class="form-select" required>
+                  <option selected value="">Selecciona el numero de pasajeros</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                </select>
+              </div>
+
+              <button type="submit" class="botones mb-3 mt-3 ">Crear</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- -------------------------------Modal de preguntas------------------------------- -->
+    <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel3" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content modal5">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5 text-white" id="exampleModalLabel3">Preguntas Frecuentes</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form class="d-flex justify-content-center align-items-center flex-column">
+
+              <div>
+                <h6 class="p-1 text-white">¿Cómo conseguir vuelos baratos?</h6>
+                <p>Lo primero que tenés que hacer es registrarte con tu email para que te lleguen todas las alertas de
+                  vuelos baratos que mandamos.</p>
+
+                <h6 class="p-1 text-white">¿Cuándo hay promociones aéreas?</h6>
+                <p>Las promociones aéreas dependen de las agencias y aerolíneas. En Tripnow estamos constantemente
+                  detectando las mejores promociones aéreas y enviándoselas a nuestros usuarios para que puedan
+                  aprovecharlas.</p>
+
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- -------------------------------Modal de contacto------------------------------- -->
+    <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel3" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content modal5">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5 text-white" id="exampleModalLabel3">Contáctanos</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body d-flex justify-content-center align-items-center flex-column">
+            <form class="">
+
+              <div>
+                <div class="d-flex gap-2">
+                  <h6 class="text-white">Telefono:</h6>
+                  <p >+0682661206</p>
+                </div>
+
+                <h6 class="p-1 text-white">Oficinas</h6>                 
+                  <p >Si desea una atencion mas personalizada puede dirigirse a nuestra nuestras oficinas ubicadas en
+                  Bartolomé Mitre 1413.</p>
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d494.9655765010872!2d-58.385966084700904!3d-34.607261572541354!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bccac4e794a549%3A0x91700a45214d6561!2sBartolom%C3%A9%20Mitre%201413%2C%20C1037ABA%20CABA!5e0!3m2!1ses!2sar!4v1685846177420!5m2!1ses!2sar"
+                  width="350" height="150" style="border:0;" allowfullscreen="" loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade" ></iframe>
+
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- -------------------------------Modal de terminos y condiciones------------------------------- -->
+    <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel3" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content modal5">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5 text-white" id="exampleModalLabel3">Términos y condiciones</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form class="d-flex justify-content-center align-items-center flex-column">
+
+              <div>
+                <p>
+                  Reservas y pagos: Explica el proceso de reserva y los métodos de pago aceptados. Especifica si se
+                  requiere un depósito o pago completo, así como cualquier política de cancelación y reembolso.
+
+                  Responsabilidad y exención de responsabilidad: Indica las responsabilidades tanto de la agencia de
+                  viajes como del cliente. Aclara que la agencia no se hace responsable de accidentes, pérdidas,
+                  retrasos, lesiones o daños ocurridos durante el viaje.
+
+                  Modificaciones y cancelaciones: Establece las condiciones en caso de que el cliente necesite modificar
+                  o cancelar su reserva, incluyendo cualquier penalidad o tarifa administrativa aplicable.
+
+                  Documentación de viaje: Informa al cliente sobre los documentos necesarios para el viaje, como
+                  pasaportes, visas, certificados de vacunación, etc. Asegúrate de que los clientes sean responsables de
+                  obtener la documentación correcta antes de viajar.
+
+                  Seguro de viaje: Recomienda encarecidamente que los clientes adquieran un seguro de viaje que cubra
+                  posibles contingencias, como cancelaciones, enfermedades o pérdidas de equipaje.
+
+                  Cambios en itinerarios y precios: Establece que la agencia de viajes se reserva el derecho de realizar
+                  cambios en los itinerarios, alojamientos u otros servicios en caso de fuerza mayor. Además, aclara que
+                  los precios pueden estar sujetos a cambios sin previo aviso.
+                </p>
+
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- -------------------------------Modal de ofertas de temporada------------------------------- -->
+    <div class="modal fade" id="exampleModal5" tabindex="-1" aria-labelledby="exampleModalLabel3" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content modal5">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5 text-white" id="exampleModalLabel3">!Ofertas de temporada¡</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form class="d-flex justify-content-center align-items-center flex-column">
+
+              <div>
+                <h6 class="p-1 text-white">🌴🌞🌊 ¡Prepárate para unas vacaciones inolvidables en los destinos más increíbles de Argentina! 🌴🌞🌊</h6>
+
+                <h6 class="p-1 text-white">📢 ¡Oferta de temporada limitada! 📢 </h6>
+                <p>Reserva ahora y aprovecha descuentos de hasta un 30% en nuestros paquetes turísticos nacionales.</p>
+
+                <h6 class="p-1 text-white">🌟 Disfruta de las bellezas naturales de Argentina 🌟 </h6>
+                <p>Explora la exuberante selva misionera en Iguazú, maravíllate con los glaciares majestuosos en El Calafate o déjate seducir por las playas paradisíacas de Mar del Plata. Con TripNow, tus sueños de viajar se hacen realidad.</p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- -------------------------------Modal de opiniones------------------------------- -->
+    <div class="modal fade" id="exampleModal6" tabindex="-1" aria-labelledby="exampleModalLabel3" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content modal5">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5 text-white" id="exampleModalLabel3">Opiniones</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form class="d-flex justify-content-center align-items-center flex-column">
+
+              <div>
+                <h6 class="p-1 ">🌟 "¡La mejor experiencia de viaje que he tenido! TripNow hizo posible que descubriera lugares impresionantes en Argentina que nunca hubiera imaginado. Su atención al detalle y su profesionalismo fueron sobresalientes. Definitivamente, volveré a viajar con ellos en el futuro". - Marta G.</h6>
+
+                <h6 class="p-1">🌟 "TripNow superó todas mis expectativas. Desde el momento en que hice la reserva hasta el final del viaje, me sentí cuidado y atendido. El equipo de TripNow fue amable, servicial y siempre estuvo disponible para responder mis preguntas. Recomiendo encarecidamente sus servicios". - Juan M.</h6>
+                
+                <h6 class="p-1">🌟 "Gracias a TripNow, pude realizar el viaje de mis sueños. Su conocimiento de los destinos y su capacidad para adaptarse a mis preferencias hicieron que mi experiencia fuera inolvidable. Cada aspecto del viaje fue perfectamente organizado y me permitió disfrutar al máximo de cada momento". - Ana R.</h6>
+
+                <h6 class="p-1">🌟 "Como viajera frecuente, he probado varias agencias de viajes, pero TripNow se destaca. Su atención personalizada, su amplia variedad de opciones y su compromiso con la calidad son incomparables. No puedo esperar para reservar mi próximo viaje con ellos". - Carlos S.</h6>
+
+
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+     <!-- -------------------------------Modal de ayuda------------------------------- -->
+     <div class="modal fade" id="exampleModal7" tabindex="-1" aria-labelledby="exampleModalLabel3" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content modal5">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5 text-white" id="exampleModalLabel3">Ayuda</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form class="d-flex justify-content-center align-items-center flex-column">
+
+              <div>
+                <h6 class="p-1 "><span class="text-white">🌟 Asesoramiento personalizado:</span> Nuestro equipo de expertos en viajes está aquí para ayudarte en cada paso del camino. Ya sea que necesites recomendaciones sobre destinos, información sobre actividades o consejos para encontrar el mejor alojamiento, estamos comprometidos en brindarte el asesoramiento personalizado que necesitas.</h6>
+
+                <h6 class="p-1 "><span class="text-white">🌟 Soporte las 24 horas:</span> Sabemos que los imprevistos pueden ocurrir en cualquier momento, por eso, ofrecemos asistencia las 24 horas del día, los 7 días de la semana. Si tienes alguna emergencia durante tu viaje o necesitas ayuda inmediata, nuestro equipo estará a tu disposición para brindarte el apoyo necesario.</h6>
+
+                <h6 class="p-1 "><span class="text-white">🌟 Resolución de problemas: </span> Si algo no sale como estaba planeado, no te preocupes. TripNow se encarga de resolver cualquier problema que pueda surgir. Nuestro objetivo es que tu experiencia de viaje sea lo más fluida posible, por lo que estaremos allí para encontrar soluciones rápidas y eficientes.</h6>
+
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <div class="final">
+    <footer>
+      <div class="d-flex flex-column">
+        <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal2">Contáctanos</a>
+        <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal5">Ofertas de temporada</a>
+        <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal6">Opiniones</a>
+      </div>
+      <div class="d-flex flex-column">
+        <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal7">Ayuda</a>
+        <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal1">Preguntas Frecuentes</a>
+        <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal4">Terminos y Condiciones</a>
+      </div>
+      <div>
+        <div>
+          <a href="https://www.facebook.com/">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-facebook" width="44"
+              height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" />
+            </svg></a>
+          <a href="https://www.instagram.com/">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-instagram" width="44"
+              height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M4 4m0 4a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4z" />
+              <path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
+              <path d="M16.5 7.5l0 .01" />
+            </svg></a>
+          <a href="https://www.whatsapp.com/">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-whatsapp" width="44"
+              height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9" />
+              <path
+                d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1" />
+            </svg></a>
+        </div>
+        <p>Copyright © 2023 TripNow.</p>
+        <p>Todos los derechos reservados</p>
+      </div>
+    </footer>
+  </div>
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+    crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <script src="../js/paquetes.js"></script>
+</body>
+
+</html>

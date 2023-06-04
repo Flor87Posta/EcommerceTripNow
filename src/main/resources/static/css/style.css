@@ -312,9 +312,38 @@ footer{
   flex-wrap: wrap;
 }
 
-footer p{
+footer a, p{
   font-size: 1.2vw;
 }
+
+footer a{
+  color: black;
+  text-decoration: none;
+  padding: 0.5rem;
+}
+
+footer a:hover{
+  color: rgb(0, 195, 255);
+  text-decoration: underline;
+  padding: 0.5rem;
+}
+
+.fade{
+  background-color: rgba(155, 158, 152, 0.363);
+}
+
+
+.modal5{
+  background:rgb(62, 204, 230)!important;
+  border-radius: 20px;
+  backdrop-filter: blur(20px);
+}
+.modal-header{
+  background:rgba(52, 197, 255, 0.678)!important;
+  border-radius: 20px;
+  backdrop-filter: blur(20px);
+}
+
 
 /* loguearse */
 .inicio {
@@ -591,6 +620,9 @@ footer p{
   footer p{
     font-size: 2vw;
   }
+  footer a{
+    font-size: 2vw;
+  }
 }
 @media (max-width: 452px) {
   .logo{
@@ -624,6 +656,10 @@ footer p{
     left: 2%;
     height: 60vh;
   }
+  footer a{
+    font-size:2.4vh;
+  }
+
   footer p{
     font-size:2.4vh;
   }

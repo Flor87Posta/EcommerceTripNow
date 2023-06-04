@@ -4,7 +4,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family:"Poppins", sans-serif;
+  /* font-family:"Poppins", sans-serif; */
 }
 
 body{
@@ -121,6 +121,19 @@ border-radius: 15px;
  flex-wrap: wrap;
 }
 
+footer a{
+  color: black;
+  text-decoration: none;
+  padding: 0.5rem;
+}
+
+footer a:hover{
+  color: white;
+  text-decoration: underline;
+  padding: 0.5rem;
+}
+
+
 @media(max-width: 768px){
  .titulo2{
    font-size: 3rem;
@@ -168,4 +181,20 @@ border-radius: 15px;
   margin-top: 0 !important;
   color: rgb(2, 133, 255);
   font-size: 1.5em;
+}
+
+.fade{
+  background-color: rgba(155, 158, 152, 0.363);
+}
+
+
+.modal5{
+  background:rgb(62, 204, 230)!important;
+  border-radius: 20px;
+  backdrop-filter: blur(20px);
+}
+.modal-header{
+  background:rgba(52, 197, 255, 0.678)!important;
+  border-radius: 20px;
+  backdrop-filter: blur(20px);
 }
