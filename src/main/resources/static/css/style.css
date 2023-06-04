@@ -188,7 +188,7 @@ header .nav-link a:hover{
 }
 
 .destinos{
-  height: 100vh;
+  min-height: 100vh;
   padding-left: 15vw;
   padding-right: 15vw;
   background-image:linear-gradient(rgba(193, 218, 252, 0.425),rgba(193, 218, 252, 0.425)), url(../assets/fondo2-video-img.jpg);
@@ -319,13 +319,13 @@ footer p{
 /* loguearse */
 .inicio {
   position: absolute;
-  width: 90vw;
   z-index: 4;
+  width: 90vw;
 }
 .wrapper {
   position: relative;
   width: 400px;
-  height: 400px;
+  height: 360px;
   background: rgba(255, 255, 255, 0.555);
   border: 2px solid rgba(255, 255, 255, .5);
   border-radius: 20px;
@@ -334,6 +334,7 @@ footer p{
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: 'Arial Narrow', Arial, sans-serif;
   overflow: hidden; 
   transform: scale(0);
   transition: transform .5s ease, height .2s ease;
@@ -343,8 +344,7 @@ footer p{
 }
 
 .wrapper.active {
-  height: 80vh;
-  width: 400px;
+  height: 520px;
 }
 
 .wrapper .form-box {
@@ -352,12 +352,12 @@ footer p{
   padding: 40px;
 }
 
-.wrapper .form-box.loguearse {
+.wrapper .form-box.login {
   transition: transform .18s ease;
   transform: translateX(0);
 } 
 
-.wrapper.active .form-box.loguearse {
+.wrapper.active .form-box.login {
   transition: none;
   transform: translateX(-400px);
 }
@@ -385,19 +385,17 @@ footer p{
   z-index: 1;
 }
 .form-box .iniciar{
-   font-size: 5vh;
-   color: rgb(50, 153, 250);
-  -webkit-text-stroke: 0.5px black;
+   font-size: 2em;
+   color: #078bf0;
    text-align: center;
-   font-family:"Poppins", sans-serif;
 }
 
 .input-box{
   position: relative;
   width: 100%;
-  height: 40px;
+  height: 20%;
   border-bottom: 2px solid #162938;
-  margin: 10px 0;
+  margin: 20px 0;
 }
 
 .input-box label {
@@ -410,7 +408,6 @@ footer p{
   font-weight:500 ;
   pointer-events: none;
   transition:  .5s;
-  font-family:"Poppins", sans-serif;
 }
 
 .input-box input:focus~label,
@@ -435,7 +432,7 @@ footer p{
   right: 8px;
   font-size: 1.2em;
   color: #162938;
-  line-height: 27px;
+  line-height: 17px;
 }
 
 .remember-forgot {
@@ -445,7 +442,6 @@ footer p{
   margin: -15px 0 15px;
   display: flex;
   justify-content: space-between;
-  font-family:"Poppins", sans-serif;
 }
 
 .remember-forgot label input {
@@ -462,10 +458,15 @@ footer p{
   text-decoration: underline;
 }
 
+.cajaContenedora{
+  display: flex;
+  margin: 0 !important;
+  gap: 0.5rem;
+}
 .botn {
   width: 100%;
-  height: 5vh;
-  background: rgb(50, 153, 250) ;
+  height: 45px;
+  background: #078bf0 ;
   border: none;
   outline: none;
   border-radius: 6px;
@@ -475,56 +476,30 @@ footer p{
   font-weight: 800;
 }
 
-.loguearse-register {
+.login-register {
   font-size: .9em;
   color:#162938;
   text-align: center;
   font-weight:500;
-  margin: 25px 0 10px;
-  font-family:"Poppins", sans-serif;
+  margin-top: 0.5vh;
 }
 
-.loguearse-register p a {
-  color: #162938;
+.login-register p a {
+  color: #078bf0;
   text-decoration: none;
   font-weight:800;
-  font-family:"Poppins", sans-serif;
+  margin: 0.5rem;
 }
 
-.register-link, .login-link{
-  text-decoration: none;
-  font-family:"Poppins", sans-serif;
-}
-
-
-.input-box2{
-  position: relative;
-  width: 100%;
-  height: 50px;
-  border-bottom: 2px solid #162938;
-  margin: 5px 0;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-family:"Poppins", sans-serif;
-}
-
-.input-box2 input{
-  background: transparent;
-  border: none;
-  font-size: 1em;
-  color: #162938;
-  font-weight: 600;
-  font-family:"Poppins", sans-serif;
+.login-register p a:hover {
+  text-decoration:  underline;
 }
 
 @media (max-width: 1073px){
   .levantado video{
     display: none;
   }
-}
 
-@media (max-width:1073px) {
   .levantado .fondo {
     width: 100%;
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.377);
@@ -532,12 +507,23 @@ footer p{
   }
 }
 
+@media (max-width: 1073px){
+  .levantado video{
+    display: none;
+  }
+}
+@media (max-width:1073px) {
+  .levantado .fondo {
+    width: 100%;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.377);
+    border-radius: 12px;
+  }
+}
 @media (min-width:1073px) {
   .levantado .fondo {
     display: none;
   }
 }
-
 @media  (max-width:768px) {
   .levantado {
     position: relative;
@@ -547,51 +533,40 @@ footer p{
   .fondo{
     height: 100vh;
   }
-
   header {
     border-radius: 0px;
   }
-
   header .brand {
     font-size: 5vh;
   }
-
   header .nav-link, .btnLogin-popup {
     font-size: 2vh;
   }
-
   .logo{
     width: 9vw;
   }
-
   .contenido{
     top: 34%;
     width: 70%;
     height: 60vh;
   }
-
   .titulo{
     font-size: 4vh;
   }
-
   .titulo2{
     font-size: 6vh;
     -webkit-text-stroke: 2px white;
   }
-
   .invita2{
     font-size: 2.5vh;
   }
-
   .boton{
     font-size: 2vh;
   }
-
   .box{
     flex-wrap: wrap-reverse;
     justify-content: center;
   }
-
   .imagenDestino{
     width: 80vh;
     height: 50vh;
@@ -601,11 +576,9 @@ footer p{
     font-size: 4vw;
     -webkit-text-stroke: 0.5px rgb(0, 0, 0);
   }
-
  .invita{
-  font-size: 3vw;
+  font-size: 2.5vw;
  }
-
  .caja3{
   flex-wrap: wrap;
  }
@@ -615,16 +588,10 @@ footer p{
   .titulo4{
     font-size: 3vw;
   }
-
   footer p{
     font-size: 2vw;
   }
-  .wrapper.active {
-    height: 95vh;
-    width: 400px;
-  }
 }
-
 @media (max-width: 452px) {
   .logo{
     width: 20vw;
@@ -632,11 +599,9 @@ footer p{
   .titulo{
     font-size: 3vh;
   }
-
   .titulo2{
     font-size:5vh ;
   }
-
   .invita2{
     font-size: 2.4vh;
   }
@@ -646,7 +611,6 @@ footer p{
   .titulo4{
     font-size: 7vw;
   }
-
   .titulo3{
     font-size: 6vw;
     -webkit-text-stroke: 0.5px rgb(0, 0, 0);
@@ -660,7 +624,6 @@ footer p{
     left: 2%;
     height: 60vh;
   }
-
   footer p{
     font-size:2.4vh;
   }
@@ -670,7 +633,6 @@ footer p{
     width: 400px;
   }
 }
-
 @media (max-width: 1440px) {
   .wrapper.active {
     height: 95vh;
