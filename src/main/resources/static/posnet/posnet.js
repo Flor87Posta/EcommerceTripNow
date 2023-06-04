@@ -5,7 +5,7 @@ createApp({
        digits:null,
        cvv:null,
        amount:null,
-       description:null,
+       description: "pago orden",
        typeCard:null,
        email:null,
        idOrden:null,
@@ -18,12 +18,30 @@ createApp({
     },
     created() {
         axios.get('/api/clientes/orden')
-        .then(response =>{
-            this.ordenes = response.data
+          .then(response => {
+            this.ordenes = response.data;
             console.log(this.ordenes);
-        })
-
-    },
+      
+            // Obtener información del cliente autenticado
+            axios.get('/api/clientes/current')
+              .then(clienteResponse => {
+                const cliente = clienteResponse.data;
+      
+                // Asignar los valores de las órdenes y el email del cliente
+                if (this.ordenes.length > 0) {
+                  this.email = cliente.email;
+                  this.idOrden = this.ordenes[0].id;
+                  this.amount = this.ordenes[0].precioTotalOrden;
+                }
+              })
+              .catch(error => {
+                console.log(error);
+              });
+          })
+          .catch(error => {
+            console.log(error);
+          });
+      },
 
     methods: {
         
@@ -48,6 +66,8 @@ createApp({
                 confirmButtonText: 'Sí, realizar pago',
                 cancelButtonText: 'Cancelar',
                 timer: 6000,
+                confirmButtonColor: '#0DB4F3',
+                cancelButtonColor: '#FF8A80',
             }).then((result) => {
                 if (result.isConfirmed) {
                     axios.post('http://localhost:8080/api/clientes/current/pagar-orden', payment)
@@ -59,6 +79,8 @@ createApp({
                                     showCancelButton: true,
                                     confirmButtonText: 'Aceptar',
                                     timer: 6000,
+                                    confirmButtonColor: '#0DB4F3',
+                                    cancelButtonColor: '#FF8A80',
                                 });
                             }
                         })
@@ -69,6 +91,8 @@ createApp({
                                     title: 'Error',
                                     text: `Error del servidor: ${error.response.data}`,
                                     timer: 6000,
+                                    confirmButtonText: 'Ok',
+                                    confirmButtonColor: '#0DB4F3',
                                 });
                             } else if (error.request) {
                                 Swal.fire({
@@ -76,6 +100,8 @@ createApp({
                                     title: 'Error',
                                     text: 'No se recibió respuesta del servidor',
                                     timer: 6000,
+                                    confirmButtonText: 'Ok',
+                                    confirmButtonColor: '#0DB4F3',
                                 });
                             } else {
                                 Swal.fire({
@@ -83,6 +109,8 @@ createApp({
                                     title: 'Error',
                                     text: 'Error al realizar la solicitud',
                                     timer: 6000,
+                                    confirmButtonText: 'Ok',
+                                    confirmButtonColor: '#0DB4F3',
                                 });
                             }
                         });
@@ -98,6 +126,7 @@ createApp({
                   title: 'PDF enviado',
                   showCancelButton: true,
                   confirmButtonText: 'Aceptar',
+                  confirmButtonColor: '#0DB4F3',
                   timer: 6000,
                 });
               })
@@ -108,6 +137,8 @@ createApp({
                     title: 'Error',
                     text: `Error del servidor: ${error.response.data}`,
                     timer: 6000,
+                    confirmButtonText: 'Ok',
+                    confirmButtonColor: '#0DB4F3',
                   });
                 } else if (error.request) {
                   Swal.fire({
@@ -115,6 +146,8 @@ createApp({
                     title: 'Error',
                     text: 'No se recibió respuesta del servidor',
                     timer: 6000,
+                    confirmButtonText: 'Ok',
+                    confirmButtonColor: '#0DB4F3',
                   });
                 } else {
                   Swal.fire({
@@ -122,6 +155,8 @@ createApp({
                     title: 'Error',
                     text: 'Error al realizar la solicitud',
                     timer: 6000,
+                    confirmButtonText: 'Ok',
+                    confirmButtonColor: '#0DB4F3',
                   });
                 }
               });

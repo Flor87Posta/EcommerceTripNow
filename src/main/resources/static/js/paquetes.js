@@ -33,13 +33,15 @@ const app = createApp({
 
     logout(){
         Swal.fire({
-            title: 'Seguro que desea cerrar sesion?',
+            title: '¿Seguro que desea cerrar sesión?',
             inputAttributes: {
                 autocapitalize: 'off'
             },
             showCancelButton: true,
-            confirmButtonText: 'Sure',
-            confirmButtonColor: "#00E194;",
+            confirmButtonText: 'Si',
+            cancelButtonText: 'No',
+            confirmButtonColor: '#0DB4F3',
+            cancelButtonColor: '#FF8A80',
             preConfirm: () => {
                 return axios.post('/api/logout')
                     .then(response => {
@@ -48,6 +50,7 @@ const app = createApp({
                     .catch(error => {
                         Swal.showValidationMessage(
                             `Request failed: ${error}`
+                            
                         )
                     })
             },
@@ -68,6 +71,9 @@ const app = createApp({
       showCancelButton: true,
       confirmButtonText: 'Sí, crear orden',
       cancelButtonText: 'Cancelar',
+      confirmButtonColor: '#0DB4F3',
+      cancelButtonColor: '#FF8A80',
+      
       timer: 6000,
     }).then((result) => {
       if (result.isConfirmed) {
@@ -82,6 +88,8 @@ const app = createApp({
                 title: 'Error',
                 text: error.response.data,
                 timer: 6000,
+                confirmButtonText: 'Ok',
+                confirmButtonColor: '#0DB4F3',
               });
             } else {
               Swal.fire({
@@ -89,6 +97,8 @@ const app = createApp({
                 title: 'Error',
                 text: 'Error al crear la orden',
                 timer: 6000,
+                confirmButtonText: 'Ok',
+                confirmButtonColor: '#0DB4F3',
               });
             }
           });
@@ -103,6 +113,8 @@ const app = createApp({
       showCancelButton: true,
       confirmButtonText: 'Sí, añadir paquete',
       cancelButtonText: 'Cancelar',
+      confirmButtonColor: '#0DB4F3',
+      cancelButtonColor: '#FF8A80',
       timer: 6000,
     }).then((result) => {
       if (result.isConfirmed) {
@@ -117,6 +129,8 @@ const app = createApp({
                 title: 'Error',
                 text: error.response.data,
                 timer: 6000,
+                confirmButtonText: 'Ok',
+                confirmButtonColor: '#0DB4F3',
               });
             } else {
               Swal.fire({
@@ -124,6 +138,8 @@ const app = createApp({
                 title: 'Error',
                 text: 'Error al añadir el paquete',
                 timer: 6000,
+                confirmButtonText: 'Ok',
+                confirmButtonColor: '#0DB4F3',
               });
             }
           });

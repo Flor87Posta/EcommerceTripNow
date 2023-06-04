@@ -61,7 +61,7 @@ public class EcommerceApplication {
 			Destino destino3 = new Destino("Mendoza", new ArrayList<>(Arrays.asList(7, 13, 15, 20)), hotel3.getPrecioHotel()+excursion1.getPrecioExcursion()+excursion2.getPrecioExcursion());
 			Destino destino4 = new Destino("Cataratas del Iguazú", new ArrayList<>(Arrays.asList(2, 3, 6, 10)), hotel4.getPrecioHotel()+excursion6.getPrecioExcursion()+excursion5.getPrecioExcursion());
 			Destino destino5 = new Destino("Mar del Plata", new ArrayList<>(Arrays.asList(2, 3, 7)), hotel5.getPrecioHotel()+excursion7.getPrecioExcursion());
-			Destino destino6 = new Destino("Villa Gesell", new ArrayList<>(Arrays.asList(6, 8, 10)), hotel6.getPrecioHotel()+excursion8.getPrecioExcursion()+excursion1.getPrecioExcursion());
+			Destino destino6 = new Destino("Carilo", new ArrayList<>(Arrays.asList(6, 8, 10)), hotel6.getPrecioHotel()+excursion8.getPrecioExcursion()+excursion1.getPrecioExcursion());
 			Destino destino7 = new Destino("Carlos Paz", new ArrayList<>(Arrays.asList(1, 2, 3)), hotel7.getPrecioHotel()+excursion2.getPrecioExcursion()+excursion3.getPrecioExcursion());
 			Destino destino8 = new Destino("Cerro de los Siete Colores(Purmamarca)", new ArrayList<>(Arrays.asList(4, 8, 10, 12)), hotel8.getPrecioHotel()+excursion6.getPrecioExcursion()+excursion4.getPrecioExcursion());
 
@@ -138,10 +138,10 @@ public class EcommerceApplication {
 			Paquete paquete2 = new Paquete ("Volá y conocé Cataratas", 6, destino4.getPrecioHotelExcursion()+pasaje2.getPrecioPasaje(),10, "/assets/cataratas.jpg");
 			Paquete paquete3 = new Paquete ("Conoce Bariloche via FlechaBus", 8, destino2.getPrecioHotelExcursion()+pasaje4.getPrecioPasaje(),10, "/assets/Centro_Civico_y_Puerto_San_Carlos_en_Bariloche.jpg");
 			Paquete paquete4 = new Paquete ("Conoce Santa Cruz con Flybondi", 5, destino1.getPrecioHotelExcursion()+pasaje3.getPrecioPasaje(),10, "/assets/Glaciar2.jpg");
-			Paquete paquete5 = new Paquete("Escapada Costera", 9, destino5.getPrecioHotelExcursion()+pasaje5.getPrecioPasaje(), 10, "/assets/Glaciar2.jpg");
-			Paquete paquete6 = new Paquete("Trilogía de Destinos: Mar, Sierras y Colores", 8, destino6.getPrecioHotelExcursion()+pasaje6.getPrecioPasaje(), 10, "/assets/Glaciar2.jpg");
-			Paquete paquete7 = new Paquete("Descubriendo el Encanto de Carlos Paz", 5, destino7.getPrecioHotelExcursion()+pasaje2.getPrecioPasaje(), 10, "/assets/Glaciar2.jpg");
-			Paquete paquete8 = new Paquete("Experiencia Multicolor en el Cerro de los Siete Colores", 15, destino8.getPrecioHotelExcursion()+pasaje1.getPrecioPasaje(), 10, "/assets/Glaciar2.jpg");
+			Paquete paquete5 = new Paquete("Escapada Costera a Mar del Plata", 9, destino5.getPrecioHotelExcursion()+pasaje5.getPrecioPasaje(), 10, "/assets/marDelPlata.jpg");
+			Paquete paquete6 = new Paquete("Mar y bosque, combinación perfecta en Cariló ", 8, destino6.getPrecioHotelExcursion()+pasaje6.getPrecioPasaje(), 10, "/assets/carilo.jpg");
+			Paquete paquete7 = new Paquete("Descubriendo el Encanto de Carlos Paz", 5, destino7.getPrecioHotelExcursion()+pasaje2.getPrecioPasaje(), 10, "/assets/carlosPaz.jpg");
+			Paquete paquete8 = new Paquete("Experiencia Multicolor en el Cerro de los Siete Colores", 15, destino8.getPrecioHotelExcursion()+pasaje1.getPrecioPasaje(), 10, "/assets/jujuy.jpg");
 
 			paqueteRepositorio.save(paquete1);
 			paqueteRepositorio.save(paquete2);

@@ -39,16 +39,7 @@
     <div class="box-principal container">
       <h2 class="text-center ">Detalle de Compra</h2>
       <div class="container carrito">
-        <table class="table">
-          <thead>
-            <tr>
-
-            </tr>
-          </thead>
-          <tbody>
-
-          </tbody>
-        </table>
+      
         <table class="table">
           <thead>
             <tr>
@@ -64,13 +55,13 @@
             <template v-for="orden in ordenes">
               <tr>
                 <td scope="row">{{ orden.cantidadPasajeros }}</td>
-                <td>{{ orden.fechaCreacion }}</td>
+                <td>{{ orden.fechaCreacion.slice(0, 10) }}</td>
                 <td>${{ orden.precioTotalOrden }}</td>
                 <td colspan="3">
                   <table class="inner-table">
                     <tbody>
                       <tr v-for="paquete in orden.paquetesDTO">
-                        <td>{{ paquete.dias }}</td>
+                        <td >{{ paquete.dias }}</td>
                         <td>{{ paquete.nombrePaquete }}</td>
                         <td>{{ paquete.precioTotalUnitario }}</td>
                         <td><a @click="eliminarPaquete(paquete.id)" href=""><img src="../assets/cesto.png" alt="" width="20"></a></td>
@@ -84,9 +75,9 @@
         </table>
         
         <div class="d-flex justify-content-evenly pb-2">
-          <button type="button" class="btn btn-outline-success"
-            onclick="window.location.href='/posnet/posnet.html'">pagar</button>
-          <button type="button" class="btn btn-outline-success"
+          <button type="button" class="boton"
+            onclick="window.location.href='/posnet/posnet.html'">Pagar</button>
+          <button type="button" class="boton"
             onclick="window.location.href='/html/paquetes.html'">Volver</button>
         </div>
       </div>
