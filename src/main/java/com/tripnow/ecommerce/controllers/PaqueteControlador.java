@@ -189,7 +189,6 @@ public class PaqueteControlador {
             int cantidadPasajeros = orden.getCantidadPasajeros();
             double precioTotalOrden = orden.getPrecioTotalOrden();
             orden.setPrecioTotalOrden(precioTotalOrden - (precioPaqueteEliminado * cantidadPasajeros));
-
             ordenServicio.saveOrden(orden);
 
             return new ResponseEntity<>("Paquete eliminado de la orden", HttpStatus.OK);
