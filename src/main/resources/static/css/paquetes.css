@@ -109,10 +109,12 @@ header .navigation .navigation-items a {
  padding: 3rem;
  display: flex;
  justify-content: center; 
- backdrop-filter: blur(10px);
+ backdrop-filter: blur(5px);
 }
 footer{
 border-radius: 15px;
+background: rgba(255, 255, 255, 0.281);
+backdrop-filter: blur(5px);
  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.466);
  margin: 1rem;
  width: 80vw;
@@ -128,11 +130,29 @@ footer a{
 }
 
 footer a:hover{
-  color: white;
+  color: rgb(0, 132, 255);
   text-decoration: underline;
   padding: 0.5rem;
 }
 
+.perfil h5{
+  color: white;
+}
+
+.perfil .icono{
+  font-size: 7vh;
+  color:white;
+}
+
+.navigation-items a .icono2{
+  font-size: 5vh;
+  color:white;
+}
+
+.navigation-items{
+  display: flex;
+  align-items: center;
+}
 
 @media(max-width: 768px){
  .titulo2{
