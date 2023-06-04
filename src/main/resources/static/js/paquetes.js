@@ -60,12 +60,6 @@ const app = createApp({
         })
     },
 
-  //   logout(){
-  //     console.log("hola")
-  //     axios.post('/api/logout')
-  //     .then(response => {window.location.href = '/html/index.html'})
-  // },
-
     crearOrden(){ 
       axios.post('/api/clientes/current/orden',`cantidadPasajeros=${this.cantidadPasajeros}`)
       .then(response => window.location.href = '/html/carrito.html')
@@ -99,7 +93,3 @@ computed:{
 
 })
 app.mount('#app');
-
-// filtro(){
-//   this.paquetes =this.paquetes.filter(paquete => paquete.nombrePaquete.toLowerCase().includes(this.filtroBusqueda.toLowerCase()))
-// },
