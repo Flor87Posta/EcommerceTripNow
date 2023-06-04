@@ -6,18 +6,30 @@ const app = createApp({
       paquetes:[],
       idPaquete: '',
       id: null,
+      cliente: '',
 
 
     }
   },
 
   created() {
-        
     axios.get('/api/paquetes')
-    .then(response =>{
-        this.paquetes = response.data
+      .then(response => {
+        this.paquetes = response.data;
         console.log(this.paquetes);
-    })
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  
+    axios.get('/api/clientes/current')
+      .then(clienteResponse => {
+        this.cliente = clienteResponse.data;
+        console.log(this.cliente);
+      })
+      .catch(error => {
+        console.error(error);
+      });
   },
 
 

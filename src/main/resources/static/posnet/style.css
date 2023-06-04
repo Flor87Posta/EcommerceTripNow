@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
 *{
     margin: 0;
     padding: 0;
@@ -16,6 +17,68 @@ body {
     font-family: 'Russo One', sans-serif;
     color: white;
 }
+header{
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 100px;
+    transition: 0.5s ease;
+    background-color: rgba(0, 0, 0, 0.288);
+    /* border-radius:20px ; */
+    min-height: 10vh;
+  }
+  header .brand {
+    color: white;
+    font-size: 1.7em;
+    font-weight: 700;
+    text-decoration: none;
+    text-shadow: 2px 2px 2px black;
+  }
+  header .navigation .navigation-items a {
+    color: white;
+    position: relative;
+    font-size: 1.1em;
+    font-weight: 500;
+    text-decoration: none;
+    margin-left: 30px;
+    transition: 0.3s ease;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 2px black;
+  }
+  
+  header .navigation .navigation-items a:hover{
+    color: rgb(171, 228, 255);
+  }
 
+  .perfil h5{
+    color: white;
+  }
+  .perfil .icono{
+    font-size: 7vh;
+    color:white;
+  }
+  
+  .navigation-items a .icono2{
+    font-size: 5vh;
+    color:white;
+  }
 
-
+.box-principal{
+    min-height: 70vh;
+    display: flex;
+    background: rgba(255, 255, 255, 0.329);
+    border: 2px solid rgba(255, 255, 255, .5);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 9rem;
+}
