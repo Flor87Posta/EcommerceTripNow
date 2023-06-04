@@ -7,26 +7,40 @@ const app = createApp({
             nombre: '',
             apellido: '',
             email: '',
+            pasaporte: '',
+            direccion: '',
+            telefono: '',
+            fechaNac: '',
+            contrasena: '',
             clientes: [],
             nombreDestino: '',
             cantidadDias: '',
             precioHotelExcursion: '',
             destinos: [],
-            pasajes:[],
-            nombrePaquete:'',
-            dias:'',
-            precioTotalUnitario:'',
-            stock:'',
-            imagen1:'',
-            pasaje:null,
-            destino:'' ,
+            pasajes: [],
+            nombrePaquete: '',
+            dias: '',
+            precioTotalUnitario: '',
+            stock: '',
+            imagen1: '',
+            pasaje: null,
+            destino: '',
             excursiones: [],
             nombreExcursion: '',
             actividad: '',
-            precioExcursion:'',
+            precioExcursion: '',
             cantidadStock: '',
-            destinoExcursion:''
-        
+            destinoExcursion: '',
+            paquetes: [],
+            nombreHotel: '',
+            categoria: '',
+            allInclusive: true,
+            desayuno: true,
+            mediaPension: true,
+            precioHotel: null,
+            cantidadStockHotel: null,
+            destinoHotel: ''
+
 
 
         }
@@ -38,49 +52,74 @@ const app = createApp({
     methods: {
 
         loadData() {
-            axios.get("/clientes")
+            axios.get("/api/clientes")
                 .then(response => {
                     this.clientes = response.data;
-                    console.log(response)
-
-
-
+                    console.log(this.clientes)
                 })
                 .catch(err => console.log(err));
             axios.get('/api/destinos')
-            .then(response => {
-                this.destinos = response.data;
-                console.log(this.destinos);
-            })
+                .then(response => {
+                    this.destinos = response.data;
+                    console.log(this.destinos);
+                })
             axios.get('/api/pasajes')
-            .then(response => {
-                this.pasajes = response.data;
-                console.log(this.pasajes);
-            })
+                .then(response => {
+                    this.pasajes = response.data;
+                    console.log(this.pasajes);
+                })
             axios.get('/api/excursiones')
-            .then(response => {
-                this.excursiones = response.data;
-                console.log(this.excursiones);
-            })
+                .then(response => {
+                    this.excursiones = response.data;
+                    console.log(this.excursiones);
+                })
+            axios.get('/api/paquetes')
+                .then(response => {
+                    this.paquetes = response.data;
+                    console.log(this.paquetes);
+                })
         },
 
-        addClient() {
-            this.postClient();
-        },
 
         postClient() {
-            axios.post("http://localhost:8080/clientes", {
-                nombre: this.nombre,
-                apellido: this.apellido,
-                email: this.email,
-            })
-                .then(function (response) {
-                    this.loadData();
+            const params = new URLSearchParams();
+            params.append('nombre', this.nombre);
+            params.append('apellido', this.apellido);
+            params.append('email', this.email);
+            params.append('pasaporte', this.pasaporte);
+            params.append('direccion', this.direccion);
+            params.append('telefono', this.telefono);
+            params.append('fechaNac', this.fechaNac);
+            params.append('contrasena', this.contrasena);
+        
+            axios.post('/api/clientes', params)
+                .then(response => {
+                    // Agregar el nuevo cliente al array clientes
+                    this.clientes.push(response.data);
+                    // Limpiar los campos del formulario
+                    this.nombre = '';
+                    this.apellido = '';
+                    this.email = '';
+                    this.pasaporte = '';
+                    this.direccion = '';
+                    this.telefono = '';
+                    this.fechaNac = '';
+                    this.contrasena = '';
                 })
-                .catch(function (error) {
-                    console.log(error);
-                });
+                .then(() => Swal.fire({
+                    icon: 'success',
+                    text: 'Cliente creado correctamente',
+                }))
+                .catch((error) => {
+                    console.log(error.response.data)
+                    Swal.fire({
+                        icon: 'error',
+                        text: error.response.data,
+                        confirmButtonColor: "#7c601893",
+                    })
+                })
         },
+        
         añadirDestino() {
             const dias = this.cantidadDias.split(",").map(dias => parseInt(dias.trim()));
 
@@ -105,8 +144,8 @@ const app = createApp({
                     })
                 })
         },
-        crearPaquete(){
-            axios.post('/api/admin/paquete',{
+        crearPaquete() {
+            axios.post('/api/admin/paquete', {
                 nombrePaquete: this.nombrePaquete,
                 dias: this.dias,
                 precioTotalUnitario: this.precioTotalUnitario,
@@ -115,45 +154,73 @@ const app = createApp({
                 pasaje: { id: this.pasaje },
                 destino: { id: this.destino }
             })
-            .then((response) => Swal.fire({
-                icon: 'success',
-                text: 'Paquete creado correctamente',
+                .then((response) => Swal.fire({
+                    icon: 'success',
+                    text: 'Paquete creado correctamente',
 
-            }
+                }
 
-            ))
-            .catch((error) => {
-                console.log(error.response.data)
-                Swal.fire({
-                    icon: 'error',
-                    text: error.response.data,
-                    confirmButtonColor: "#7c601893",
+                ))
+                .catch((error) => {
+                    console.log(error.response.data)
+                    Swal.fire({
+                        icon: 'error',
+                        text: error.response.data,
+                        confirmButtonColor: "#7c601893",
+                    })
                 })
-            })
         },
-        crearExcursion(){
-            axios.post('/api/admin/excursion',{
+        crearExcursion() {
+            axios.post('/api/admin/excursion', {
                 nombre: this.nombreExcursion,
                 actividad: this.actividad,
                 precioExcursion: this.precioExcursion,
                 cantidadStock: this.cantidadStock,
                 destino: { id: this.destinoExcursion }
             })
-            .then((response) => Swal.fire({
-                icon: 'success',
-                text: 'Excursión creada correctamente',
+                .then((response) => Swal.fire({
+                    icon: 'success',
+                    text: 'Excursión creada correctamente',
 
-            }
+                }
 
-            ))
-            .catch((error) => {
-                console.log(error.response.data)
-                Swal.fire({
-                    icon: 'error',
-                    text: error.response.data,
-                    confirmButtonColor: "#7c601893",
+                ))
+                .catch((error) => {
+                    console.log(error.response.data)
+                    Swal.fire({
+                        icon: 'error',
+                        text: error.response.data,
+                        confirmButtonColor: "#7c601893",
+                    })
                 })
+        },
+        añadirHotel() {
+            axios.post('/api/admin/hotel', {
+
+                nombre: this.nombreHotel,
+                categoria: this.categoria,
+                allInclusive: this.allInclusive,
+                desayuno: this.desayuno,
+                mediaPension: this.mediaPension,
+                precioHotel: this.precioHotel,
+                cantidadStock: this.cantidadStockHotel,
+                destino: { id: this.destinoHotel }
             })
+                .then((response) => Swal.fire({
+                    icon: 'success',
+                    text: 'Hotel creado correctamente',
+
+                }
+
+                ))
+                .catch((error) => {
+                    console.log(error.response.data)
+                    Swal.fire({
+                        icon: 'error',
+                        text: error.response.data,
+                        confirmButtonColor: "#7c601893",
+                    })
+                })
         }
 
     },

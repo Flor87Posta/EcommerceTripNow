@@ -31,7 +31,9 @@ h1{
 }
 
 .formulario {
-    margin: 2vw;
+    margin-top: 1vw;
+    margin-right: 2vw;
+    margin-left: 2vw;
     background: rgba(50, 153, 250, 0.63);
     padding: 1rem;
     border-radius: 15px;
@@ -65,7 +67,7 @@ table, th, td {
 
 .tabla{
     margin: 2vw;
-    width: 45.5vw;
+    width: 50vw;
     max-height: 50vh;
     background-color: #fff5;
     backdrop-filter: blur(7px);
@@ -144,7 +146,6 @@ tbody tr:nth-child(even){
     backdrop-filter: blur(20px);
     box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.466);
 }
-
 .form-group{
     display: flex;
     padding: 0.5vh;
