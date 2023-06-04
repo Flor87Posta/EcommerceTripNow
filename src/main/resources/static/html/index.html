@@ -20,7 +20,7 @@
           <ion-icon name="close-circle"></ion-icon>
         </span>
 
-        <div class="form-box loguearse">
+        <div class="form-box login">
           <p class="iniciar">Iniciar Sesión</p>
           <form @submit.prevent="Login">
             <div class="input-box">
@@ -46,60 +46,59 @@
         <div class="form-box register">
           <p class="iniciar">Registrate</p>
           <form @submit.prevent="Register">
-            <div class="d-flex gap-1">
+            <div class="cajaContenedora">
               <div class="input-box">
                 <span class="icon"><ion-icon name="person"></ion-icon></span>
-                <input type="text" v-model="nombre">
-                <label>Nombre</label>
+                <input type="text" v-model="nombre" placeholder="Nombre" required>
               </div>
               <div class="input-box">
                 <span class="icon"><ion-icon name="person"></ion-icon></span>
-                <input type="text" v-model="apellido">
-                <label>Apellido</label>
+                <input type="text" v-model="apellido" placeholder="Apellido" required>
+    
               </div>
             </div>
-            <div class="input-box2">
-              <label>Fecha de nacimiento</label>
-              <input type="date" v-model="fechaNac">
+            <label>Fecha de nacimiento: </label>
+            <div class="input-box">
+              
+              <input type="date" v-model="fechaNac" required>
             </div>
             <div class="input-box">
               <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
-              <input type="text" v-model="direccion">
-              <label class="mt-3">Dirección</label>
+              <input type="text" v-model="direccion" placeholder="Dirección" required>
+    
             </div>
-            <div class="d-flex gap-1">
+            <div class="cajaContenedora">
               <div class="input-box">
                 <span class="icon"><ion-icon name="airplane-outline"></ion-icon></span>
-                <input type="text" v-model="pasaporte">
-                <label>Pasaporte</label>
+                <input type="text" v-model="pasaporte" placeholder="Pasaporte" required>
+      
               </div>
               <div class="input-box">
                 <span class="icon"><ion-icon name="call-outline"></ion-icon></span>
-                <input type="number" v-model="telefono">
-                <label>Telefono</label>
+                <input type="number" v-model="telefono" placeholder="Telefono" required>
+    
               </div>
             </div>
-            <div class="d-flex gap-1">
+            <div class="cajaContenedora">
               <div class="input-box">
                 <span class="icon"><ion-icon name="mail"></ion-icon></span>
-                <input type="email" v-model="email2">
-                <label>Email</label>
+                <input type="email" v-model="email2" placeholder="Email" required>
               </div>
               <div class="input-box">
                 <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
-                <input type="password" v-model="contrasena2">
-                <label>Contraseña</label>
+                <input type="password" v-model="contrasena2" placeholder="Contraseña" required>
+        
               </div>
             </div>
 
-            <div class="remember-forgot mt-1">
+            <div class="remember-forgot ">
               <label><input type="checkbox">
                 Estoy de acuerdo con los terminos y condiciones
               </label>
             </div>
             <button type="submit" class="botn">Registrarse</button>
             <div class="login-register">
-              <p>Ya tienes cuenta?<a href="#" class="login-link ps-2">Iniciar Sesión</a></p>
+              <p>Ya tienes cuenta?<a href="#" class="login-link ">Iniciar Sesión</a></p>
             </div>
           </form>
         </div>
@@ -114,7 +113,7 @@
     
             <div class="d-flex align-items-center">
               <img class="logo " src="../assets/logo.png" alt="">
-              <h1 class="brand me-3">TripNow</h1>
+              <h1 class="brand me-5">TripNow</h1>
             </div>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
               aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
