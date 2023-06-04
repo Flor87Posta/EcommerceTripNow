@@ -240,5 +240,4 @@ public class PaqueteControlador {
         excursionServicio.saveExcursion(excursion);
         return new ResponseEntity<>("Excursion creada con éxito", HttpStatus.CREATED);
     }
-
 }

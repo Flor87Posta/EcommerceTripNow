@@ -1,4 +1,5 @@
 package com.tripnow.ecommerce.services.implement;
+import com.tripnow.ecommerce.Dto.ClienteDTO;
 import com.tripnow.ecommerce.Dto.PaqueteDTO;
 import com.tripnow.ecommerce.models.Paquete;
 import com.tripnow.ecommerce.repositories.PaqueteRepositorio;
@@ -19,7 +20,7 @@ public class PaqueteServicioImplementacion implements PaqueteServicio {
     }
     @Override
     public List<PaqueteDTO> getPaquetesDTO() {
-        return paqueteRepositorio.findAll().stream().map(PaqueteDTO::new).collect(toList());
+        return paqueteRepositorio.findAll().stream().map(paquete -> new PaqueteDTO(paquete)).collect(toList());
     }
 
     @Override

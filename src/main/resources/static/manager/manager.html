@@ -16,55 +16,92 @@
 <body class="body">
     <div id="app" class="app">
         <div id="formularioyTabla">
-            <form @submit="addClient">
-                <div class="mb-3">
-                    <label for="name" class="form-label">Nombre:</label>
-                    <input type="text" class="form-control" v-model="nombre" id="name" name="name">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <form @submit.prevent="postClient" class="p-4 border rounded">
+                            <div class="mb-3">
+                                <label for="nombre" class="form-label">Nombre:</label>
+                                <input type="text" class="form-control" v-model="nombre" id="nombre" name="nombre">
+                            </div>
+                            <div class="mb-3">
+                                <label for="lastname" class="form-label">Apellido:</label>
+                                <input type="text" class="form-control" v-model="apellido" id="lastname" name="lastname">
+                            </div>
+                            <div class="mb-3">
+                                <label for="pasaporte" class="form-label">Pasaporte:</label>
+                                <input type="text" class="form-control" v-model="pasaporte" id="pasaporte" name="pasaporte">
+                            </div>
+                            <div class="mb-3">
+                                <label for="direccion" class="form-label">Dirección:</label>
+                                <input type="text" class="form-control" v-model="direccion" id="direccion" name="dirección">
+                            </div>
+                            <div class="mb-3">
+                                <label for="telefono" class="form-label">Teléfono:</label>
+                                <input type="text" class="form-control" v-model="telefono" id="telefono" name="telefono">
+                            </div>
+                            <div class="mb-3">
+                                <label for="mail" class="form-label">Email:</label>
+                                <input type="email" class="form-control" v-model="email" id="mail" name="Mail">
+                            </div>
+                            <div class="mb-3">
+                                <label for="fechaNac" class="form-label">Fecha de Nacimiento:</label>
+                                <input type="date" class="form-control" v-model="fechaNac" id="fechaNac" name="fechaNac">
+                            </div>
+                            <div class="mb-3">
+                                <label for="contraseña" class="form-label">Contraseña:</label>
+                                <input type="password" class="form-control" v-model="contrasena" id="contrasena" name="contrasena">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Add Client</button>
+                        </form>
+                    </div>
                 </div>
-                <div class="mb-3">
-                    <label for="lastname" class="form-label">Apellido:</label>
-                    <input type="text" class="form-control" v-model="apellido" id="lastname" name="lastname">
-                </div>
-                <div class="mb-3">
-                    <label for="mail" class="form-label">Email:</label>
-                    <input type="email" class="form-control" v-model="email" id="mail" name="Mail">
-                </div>
-                <button type="submit" value="Add Client">Add Client</button>
-            </form>
-
+            </div>
+            
+            
             <section>
                 <h1>Lista de Clientes</h1>
             </section>
-            <table class="table table-bordered" id="tablaUno">
-                <tbody class="table-dark">
-                    <tr>
-                        <th colspan="9">CLIENTE</th>
-                    </tr>
-                    <tr class="table-warning">
-                        <td class="table-subtitle">Nombre</td>
-                        <td class="table-subtitle">Apellido</td>
-                        <td class="table-subtitle">Pasaporte</td>
-                        <td class="table-subtitle">Direccion</td>
-                        <td class="table-subtitle">Telefono</td>
-                        <td class="table-subtitle">Fecha Nac</td>
-                        <td class="table-subtitle">Email</td>
-                        <td class="table-subtitle">Contraseña</td>
-                        <td class="table-subtitle">Historial Compras</td>
-                    </tr>
-                    <tr class="data-table" v-for="cliente in clientes">
-                        <td>{{clientes.nombre}}</td>
-                        <td>{{clientes.apellido}}</td>
-                        <td>{{clientes.pasaporte}}</td>
-                        <td>{{clientes.direccion}}</td>
-                        <td>{{clientes.telefono}}</td>
-                        <td>{{clientes.fechaNac}}</td>
-                        <td>{{clientes.email}}</td>
-                        <td>{{clientes.contrasena}}</td>
-                        <td>{{clientes.historialCompras}}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+            
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-10">
+                        <div class="table-responsive">
+                            <table class="table table-sm table-bordered table-striped">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th colspan="8">CLIENTE</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Apellido</th>
+                                        <th>Pasaporte</th>
+                                        <th>Dirección</th>
+                                        <th>Teléfono</th>
+                                        <th>Fecha Nac</th>
+                                        <th>Email</th>
+                                        <th>Contraseña</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="cliente in clientes" :key="cliente.id">
+                                        <td>{{cliente.nombre}}</td>
+                                        <td>{{cliente.apellido}}</td>
+                                        <td>{{cliente.pasaporte}}</td>
+                                        <td>{{cliente.direccion}}</td>
+                                        <td>{{cliente.telefono}}</td>
+                                        <td>{{cliente.fechaNac}}</td>
+                                        <td>{{cliente.email}}</td>
+                                        <td>{{cliente.contrasena}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
         <section>
             <h1>Clientes REST Response</h1>
         </section>
@@ -72,104 +109,206 @@
                     <p>{{clientes}}</p>
                 </pre>
 
-        <div>
-            <h2>Crear un nuevo destino</h2>
-            <form @submit.prevent="añadirDestino" class="loan-form">
-                <div class="form-group">
-                    <label for="nombreDestino">Nombre del destino:</label>
-                    <input type="text" id="nombreDestino" v-model="nombreDestino" required>
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-10">
+                            <div>
+                                <h2>Paquetes en Stock</h2>
+                                <table class="table table-sm table-bordered table-striped">
+                                    <thead class="table-dark">
+                                        <tr>
+                                            <th colspan="4">CLIENTE</th>
+                                        </tr>
+                                        <tr>
+                                            <th>Nombre del Paquete</th>
+                                            <th>Días</th>
+                                            <th>Precio Total Unitario</th>
+                                            <th>Stock</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="paquete in paquetes" :key="paquete.id">
+                                            <td>{{paquete.nombrePaquete}}</td>
+                                            <td>{{paquete.dias}}</td>
+                                            <td>{{paquete.precioTotalUnitario}}</td>
+                                            <td>{{paquete.stock}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="form-group">
-                    <label for="cantidadDias">Cantidad de dias:</label>
-                    <input type="text" id="cantidadDias" v-model="cantidadDias" required>
+                
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h2>Crear un nuevo paquete</h2>
+                            <form @submit.prevent="crearPaquete">
+                                <div class="form-group">
+                                    <label for="nombrePaquete">Nombre del paquete:</label>
+                                    <input type="text" id="nombrePaquete" v-model="nombrePaquete" required class="form-control">
+                                </div>
+                
+                                <div class="form-group">
+                                    <label for="dias">Cantidad de días:</label>
+                                    <input type="number" id="dias" v-model="dias" required class="form-control">
+                                </div>
+                
+                                <div class="form-group">
+                                    <label for="precioTotalUnitario">Precio total:</label>
+                                    <input type="number" id="precioTotalUnitario" v-model="precioTotalUnitario" required class="form-control">
+                                </div>
+                
+                                <div class="form-group">
+                                    <label for="stock">Stock:</label>
+                                    <input type="number" id="stock" v-model="stock" required class="form-control">
+                                </div>
+                
+                                <div class="form-group">
+                                    <label for="imagen1">Imagen:</label>
+                                    <input type="text" id="imagen1" v-model="imagen1" required class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="pasaje">Pasaje:</label>
+                                    <select id="pasaje" v-model="pasaje" required class="form-control">
+                                        <option v-for="pasajeObj in pasajes" :value="pasajeObj.id">{{ pasajeObj.compania }}</option>
+                                    </select>
+                                </div>
+                
+                                <div class="form-group">
+                                    <label for="destino">Destino:</label>
+                                    <select id="destino" v-model="destino" required class="form-control">
+                                        <option v-for="destino in destinos" :value="destino.id">{{ destino.nombre }}</option>
+                                    </select>
+                                </div>
+                
+                                <button type="submit" class="btn btn-primary">Crear paquete</button>
+                            </form>
+                        </div>
+                
+                        <div class="col-md-6">
+                            <h2>Crear excursión</h2>
+                            <form @submit.prevent="crearExcursion">
+                                <div class="form-group">
+                                    <label for="nombreExcursion">Nombre de la excursión:</label>
+                                    <input type="text" id="nombreExcursion" v-model="nombreExcursion" required class="form-control">
+                                </div>
+                
+                                <div class="form-group">
+                                    <label for="actividad">Actividad a realizar:</label>
+                                    <input type="text" id="actividad" v-model="actividad" required class="form-control">
+                                </div>
+                
+                                <div class="form-group">
+                                    <label for="precioExcursion">Precio de la excursión:</label>
+                                    <input type="number" id="precioExcursion" v-model="precioExcursion" required class="form-control">
+                                </div>
+                
+                                <div class="form-group">
+                                    <label for="cantidadStock">Stock:</label>
+                                    <input type="number" id="cantidadStock" v-model="cantidadStock" required class="form-control">
+                                </div>
+                
+                                <div class="form-group">
+                                    <label for="destinoExcursion">Destino de la excursión:</label>
+                                    <select id="destinoExcursion" v-model="destinoExcursion" required class="form-control">
+                                        <option v-for="destino in destinos" :value="destino.id">{{ destino.nombre }}</option>
+                                    </select>
+                                </div>
+                
+                                <button type="submit" class="btn btn-primary">Crear excursión</button>
+                            </form>
+                        </div>
+                    </div>
+                
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h2>Añadir Hotel</h2>
+                            <form @submit.prevent="añadirHotel" class="loan-form">
+                                <div class="form-group">
+                                    <label for="nombreHotel">Nombre del Hotel:</label>
+                                    <input type="text" id="nombreHotel" v-model="nombreHotel" required class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="categoria">Categoría</label>
+                                    <select id="categoria" v-model="categoria" required class="form-control">
+                                        <option value="UNAESTRELLA">Una estrella</option>
+                                        <option value="DOSESTRELLAS">Dos Estrellas</option>
+                                        <option value="TRESESTRELLAS">Tres Estrellas</option>
+                                        <option value="CUATROESTRELLAS">Cuatro Estrellas</option>
+                                        <option value="CINCOESTRELLAS">Cinco Estrellas</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="allInclusive">¿Es all inclusive?</label>
+                                    <select id="allInclusive" v-model="allInclusive" required class="form-control">
+                                        <option value="true">Si</option>
+                                        <option value="false">No</option>
+                                    </select>
+                                </div>
+                
+                                <div class="form-group">
+                                    <label for="desayuno">¿Incluye desayuno?</label>
+                                    <select id="desayuno" v-model="desayuno" required class="form-control">
+                                        <option value="true">Si</option>
+                                        <option value="false">No</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="mediaPension">¿Incluye media pensión?</label>
+                                    <select id="mediaPension" v-model="mediaPension" required class="form-control">
+                                        <option value="true">Si</option>
+                                        <option value="false">No</option>
+                                    </select>
+                                </div>
+                
+                                <div class="form-group">
+                                    <label for="precioHotel">Precio Hotel</label>
+                                    <input type="number" id="precioHotel" v-model="precioHotel" required class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="stockHotel">Stock</label>
+                                    <input type="number" id="cantidadStockHotel" v-model="cantidadStockHotel" required class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="destino">Destino del Hotel:</label>
+                                    <select id="destino" v-model="destinoHotel" required class="form-control">
+                                        <option v-for="destino in destinos" :value="destino.id">{{ destino.nombre }}</option>
+                                    </select>
+                                </div>
+                
+                                <button type="submit" class="btn btn-primary">Añadir Hotel</button>
+                            </form>
+                        </div>
+                
+                        <div class="col-md-6">
+                            <h2>Crear un nuevo destino</h2>
+                            <form @submit.prevent="añadirDestino" class="loan-form">
+                                <div class="form-group">
+                                    <label for="nombreDestino">Nombre del destino:</label>
+                                    <input type="text" id="nombreDestino" v-model="nombreDestino" required class="form-control">
+                                </div>
+                
+                                <div class="form-group">
+                                    <label for="cantidadDias">Cantidad de días:</label>
+                                    <input type="text" id="cantidadDias" v-model="cantidadDias" required class="form-control">
+                                </div>
+                
+                                <div class="form-group">
+                                    <label for="precioHotelExcursion">Precio:</label>
+                                    <input type="text" id="precioHotelExcursion" v-model="precioHotelExcursion" required class="form-control">
+                                </div>
+                
+                                <button type="submit" class="btn btn-primary">Crear destino</button>
+                            </form>
+                        </div>
+                    </div>
+                
+                
+         
                 </div>
-                <div class="form-group">
-                    <label for="precioHotelExcursion">Precio</label>
-                    <input type="text" id="precioHotelExcursion" v-model="precioHotelExcursion" required>
-                </div>
-
-                <button type="submit" class="btn-submit">Crear destino</button>
-            </form>
-        </div>
-
-        <div>
-            <h2>Crear un nuevo paquete</h2>
-            <form @submit.prevent="crearPaquete">
-                <div class="form-group">
-                    <label for="nombrePaquete">Nombre del paquete:</label>
-                    <input type="text" id="nombrePaquete" v-model="nombrePaquete" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="dias">Cantidad de días:</label>
-                    <input type="number" id="dias" v-model="dias" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="precioTotalUnitario">Precio total:</label>
-                    <input type="number" id="precioTotalUnitario" v-model="precioTotalUnitario" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="stock">Stock:</label>
-                    <input type="number" id="stock" v-model="stock" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="imagen1">Imagen:</label>
-                    <input type="text" id="imagen1" v-model="imagen1" required>
-                </div>
-                <div class="form-group">
-                    <label for="pasaje">Pasaje:</label>
-                    <select id="pasaje" v-model="pasaje" required>
-                      <option v-for="pasajeObj in pasajes" :value="pasajeObj.id">{{ pasajeObj.compania }}</option>
-                    </select>
-                  </div>                  
-
-                <div class="form-group">
-                    <label for="destino">Destino:</label>
-                    <select id="destino" v-model="destino" required>
-                        <option v-for="destino in destinos" :value="destino.id">{{ destino.nombre }}</option>
-                    </select>
-                </div>
-
-                <button type="submit">Crear paquete</button>
-            </form>
-        </div>
-        <div>
-            <h2>Crear excursión</h2>
-            <form @submit.prevent="crearExcursion">
-                <div class="form-group">
-                    <label for="nombreExcursion">Nombre de la excursión:</label>
-                    <input type="text" id="nombreExcursion" v-model="nombreExcursion" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="actividad">Actividad a realizar:</label>
-                    <input type="text" id="actividad" v-model="actividad" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="precioExcursion">Precio de la excursión:</label>
-                    <input type="number" id="precioExcursion" v-model="precioExcursion" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="cantidadStock">Stock:</label>
-                    <input type="number" id="cantidadStock" v-model="cantidadStock" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="destinoExcursion">Destino de la excursión:</label>
-                    <select id="destinoExcursion" v-model="destinoExcursion" required>
-                      <option v-for="destino in destinos" :value="destino.id">{{ destino.nombre }}</option>
-                    </select>
-                  </div>                  
-
-                <button type="submit">Crear excursión</button>
-            </form>
-        </div>
+                
 
     </div>
 
