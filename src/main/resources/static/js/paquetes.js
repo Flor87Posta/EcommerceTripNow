@@ -14,12 +14,12 @@ const app = createApp({
   },
 
   created() {
-        
     axios.get('/api/paquetes')
     .then(response =>{
         this.paquetes = response.data,
         this.paquetes2= this.paquetes;
         console.log(this.paquetes);
+
     })
 
     axios.get('/api/clientes/current')

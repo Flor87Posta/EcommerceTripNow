@@ -59,6 +59,15 @@ h1{
     color: white;
 }
 
+.boton3{
+    background-color: rgb(50, 153, 250);
+    padding: 0.3vw;
+    font-family:"Poppins", sans-serif;
+    border-radius: 10px;
+    color: white;
+    margin-left: 0.9vw;
+}
+
 
 table, th, td {
     padding: 1rem;

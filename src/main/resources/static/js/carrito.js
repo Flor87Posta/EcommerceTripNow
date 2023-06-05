@@ -7,6 +7,7 @@ const app = createApp({
                 id:null,
                 idPaquete:'',
                 cliente:[]     
+
             }
         },
 
@@ -16,6 +17,7 @@ const app = createApp({
             .then(response =>{
                 this.ordenes = response.data
                 console.log(this.ordenes);
+
             })
 
             axios.get('/api/clientes/current')
@@ -23,6 +25,7 @@ const app = createApp({
                 this.cliente = response.data;
                 console.log(this.cliente)
             })
+
           },
           
           methods:{
@@ -36,10 +39,36 @@ const app = createApp({
                     console.error(error);
                      });
                  },
+
                  format(precio){
                     let options = { style: 'currency', currency: 'USD' };
                     let numberFormat = new Intl.NumberFormat('en-US', options);
-                    return numberFormat.format(precio);
+
+                 logout(){
+                    Swal.fire({
+                        title: '¿Seguro que desea cerrar sesión?',
+                        inputAttributes: {
+                            autocapitalize: 'off'
+                        },
+                        showCancelButton: true,
+                        confirmButtonText: 'Si',
+                        cancelButtonText: 'No',
+                        confirmButtonColor: '#0DB4F3',
+                        cancelButtonColor: '#FF8A80',
+                        preConfirm: () => {
+                            return axios.post('/api/logout')
+                                .then(response => {
+                                    window.location.href = '/html/index.html'
+                                })
+                                .catch(error => {
+                                    Swal.showValidationMessage(
+                                        `Request failed: ${error}`
+                                        
+                                    )
+                                })
+                        },
+                        allowOutsideClick: () => !Swal.isLoading()
+                    })
                 },
         }
     })

@@ -1,8 +1,10 @@
 package com.tripnow.ecommerce.models;
+import com.tripnow.ecommerce.Dto.PaqueteDTO;
 import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 
 @Entity
@@ -19,7 +21,6 @@ public class Paquete {
     private String imagen1;
 
 
-
     @ManyToMany(mappedBy = "paquetes", fetch = FetchType.EAGER)
     private Set<Orden> ordenes = new HashSet<>();
 
@@ -31,14 +32,17 @@ public class Paquete {
     @JoinColumn(name = "destino_id")
     private Destino destino;
 
+    @Transient
+    private Set<Hotel> hoteles = new HashSet<>();
+
     public Paquete(){}
-    public Paquete(String nombrePaquete, int dias, double precioTotalUnitario, int stock, String imagen1){
+    public Paquete(String nombrePaquete, int dias, double precioTotalUnitario, int stock, String imagen1, Set<Hotel> hoteles) {
         this.nombrePaquete = nombrePaquete;
         this.dias = dias;
-        this.precioTotalUnitario= precioTotalUnitario;
+        this.precioTotalUnitario = precioTotalUnitario;
         this.stock = stock;
-        this.imagen1=imagen1;
-
+        this.imagen1 = imagen1;
+        this.hoteles = hoteles;
 
     }
 
@@ -111,7 +115,13 @@ public class Paquete {
         this.imagen1 = imagen1;
     }
 
+    public Set<Hotel> getHoteles() {
+        return destino.getHoteles();
+    }
 
+    public void setHoteles(Set<Hotel> hoteles) {
+        // No se necesita implementar, ya que la propiedad es transiente
+    }
     //Metodos creados:
 
 

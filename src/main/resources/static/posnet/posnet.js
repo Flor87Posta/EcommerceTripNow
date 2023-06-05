@@ -10,6 +10,7 @@ createApp({
        email:null,
        idOrden:null,
        ordenes:[],
+       cliente:'',
 
         }
     },
@@ -21,6 +22,15 @@ createApp({
           .then(response => {
             this.ordenes = response.data;
             console.log(this.ordenes);
+
+            axios.get('/api/clientes/current')
+            .then(clienteResponse => {
+              this.cliente = clienteResponse.data;
+              console.log(this.cliente);
+            })
+            .catch(error => {
+              console.error(error);
+            });
       
             // Obtener información del cliente autenticado
             axios.get('/api/clientes/current')
@@ -161,6 +171,32 @@ createApp({
                 }
               });
           },
+          logout(){
+            Swal.fire({
+                title: '¿Seguro que desea cerrar sesión?',
+                inputAttributes: {
+                    autocapitalize: 'off'
+                },
+                showCancelButton: true,
+                confirmButtonText: 'Si',
+                cancelButtonText: 'No',
+                confirmButtonColor: '#0DB4F3',
+                cancelButtonColor: '#FF8A80',
+                preConfirm: () => {
+                    return axios.post('/api/logout')
+                        .then(response => {
+                            window.location.href = '/html/index.html'
+                        })
+                        .catch(error => {
+                            Swal.showValidationMessage(
+                                `Request failed: ${error}`
+                                
+                            )
+                        })
+                },
+                allowOutsideClick: () => !Swal.isLoading()
+            })
+        },
 
           format(precio){
             let options = { style: 'currency', currency: 'USD' };
