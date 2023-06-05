@@ -79,14 +79,14 @@
                             </thead>
                             <tbody>
                                 <tr v-for="cliente in clientes">
-                                    <td>{{clientes.nombre}}</td>
-                                    <td>{{clientes.apellido}}</td>
-                                    <td>{{clientes.pasaporte}}</td>
-                                    <td>{{clientes.direccion}}</td>
-                                    <td>{{clientes.telefono}}</td>
-                                    <td>{{clientes.fechaNac}}</td>
-                                    <td>{{clientes.email}}</td>
-                                    <td>{{clientes.historialCompras}}</td>
+                                    <td>{{cliente.nombre}}</td>
+                                    <td>{{cliente.apellido}}</td>
+                                    <td>{{cliente.pasaporte}}</td>
+                                    <td>{{cliente.direccion}}</td>
+                                    <td>{{cliente.telefono}}</td>
+                                    <td>{{cliente.fechaNac}}</td>
+                                    <td>{{cliente.email}}</td>
+                                    <td>{{cliente.historialCompras}}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -245,11 +245,11 @@
                         <div class="form-group">
                             <label for="categoria">Categoría</label>
                             <select id="categoria" v-model="categoria" required >
-                                <option value="UNAESTRELLA">Una estrella</option>
-                                <option value="DOSESTRELLAS">Dos Estrellas</option>
-                                <option value="TRESESTRELLAS">Tres Estrellas</option>
-                                <option value="CUATROESTRELLAS">Cuatro Estrellas</option>
-                                <option value="CINCOESTRELLAS">Cinco Estrellas</option>
+                                <option value="Una_Estrella">Una estrella</option>
+                                <option value="Dos_Estrellas">Dos Estrellas</option>
+                                <option value="Tres_Estrellas">Tres Estrellas</option>
+                                <option value="Cuatro_Estrellas">Cuatro Estrellas</option>
+                                <option value="Cinco_Estrellas">Cinco Estrellas</option>
                             </select>
                         </div>
                         <div class="form-group">
