@@ -6,7 +6,9 @@ const app = createApp({
       paquetes:[],
       idPaquete: '',
       id: null,
-      cliente:[]
+      cliente:[],
+      filtroBusqueda:'',
+      paquetes2:[],
 
     }
   },
@@ -15,7 +17,8 @@ const app = createApp({
         
     axios.get('/api/paquetes')
     .then(response =>{
-        this.paquetes = response.data
+        this.paquetes = response.data,
+        this.paquetes2= this.paquetes;
         console.log(this.paquetes);
     })
 
@@ -112,6 +115,11 @@ const app = createApp({
     });
   },
 
+  filtro(){
+    this.paquetes = this.paquetes2.filter(paquete => paquete.nombrePaquete.toLowerCase().includes(this.filtroBusqueda.toLowerCase()))
+  },
+  
+
   anadirPaquete(id) {
     Swal.fire({
       icon: 'warning',
@@ -158,8 +166,6 @@ const app = createApp({
     let numberFormat = new Intl.NumberFormat('en-US', options);
     return numberFormat.format(precio);
 },
-
-
 
 
   }
