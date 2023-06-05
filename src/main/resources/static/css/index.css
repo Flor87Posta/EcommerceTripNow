@@ -632,6 +632,11 @@ footer a:hover{
   .titulo2{
     font-size:2rem ;
   }
+
+  header .nav-link, .btnLogin-popup {
+    font-size: 2vh;
+  }
+  
  .invita2{
     font-size: 0.9rem;
   } 

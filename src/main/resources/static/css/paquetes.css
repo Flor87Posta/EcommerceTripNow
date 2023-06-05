@@ -116,11 +116,21 @@ header .nav-link:hover{
     flex-direction: column;
     min-height: 100vh;
     flex-wrap: wrap;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
     padding-bottom: 2rem;
-    padding-left: 1rem;
   
   }
+
+ form{
+    width: 20vw;
+    margin-left: 76.6vw;
+  } 
+
+ form .icono3{
+    font-size: 2.5rem;
+    color: white;
+  }
+
   .secundario{
     display: flex;
     flex-wrap: wrap;
@@ -141,14 +151,9 @@ header .nav-link:hover{
   border:none;
   background-color: #0DB4F3;
   color: white;
+  font-family:"Poppins", sans-serif;
 }
-.botones2{
-  padding: 0.5rem;
-  border-radius: 5px;
-  border:none;
-  background-color: #00E194;
-  color: white
-}
+
 .final{
   background: rgba(255, 255, 255, 0.281);
  padding: 3rem;
@@ -202,13 +207,24 @@ footer a:hover{
   border-radius: 20px;
   backdrop-filter: blur(20px);
 }
-
+.buscador-contenedor{
+  width: 100%;
+}
 
 @media(max-width: 768px){
  .titulo2{
    font-size: 3rem;
   
  }
+
+.buscador-contenedor{
+  display: flex;
+}
+
+form{
+  width: 55vw;
+  margin-left: 25vw !important;
+}
  
  header {
   border-radius: 0px;
