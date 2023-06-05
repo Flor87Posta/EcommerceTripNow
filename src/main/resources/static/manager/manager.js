@@ -221,7 +221,12 @@ const app = createApp({
                         confirmButtonColor: "#7c601893",
                     })
                 })
-        }
+        },
+
+        logout(){
+            axios.post('/api/logout')
+            .then(response => console.log('Signed out'))
+        },
 
     },
 

@@ -21,7 +21,9 @@
       <a href="#" class="brand">TRIPNOW</a>
     </div>
     <div class="d-flex align-items-center gap-2 perfil">
+
       <h5>{{cliente.nombre}}  {{cliente.apellido}}</h5>
+
       <ion-icon name="person-circle-outline" class="icono"></ion-icon>
   </div> 
     <div class="navigation">
@@ -91,7 +93,9 @@
           <div class="p-2">
             <h4>{{ paquete.nombrePaquete }}</h4>
             <h5>Cantidad de Dias: {{ paquete.dias }}</h5>
-            <h5>Precio por Persona: {{ format(paquete.precioTotalUnitario) }}</h5>
+            <h5>Hotel: {{ paquete.hotelesDTO[0].nombre }} {{ paquete.hotelesDTO[0].categoria }}</h5>
+           <h5>Precio por Persona: {{ format(paquete.precioTotalUnitario) }}</h5>
+
 
             <div class="d-flex justify-content-evenly pb-2 gap-5">
               <button class="botones" @click="anadirPaquete(paquete.id)"><img id="carrito"

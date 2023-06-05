@@ -8,15 +8,16 @@ const app = createApp({
       id: null,
       cliente:[]
 
+
     }
   },
 
   created() {
-        
     axios.get('/api/paquetes')
-    .then(response =>{
-        this.paquetes = response.data
+      .then(response => {
+        this.paquetes = response.data;
         console.log(this.paquetes);
+
     })
 
     axios.get('/api/clientes/current')

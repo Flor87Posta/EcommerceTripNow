@@ -1,6 +1,10 @@
 package com.tripnow.ecommerce.Dto;
 
+import com.tripnow.ecommerce.models.Hotel;
 import com.tripnow.ecommerce.models.Paquete;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class PaqueteDTO {
 
@@ -11,16 +15,21 @@ public class PaqueteDTO {
     private int stock;
     private String imagen1;
 
+    private List<HotelDTO> hotelesDTO;
 
-    public PaqueteDTO(){};
+    public PaqueteDTO() {}
+
     public PaqueteDTO(Paquete paquete) {
         this.id = paquete.getId();
         this.nombrePaquete = paquete.getNombrePaquete();
         this.dias = paquete.getDias();
         this.precioTotalUnitario = paquete.getPrecioTotalUnitario();
         this.stock = paquete.getStock();
-        this.imagen1=paquete.getImagen1();
-
+        this.imagen1 = paquete.getImagen1();
+        this.hotelesDTO = paquete.getDestino().getHoteles()
+                .stream()
+                .map(hotel -> new HotelDTO(hotel))
+                .collect(Collectors.toList());
     }
 
     public long getId() {
@@ -71,5 +80,11 @@ public class PaqueteDTO {
         this.imagen1 = imagen1;
     }
 
+    public List<HotelDTO> getHotelesDTO() {
+        return hotelesDTO;
+    }
 
+    public void setHotelesDTO(List<HotelDTO> hotelesDTO) {
+        this.hotelesDTO = hotelesDTO;
+    }
 }

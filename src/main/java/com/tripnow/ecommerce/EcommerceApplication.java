@@ -38,14 +38,14 @@ public class EcommerceApplication {
 			clienteRepositorio.save(cliente3);
 			clienteRepositorio.save(admin);
 
-			Hotel hotel1 = new Hotel("Andes Retreat", HotelCategoria.TRESESTRELLAS, false, false,true, 50000, 10);
-			Hotel hotel2 = new Hotel("Mariposa Bay Resort", HotelCategoria.CINCOESTRELLAS, true, true, true, 100000, 10);
-			Hotel hotel3 = new Hotel("Pampa Oasis Lodge", HotelCategoria.CUATROESTRELLAS, true, true, true, 95000, 10);
-			Hotel hotel4 = new Hotel("Tango Palace", HotelCategoria.DOSESTRELLAS, false, true, false, 80000, 10);
-			Hotel hotel5 = new Hotel("Grand Resort Mar del Plata", HotelCategoria.CINCOESTRELLAS, true, true, true, 90000, 10);
-			Hotel hotel6 = new Hotel("Hotel del Sol", HotelCategoria.CINCOESTRELLAS, true, true, true, 10000, 10);
-			Hotel hotel7 = new Hotel("Gran Hotel Lago Azul", HotelCategoria.TRESESTRELLAS, false, false, true, 50000, 10);
-			Hotel hotel8 = new Hotel("Posada de los Colores", HotelCategoria.DOSESTRELLAS, false, false, false, 30000, 10);
+			Hotel hotel1 = new Hotel("Andes Retreat", HotelCategoria.Tres_Estrellas, false, false,true, 50000, 10);
+			Hotel hotel2 = new Hotel("Mariposa Bay Resort", HotelCategoria.Cinco_Estrellas, true, true, true, 100000, 10);
+			Hotel hotel3 = new Hotel("Pampa Oasis Lodge", HotelCategoria.Cuatro_Estrellas, true, true, true, 95000, 10);
+			Hotel hotel4 = new Hotel("Tango Palace", HotelCategoria.Dos_Estrellas, false, true, false, 80000, 10);
+			Hotel hotel5 = new Hotel("Grand Resort Mar del Plata", HotelCategoria.Cinco_Estrellas, true, true, true, 90000, 10);
+			Hotel hotel6 = new Hotel("Hotel del Sol", HotelCategoria.Cinco_Estrellas, true, true, true, 10000, 10);
+			Hotel hotel7 = new Hotel("Gran Hotel Lago Azul", HotelCategoria.Tres_Estrellas, false, false, true, 50000, 10);
+			Hotel hotel8 = new Hotel("Posada de los Colores", HotelCategoria.Dos_Estrellas, false, false, false, 30000, 10);
 
 			Excursion excursion1 = new Excursion ("Ruta de Vinos", "Aire Libre", 4000, 20 );
 			Excursion excursion2 = new Excursion ("Cerro Cristo Rey", "Aire Libre", 4000, 20 );
@@ -134,14 +134,14 @@ public class EcommerceApplication {
 			destinoRepositorio.save(destino7);
 			destinoRepositorio.save(destino8);
 
-			Paquete paquete1 = new Paquete ("Volá y conocé Mendoza", 13, destino3.getPrecioHotelExcursion()+pasaje1.getPrecioPasaje(), 10, "/assets/mendoza.jpg");
-			Paquete paquete2 = new Paquete ("Volá y conocé Cataratas", 6, destino4.getPrecioHotelExcursion()+pasaje2.getPrecioPasaje(),10, "/assets/cataratas.jpg");
-			Paquete paquete3 = new Paquete ("Conoce Bariloche via FlechaBus", 8, destino2.getPrecioHotelExcursion()+pasaje4.getPrecioPasaje(),10, "/assets/Centro_Civico_y_Puerto_San_Carlos_en_Bariloche.jpg");
-			Paquete paquete4 = new Paquete ("Conoce Santa Cruz con Flybondi", 5, destino1.getPrecioHotelExcursion()+pasaje3.getPrecioPasaje(),10, "/assets/Glaciar2.jpg");
-			Paquete paquete5 = new Paquete("Escapada Costera a Mar del Plata", 9, destino5.getPrecioHotelExcursion()+pasaje5.getPrecioPasaje(), 10, "/assets/marDelPlata.jpg");
-			Paquete paquete6 = new Paquete("Mar y bosque, combinación perfecta en Cariló ", 8, destino6.getPrecioHotelExcursion()+pasaje6.getPrecioPasaje(), 10, "/assets/carilo.jpg");
-			Paquete paquete7 = new Paquete("Descubriendo el Encanto de Carlos Paz", 5, destino7.getPrecioHotelExcursion()+pasaje2.getPrecioPasaje(), 10, "/assets/carlosPaz.jpg");
-			Paquete paquete8 = new Paquete("Experiencia Multicolor en el Cerro de los Siete Colores", 15, destino8.getPrecioHotelExcursion()+pasaje1.getPrecioPasaje(), 10, "/assets/jujuy.jpg");
+			Paquete paquete1 = new Paquete ("Volá y conocé Mendoza", 13, destino3.getPrecioHotelExcursion()+pasaje1.getPrecioPasaje(), 10, "/assets/mendoza.jpg", destino3.getHoteles());
+			Paquete paquete2 = new Paquete ("Volá y conocé Cataratas", 6, destino4.getPrecioHotelExcursion()+pasaje2.getPrecioPasaje(),10, "/assets/cataratas.jpg", destino4.getHoteles());
+			Paquete paquete3 = new Paquete ("Conoce Bariloche via FlechaBus", 8, destino2.getPrecioHotelExcursion()+pasaje4.getPrecioPasaje(),10, "/assets/Centro_Civico_y_Puerto_San_Carlos_en_Bariloche.jpg", destino2.getHoteles());
+			Paquete paquete4 = new Paquete ("Conoce Santa Cruz con Flybondi", 5, destino1.getPrecioHotelExcursion()+pasaje3.getPrecioPasaje(),10, "/assets/Glaciar2.jpg", destino1.getHoteles());
+			Paquete paquete5 = new Paquete("Escapada Costera a Mar del Plata", 9, destino5.getPrecioHotelExcursion()+pasaje5.getPrecioPasaje(), 10, "/assets/marDelPlata.jpg", destino5.getHoteles());
+			Paquete paquete6 = new Paquete("Mar y bosque, combinación perfecta en Cariló ", 8, destino6.getPrecioHotelExcursion()+pasaje6.getPrecioPasaje(), 10, "/assets/carilo.jpg", destino6.getHoteles());
+			Paquete paquete7 = new Paquete("Descubriendo el Encanto de Carlos Paz", 5, destino7.getPrecioHotelExcursion()+pasaje2.getPrecioPasaje(), 10, "/assets/carlosPaz.jpg", destino7.getHoteles());
+			Paquete paquete8 = new Paquete("Experiencia Multicolor en el Cerro de los Siete Colores", 15, destino8.getPrecioHotelExcursion()+pasaje1.getPrecioPasaje(), 10, "/assets/jujuy.jpg", destino8.getHoteles());
 
 			paqueteRepositorio.save(paquete1);
 			paqueteRepositorio.save(paquete2);
