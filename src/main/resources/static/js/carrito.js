@@ -5,8 +5,9 @@ const app = createApp({
             return{
                 ordenes:[],  
                 id:null,
-                idPaquete:'',   
-                cliente:'',  
+                idPaquete:'',
+                cliente:[]     
+
             }
         },
 
@@ -16,17 +17,14 @@ const app = createApp({
             .then(response =>{
                 this.ordenes = response.data
                 console.log(this.ordenes);
-            });
+
+            })
 
             axios.get('/api/clientes/current')
-      .then(clienteResponse => {
-        this.cliente = clienteResponse.data;
-        console.log(this.cliente);
-      })
-      .catch(error => {
-        console.error(error);
-      });
-
+            .then(response=> {
+                this.cliente = response.data;
+                console.log(this.cliente)
+            })
 
           },
           
@@ -41,6 +39,10 @@ const app = createApp({
                     console.error(error);
                      });
                  },
+
+                 format(precio){
+                    let options = { style: 'currency', currency: 'USD' };
+                    let numberFormat = new Intl.NumberFormat('en-US', options);
 
                  logout(){
                     Swal.fire({

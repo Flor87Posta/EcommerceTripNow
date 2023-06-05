@@ -16,30 +16,41 @@
 
 <body id="app">
   <header>
-    <div class="d-flex align-items-center">
-      <img src="../assets/logo.png" class="logo" width="100" alt="">
-      <a href="#" class="brand">TRIPNOW</a>
-    </div>
-    <div class="d-flex align-items-center gap-2 perfil">
-      <h5>{{cliente.nombre}} {{cliente.apellido}}</h5>
-      <ion-icon name="person-circle-outline" class="icono"></ion-icon>
-  </div> 
-    <div class="navigation">
-      <div class="navigation-items">
-        <a href="../html/carrito.html"><ion-icon name="cart" class="icono2"></ion-icon></a>
-        <a href="#">Paquetes</a>
-        <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal3">Crear Orden</a>
-        <a href="#" @click="logout">Cerrar Sesión</a>
+
+    <nav class="navbar navbar-expand-md ">
+      <div class="container-fluid d-flex ">
+        <div class="perfil d-flex align-items-center gap-2 ">
+          <h5>{{cliente.nombre}}  {{cliente.apellido}}</h5>
+          <ion-icon name="person-circle-outline" class="icono"></ion-icon>
       </div>
-    </div>
+        <div class="d-flex align-items-center">
+          <img class="logo " src="../assets/logo.png" alt="">
+          <h1 class="brand me-5">TripNow</h1>
+        </div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav navigation-items d-flex gap-1 align-items-center ">
+            <a href="#"><ion-icon name="cart" class="icono2"></ion-icon></a>
+            <a class="nav-link " href="./paquetes.html">Paquetes</a>
+            <a class="nav-link " href="#" @click="logout">Cerrar Sesión</a>
+          </div>
+        </div>
+
+      </div>
+    </nav>
   </header>
+
   <main>
 
-    <div class="box-principal container">
-      <h2 class="text-center ">Detalle de Compra</h2>
-      <div class="container carrito">
-      
-        <table class="table">
+    <div class="contenedor">
+      <!--  <h2 class="text-center ">Detalle de Compra</h2>
+      <div class="container carrito"> -->
+<!-- 
+    <table class="table">
           <thead>
             <tr>
               <th scope="col" class="text-white">Cantidad Pasajeros</th>
@@ -71,15 +82,52 @@
               </tr>
             </template>
           </tbody>
-        </table>
-        
-        <div class="d-flex justify-content-evenly pb-2">
-          <button type="button" class="boton"
-            onclick="window.location.href='/posnet/posnet.html'">Pagar</button>
-          <button type="button" class="boton"
-            onclick="window.location.href='/html/paquetes.html'">Volver</button>
+        </table>  -->
+      <div class="tabla">
+        <div class="table_header">
+          <h2>Detalle de Compra</h2>
         </div>
+        <div class="table_body">
+          <table>
+            <thead>
+              <tr>
+                <th>Cantidad Pasajeros</th>
+                <th>Fecha de Creacion</th>
+                <th>Precio Total Orden</th>
+                <th>Días</th>
+                <th>Nombre Paquete</th>
+                <th>Precio del Paquete</th>
+              </tr>
+            </thead>
+            <tbody>
+              <template v-for="orden in ordenes">
+              <tr>
+                <td  class="text-center">{{ orden.cantidadPasajeros }}</td>
+                <td>{{ orden.fechaCreacion.slice(0, 10) }}</td>
+                <td>{{ format(orden.precioTotalOrden) }}</td>
+                <td colspan="3">
+                  <table>
+                    <tbody>
+                      <tr v-for="paquete in orden.paquetesDTO" class="color">
+                        <td >{{ paquete.dias }}</td>
+                        <td>{{ paquete.nombrePaquete }}</td>
+                        <td>{{ format(paquete.precioTotalUnitario) }}</td>
+                        <td><a @click="eliminarPaquete(paquete.id)" href=""><img src="../assets/cesto.png" alt="" width="20"></a></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+            </template>
+
+            </tbody>
+          </table>
+        </div><div class=" d-flex justify-content-center m-2">
+        <button type="button" class="boton" onclick="window.location.href='/posnet/posnet.html'">Pagar</button>
       </div>
+      </div> 
+      
+    </div>
     </div>
   </main>
 

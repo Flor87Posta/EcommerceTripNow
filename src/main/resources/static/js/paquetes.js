@@ -6,7 +6,7 @@ const app = createApp({
       paquetes:[],
       idPaquete: '',
       id: null,
-      cliente: '',
+      cliente:[]
 
 
     }
@@ -17,19 +17,14 @@ const app = createApp({
       .then(response => {
         this.paquetes = response.data;
         console.log(this.paquetes);
-      })
-      .catch(error => {
-        console.error(error);
-      });
-  
+
+    })
+
     axios.get('/api/clientes/current')
-      .then(clienteResponse => {
-        this.cliente = clienteResponse.data;
-        console.log(this.cliente);
-      })
-      .catch(error => {
-        console.error(error);
-      });
+            .then(response=> {
+                this.cliente = response.data;
+                console.log(this.cliente)
+            })
   },
 
 
@@ -159,7 +154,11 @@ const app = createApp({
     });
   },
 
-
+  format(precio){
+    let options = { style: 'currency', currency: 'USD' };
+    let numberFormat = new Intl.NumberFormat('en-US', options);
+    return numberFormat.format(precio);
+},
 
 
 
