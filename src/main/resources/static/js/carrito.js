@@ -42,7 +42,7 @@ const app = createApp({
 
                  format(precio){
                     let options = { style: 'currency', currency: 'USD' };
-                    let numberFormat = new Intl.NumberFormat('en-US', options);
+                    let numberFormat = new Intl.NumberFormat('en-US', options);},
 
                  logout(){
                     Swal.fire({
@@ -69,7 +69,7 @@ const app = createApp({
                         },
                         allowOutsideClick: () => !Swal.isLoading()
                     })
-                },
+                }
         }
     })
     app.mount('#app')
