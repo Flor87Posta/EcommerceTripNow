@@ -15,26 +15,7 @@
 
 <body id="app">
 
- <!--  <header>
-    <div class="d-flex align-items-center">
-      <img src="../assets/logo.png" class="logo" width="100" alt="">
-      <a href="#" class="brand">TRIPNOW</a>
-    </div>
-    <div class="d-flex align-items-center gap-2 perfil">
-
-      <h5>{{cliente.nombre}}  {{cliente.apellido}}</h5>
-
-      <ion-icon name="person-circle-outline" class="icono"></ion-icon>
-  </div> 
-    <div class="navigation">
-      <div class="navigation-items">
-        <a href="../html/carrito.html"><ion-icon name="cart" class="icono2"></ion-icon></a>
-        <a href="#">Paquetes</a>
-        <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal3">Crear Orden</a>
-        <a href="#" @click="logout">Cerrar Sesión</a>
-      </div>
-    </div>
-  </header> -->
+ 
   <header>
     <nav class="navbar navbar-expand-md ">
       <div class="container-fluid d-flex ">
@@ -65,15 +46,16 @@
   </header>
 
   <main>
-
-    <div class="principal gap-4">
-      <p class=" titulo2 text-center">Nuestros paquetes</p>
-      <div>
-        <form class="d-flex " role="search">
-          <input class="form-control me-2" type="text" placeholder="Search" aria-label="Search" id="inputSearch"
-            v-model="filtroBusqueda" @keyup="filtro">
+    <div class="buscardor-contenedor">
+        <form class="d-flex mb-1 mt-3 justify-content-end" role="search">
+          <input class="form-control " type="text" placeholder="Búsqueda por destino" aria-label="Search" id="inputSearch"
+            v-model="filtroBusqueda" @keyup="filtro"><ion-icon name="search-sharp" class="icono3"></ion-icon>
         </form>
       </div>
+    <div class="principal gap-4">
+  
+      <p class=" titulo2 text-center">Nuestros paquetes</p>
+     
       <div class=" d-flex gap-4 secundario justify-content-center">
 
         <div v-for="paquete in paquetes" :key="paquete.id" class="paquete align-items-center">
@@ -88,7 +70,7 @@
           <div class="p-2">
             <h4>{{ paquete.nombrePaquete }}</h4>
             <h5>Cantidad de Dias: {{ paquete.dias }}</h5>
-            <h5>Hotel: {{ paquete.hotelesDTO[0].nombre }} {{ paquete.hotelesDTO[0].categoria }}</h5>
+            <h5>Hotel: {{ paquete.hotelesDTO[0].nombre }} {{ paquete.hotelesDTO[0].categoria.replace(/_/g, " ")}}</h5>
            <h5>Precio por Persona: {{ format(paquete.precioTotalUnitario) }}</h5>
 
 

@@ -622,7 +622,7 @@ footer a:hover{
     font-size: 2vw;
   }
 }
-@media (max-width: 452px) {
+@media (max-width: 575px) {
   .logo{
     width: 20vw;
   }
@@ -632,6 +632,15 @@ footer a:hover{
   .titulo2{
     font-size:2rem ;
   }
+
+  nav .nav-link{
+    font-size: 2vh;
+  }
+
+  nav .btnLogin-popup {
+    font-size: 2vh;
+  }
+
  .invita2{
     font-size: 0.9rem;
   } 
@@ -662,10 +671,10 @@ footer a:hover{
     font-size:2.4vh;
   }
 
-  .wrapper.active {
+   /* .wrapper.active {
     height: 95vh;
-    width: 400px;
-  }
+    width: 90%;
+  } */ 
 }
 @media (max-width: 1440px) {
   .wrapper.active {
