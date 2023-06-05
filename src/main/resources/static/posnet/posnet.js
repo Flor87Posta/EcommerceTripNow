@@ -198,6 +198,12 @@ createApp({
             })
         },
 
+          format(precio){
+            let options = { style: 'currency', currency: 'USD' };
+            let numberFormat = new Intl.NumberFormat('en-US', options);
+            return numberFormat.format(precio);
+        },
+
 
     }
 
