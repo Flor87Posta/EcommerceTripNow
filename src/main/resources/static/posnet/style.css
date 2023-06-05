@@ -17,9 +17,9 @@ body {
 }
 
 .app {
-    margin: 1vw;
+    margin: 0.5vw;
+    padding: 1vw;
     background: rgba(255, 255, 255, 0.685);
-    padding: 1rem;
     border-radius: 15px;
     backdrop-filter: blur(20px);
     box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.466);
@@ -45,7 +45,7 @@ td {
 .tabla {
     margin: 2vw;
     width: 40vw;
-    max-height: 20vh;
+    max-height: 40vh;
     background-color: #fff5;
     backdrop-filter: blur(7px);
     box-shadow: 0.4rem .8rem #0005;
@@ -138,21 +138,17 @@ tbody tr:nth-child(even) {
 .form-group label{
     width:11vw;
 }
+
 header{
-    position: absolute;
-    z-index: 1;
-    top: 0;
-    left: 0;
     display: flex;
     width: 100%;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     padding: 15px 100px;
     transition: 0.5s ease;
-    background-color: rgba(0, 0, 0, 0.288);
-    /* border-radius:20px ; */
     min-height: 10vh;
   }
+
   header .brand {
     color: white;
     font-size: 1.7em;
