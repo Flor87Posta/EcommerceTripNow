@@ -104,7 +104,8 @@
               <tr>
                 <td  class="text-center">{{ orden.cantidadPasajeros }}</td>
                 <td>{{ orden.fechaCreacion.slice(0, 10) }}</td>
-                <td>{{ format(orden.precioTotalOrden) }}</td>
+                <td>${{ orden.precioTotalOrden.toLocaleString(undefined, { minimumFractionDigits: 2,
+                  maximumFractionDigits: 2 }) }}</td>
                 <td colspan="3">
                   <table>
                     <tbody>
