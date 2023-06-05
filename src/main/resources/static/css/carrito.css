@@ -4,36 +4,100 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family:"Poppins", sans-serif;
+
 }
 
 body{
-    background-image: linear-gradient(rgba(193, 218, 252, 0.425),rgba(193, 218, 252, 0.425)), url(../assets/pexels-eberhard-grossgasteiger-443446.jpg);
-    background-position-y:40% ; 
-    background-position-x:50% ;   
+    background-image: linear-gradient(rgba(193, 218, 252, 0.425),rgba(193, 218, 252, 0.425)), url(../assets/fondo-video-img.jpg);
+   /*  background-position-y:40% ; 
+    background-position-x:50% ;  */  
+    background-size: cover;
+    background-repeat: no-repeat;
 }
+
+/*header*/
+.logo{
+  width: 6vw;
+  height: 10vh;
+  -webkit-filter: drop-shadow(3px 3px 3px black );
+  filter: drop-shadow(3px 3px 3px black);
+}
+
 header{
-  position: absolute;
-  z-index: 1;
-  top: 0;
-  left: 0;
+  min-height: 15vh;
   display: flex;
   width: 100%;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   padding: 15px 100px;
   transition: 0.5s ease;
   background-color: rgba(0, 0, 0, 0.288);
-  border-radius:20px ;
-  min-height: 10vh;
 }
+
 header .brand {
   color: white;
-  font-size: 1.7em;
+  font-size: 2.2vw;
   font-weight: 700;
   text-decoration: none;
   text-shadow: 2px 2px 2px black;
+  font-family:"Poppins", sans-serif;
 }
+
+
+header .nav-link {
+  color: white !important;
+  position: relative;
+  font-size: 1.5rem;
+  margin-left: 1vw;
+  font-weight: bold;
+  text-decoration: none;
+  transition: 0.3s ease;
+  text-shadow: 2px 2px 2px black;
+  text-align: center;
+}
+
+header .nav-link:hover{
+  color: rgb(171, 228, 255);
+}
+
+.navbar-toggler{
+  color: white !important;
+  z-index: 2;
+  background-color: white !important;
+}
+  header .navigation .navigation-items a:hover{
+    color: rgb(171, 228, 255);
+  }
+
+  
+.perfil h5{
+  color: white;
+  font-size: 1.5rem;
+}
+
+.perfil .icono{
+  font-size: 7vh;
+  color:white;
+}
+
+.navigation-items a .icono2{
+  font-size: 5vh;
+  color:white;
+  margin-left: 2vw;
+}
+
+.navigation-items{
+  display: flex;
+  align-items: center;
+}
+
+.navbar-collapse{
+  background-color: #4546467c;
+  border-radius: 10px;
+}
+/*fin header*/
+
+
   .carrito{
     padding: 1 rem;
     border: 1px solid black;
@@ -44,37 +108,156 @@ header .brand {
     min-height: 90vh;
 
   }
-.box-principal{
-    min-height: 70vh;
-    display: flex;
-    background: rgba(255, 255, 255, 0.329);
-    border: 2px solid rgba(255, 255, 255, .5);
-    border-radius: 20px;
-    backdrop-filter: blur(20px);
-    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 3rem;
-
-
-}
-table{
-    padding-top: 2rem;
-    margin-top: 1rem;
-}
-table th{
-    background-color: rgb(50, 153, 250) !important;
-}
 
 .boton{
   padding: .5rem;
-  background-color: rgb(50, 153, 250);
-  color: white;
-  font-size: 0.8vw;
+  background-color: rgb(102, 223, 86);
+  font-size: 1rem;
   text-decoration: none;
   border-radius: 10px;
   box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.466);
   font-family:"Poppins", sans-serif;
+}
+
+.contenedor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+table, th, td {
+  padding: 1rem;
+  border-collapse: collapse;
+}
+
+
+.tabla{
+  margin: 2vw;
+  width: 90vw;
+  max-height: 50vh;
+  background-color: #fff5;
+  backdrop-filter: blur(7px);
+  box-shadow:  0.4rem .8rem #0005;
+  border-radius: .8rem;
+  overflow:scroll;
+  
+} 
+
+.table_header{
+  width: 88.9vw;
+  height: 10%;
+  background-color: #fff4;
+  padding: .8rem 1rem;
+  font-family:"Poppins", sans-serif;
+} 
+
+.table_header h2 {
+  -webkit-text-stroke: 1px rgb(8, 8, 8);
+  font-size: 2rem;
+  color: rgb(50, 153, 250);
+  font-family:"Poppins", sans-serif;
+}
+
+.table_body{
+  width: 88.9vw;
+  max-height: calc(90%- .8rem);
+  background-color: #fffb;
+  border-radius:  .6rem;
+  font-weight: bold;
+  font-size: 1.1rem;
+} 
+
+.table_body::-webkit-scrollbar{
+  width: 0.5rem;
+  height: 0.5rem;
+}
+
+.table_body::-webkit-scrollbar-thumb{
+  width: 0.5rem;
+  background-color: #0004;
+  visibility: hidden;
+}
+
+.table_body:hover::-webkit-scrollbar-thumb{
+  visibility: visible;
+}
+
+table {
+  width: 100%;
+}
+
+thead th {
+  position: sticky;
+  top: 0;
+  left: 0;
+  background-color: #cad5d6;
+  color:  rgb(50, 153, 250);
+  font-family:"Poppins", sans-serif;
+  font-size: 1.3rem;
+}
+
+tbody tr:nth-child(even){
+  background-color:#cad5d6;
+}
+
+@media (max-width:768px) {
+  header {
+    border-radius: 0px;
+  }
+  header .brand {
+    font-size: 5vh;
+  }
+  header .nav-link{
+    font-size: 1rem;
+  }
+  .logo{
+    width: 9vw;
+  }
+  
+  .perfil .icono{
+    font-size: 3.5rem;
+  }
+  
+  .navigation-items a .icono2{
+    font-size: 2rem;
+  }
+}
+
+
+/*para perfil header*/
+@media (max-width:426px) {
+  .logo{
+    display: none;
+  }
+  .perfil .icono, h5{
+    display: none;
+  }
+
+  .nav-bar{
+    display: flex;
+    justify-content: center !important;
+  }
+
+  .table_body{
+    width: 100%;
+    max-height: calc(90%- .8rem);
+    background-color: #fffb;
+  
+    margin: .8rem auto;
+    border-radius:  .6rem;
+    font-weight: bold;
+    font-size: 1rem;
+  } 
+
+  .color{
+    background-color: #fffb;
+    border-radius: 10px;
+  }
+
+  table, th, td {
+    padding: 1rem;
+    border-collapse: collapse;
+  }
+  
 }

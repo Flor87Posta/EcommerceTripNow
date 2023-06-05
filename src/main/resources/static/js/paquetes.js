@@ -6,7 +6,7 @@ const app = createApp({
       paquetes:[],
       idPaquete: '',
       id: null,
-
+      cliente:[]
 
     }
   },
@@ -18,6 +18,12 @@ const app = createApp({
         this.paquetes = response.data
         console.log(this.paquetes);
     })
+
+    axios.get('/api/clientes/current')
+            .then(response=> {
+                this.cliente = response.data;
+                console.log(this.cliente)
+            })
   },
 
 
@@ -147,7 +153,11 @@ const app = createApp({
     });
   },
 
-
+  format(precio){
+    let options = { style: 'currency', currency: 'USD' };
+    let numberFormat = new Intl.NumberFormat('en-US', options);
+    return numberFormat.format(precio);
+},
 
 
 

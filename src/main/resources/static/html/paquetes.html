@@ -15,13 +15,13 @@
 
 <body id="app">
 
-  <header>
+ <!--  <header>
     <div class="d-flex align-items-center">
       <img src="../assets/logo.png" class="logo" width="100" alt="">
       <a href="#" class="brand">TRIPNOW</a>
     </div>
     <div class="d-flex align-items-center gap-2 perfil">
-      <h5>Nombre persona</h5>
+      <h5>{{cliente.nombre}}  {{cliente.apellido}}</h5>
       <ion-icon name="person-circle-outline" class="icono"></ion-icon>
   </div> 
     <div class="navigation">
@@ -32,12 +32,39 @@
         <a href="#" @click="logout">Cerrar Sesión</a>
       </div>
     </div>
-  </header>
+  </header> -->
+  <header>
+    <nav class="navbar navbar-expand-md ">
+      <div class="container-fluid d-flex ">
+        <div class="perfil d-flex align-items-center gap-2 ">
+          <h5>{{cliente.nombre}}  {{cliente.apellido}}</h5>
+          <ion-icon name="person-circle-outline" class="icono"></ion-icon>
+      </div>
+        <div class="d-flex align-items-center">
+          <img class="logo " src="../assets/logo.png" alt="">
+          <h1 class="brand me-5">TripNow</h1>
+        </div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav navigation-items d-flex gap-1 align-items-center ">
+            <a href="../html/carrito.html"><ion-icon name="cart" class="icono2"></ion-icon></a>
+            <a class="nav-link " href="#">Paquetes</a>
+            <a class="nav-link " data-bs-toggle="modal" data-bs-target="#exampleModal3">Crear Orden</a>
+            <a class="nav-link " href="#" @click="logout">Cerrar Sesión</a>
+          </div>
+        </div>
 
+      </div>
+    </nav>
+  </header>
 
   <main>
 
-    <div class="principal gap-5">
+    <div class="principal gap-4">
       <p class=" titulo2 text-center">Nuestros paquetes</p>
       <div>
         <form class="d-flex " role="search">
@@ -45,7 +72,7 @@
             v-model="filtroBusqueda" @keyup="filtro">
         </form>
       </div>
-      <div class=" d-flex gap-4 secundario">
+      <div class=" d-flex gap-4 secundario justify-content-center">
 
         <div v-for="paquete in paquetes" :key="paquete.id" class="paquete align-items-center">
           <div id="carouselExample" class="carousel slide">
@@ -64,7 +91,7 @@
           <div class="p-2">
             <h4>{{ paquete.nombrePaquete }}</h4>
             <h5>Cantidad de Dias: {{ paquete.dias }}</h5>
-            <h5>Precio por Persona: ${{ paquete.precioTotalUnitario }}</h5>
+            <h5>Precio por Persona: {{ format(paquete.precioTotalUnitario) }}</h5>
 
             <div class="d-flex justify-content-evenly pb-2 gap-5">
               <button class="botones" @click="anadirPaquete(paquete.id)"><img id="carrito"

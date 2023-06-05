@@ -164,10 +164,8 @@ header .nav-link a:hover{
 }
 
 .invita2{
-  font-size: 1.3vw;
-  font-weight: none;
   font-family:"Poppins", sans-serif;
-}
+} 
 
 .boton{
   padding: .5rem;
@@ -586,9 +584,9 @@ footer a:hover{
     font-size: 6vh;
     -webkit-text-stroke: 2px white;
   }
-  .invita2{
-    font-size: 2.5vh;
-  }
+ .invita2{
+   font-size: 1rem;
+  } 
   .boton{
     font-size: 2vh;
   }
@@ -632,11 +630,11 @@ footer a:hover{
     font-size: 3vh;
   }
   .titulo2{
-    font-size:5vh ;
+    font-size:2rem ;
   }
-  .invita2{
-    font-size: 2.4vh;
-  }
+ .invita2{
+    font-size: 0.9rem;
+  } 
   .invita{
     font-size: 2.4vh;
   }
