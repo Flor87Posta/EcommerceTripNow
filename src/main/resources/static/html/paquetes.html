@@ -15,7 +15,6 @@
 
 <body id="app">
 
- 
   <header>
     <nav class="navbar navbar-expand-md ">
       <div class="container-fluid d-flex ">
@@ -46,34 +45,28 @@
   </header>
 
   <main>
-    <div class="buscardor-contenedor">
-        <form class="d-flex mb-1 mt-3 justify-content-end" role="search">
-          <input class="form-control " type="text" placeholder="Búsqueda por destino" aria-label="Search" id="inputSearch"
-            v-model="filtroBusqueda" @keyup="filtro"><ion-icon name="search-sharp" class="icono3"></ion-icon>
-        </form>
-      </div>
+    <div class="buscador-contenedor">
+      <form class="d-flex mb-1 mt-3 form2" role="search">
+        <input class="form-control me-2" type="text" placeholder="Buscar Destino" aria-label="Search" id="inputSearch"
+          v-model="filtroBusqueda" @keyup="filtro"><ion-icon name="search-sharp" class="icono3"></ion-icon>
+      </form>
+    </div>
     <div class="principal gap-4">
-  
       <p class=" titulo2 text-center">Nuestros paquetes</p>
-     
-      <div class=" d-flex gap-4 secundario justify-content-center">
-
+      <div class=" d-flex gap-5 secundario justify-content-center">
         <div v-for="paquete in paquetes" :key="paquete.id" class="paquete align-items-center">
           <div id="carouselExample" class="carousel slide">
             <div class="carousel-inner">
               <div class="carousel-item active">
                 <img id="tarjeta-paquete" :src="paquete.imagen1" class="d-block w-100" alt="...">
               </div>
-           
             </div>
           </div>
           <div class="p-2">
             <h4>{{ paquete.nombrePaquete }}</h4>
             <h5>Cantidad de Dias: {{ paquete.dias }}</h5>
-            <h5>Hotel: {{ paquete.hotelesDTO[0].nombre }} {{ paquete.hotelesDTO[0].categoria.replace(/_/g, " ")}}</h5>
-           <h5>Precio por Persona: {{ format(paquete.precioTotalUnitario) }}</h5>
-
-
+            <h5>Hotel: {{ paquete.hotelesDTO[0].nombre }} {{ paquete.hotelesDTO[0].categoria.replace(/_/g, " ") }}</h5>
+            <h5>Precio por Persona: {{ format(paquete.precioTotalUnitario) }}</h5>
             <div class="d-flex justify-content-evenly pb-2 gap-5">
               <button class="botones" @click="anadirPaquete(paquete.id)"><img id="carrito"
                   src="../assets/cart_icon_235154.png" alt="">Añadir</button>
@@ -332,7 +325,7 @@
       </div>
     </footer>
   </div>
-
+  <div class="loader"></div>
 
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"

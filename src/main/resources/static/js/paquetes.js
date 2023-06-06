@@ -3,6 +3,7 @@ const app = createApp({
   data(){
     return{
       cantidadPasajeros: '',
+      hotel: null,
       paquetes:[],
       idPaquete: '',
       id: null,
@@ -173,3 +174,12 @@ const app = createApp({
 
 })
 app.mount('#app');
+window.addEventListener('load', () => {
+  const loader = document.querySelector('.loader');
+
+  loader.classList.add('loader-hidden');
+
+  loader.addEventListener('transitioned', () => {
+      document.body.removeChild('loader');
+  });
+});

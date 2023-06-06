@@ -31,18 +31,21 @@ class AutorizacionWeb {
                 .antMatchers(HttpMethod.POST, "/api/clientes").permitAll()
                 .antMatchers(HttpMethod.POST,"/api/login").permitAll()
                 .antMatchers(HttpMethod.POST,"/api/logout").permitAll()
-                .antMatchers(HttpMethod.POST,"/api/clientes/current/pay-card").permitAll() //para homebanking
+                .antMatchers(HttpMethod.POST, "https://homebanking-mindhub-brothers.up.railway.app/api/clients/current/pay-card").permitAll()
 
 
-//                ADMIN
-//                .antMatchers(HttpMethod.POST, "/api/loans/admin-loan").hasAuthority("ADMIN")
+
                 .antMatchers(HttpMethod.PATCH, "/api/clientes").hasAuthority("ADMIN")
                 .antMatchers("/api/clientes").hasAuthority("ADMIN")
+                .antMatchers("/api/paquetes").hasAnyAuthority("ADMIN", "CLIENTE")
+                .antMatchers("/api/destinos").hasAuthority("ADMIN")
+                .antMatchers("/api/pasajes").hasAuthority("ADMIN")
+                .antMatchers("/api/excursiones").hasAuthority("ADMIN")
                 .antMatchers("/manager/manager.html").hasAuthority("ADMIN")
-                .antMatchers("http://localhost:8080/h2-console").hasAuthority("ADMIN")
+                .antMatchers("/h2-console").hasAuthority("ADMIN")
                 .antMatchers("/rest/**").hasAuthority("ADMIN")
 
-//                CLIENT
+
                 .antMatchers(HttpMethod.POST, "/api/clientes/current").hasAuthority("CLIENTE")
                 .antMatchers(HttpMethod.POST, "/api/clientes/current/orden").hasAuthority("CLIENTE")
                 .antMatchers(HttpMethod.POST, "/api/clientes/current/pagar-orden").hasAuthority("CLIENTE")
@@ -52,7 +55,6 @@ class AutorizacionWeb {
                 .antMatchers(HttpMethod.POST, "/api/clientes/current/export-pdf").hasAuthority("CLIENTE")
                 .antMatchers(HttpMethod.POST, "https://homebanking-mindhub-brothers.up.railway.app/api/clients/current/pay-card").hasAuthority("CLIENTE")
                 .antMatchers("/api/clientes/current").hasAuthority("CLIENTE")
-                .antMatchers("/api/paquetes").hasAnyAuthority("CLIENTE", "ADMIN")
                 .antMatchers("/html/nosotros.html").hasAuthority("CLIENTE")
                 .antMatchers("/html/conocemas.html").hasAuthority("CLIENTE");
 //                .anyRequest().denyAll().and();
@@ -130,6 +132,8 @@ class AutorizacionWeb {
 
         }
 
-    }
+
+
+}
 
 }

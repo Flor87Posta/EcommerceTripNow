@@ -47,45 +47,10 @@
   <main>
 
     <div class="contenedor">
-      <!--  <h2 class="text-center ">Detalle de Compra</h2>
-      <div class="container carrito"> -->
-<!-- 
-    <table class="table">
-          <thead>
-            <tr>
-              <th scope="col" class="text-white">Cantidad Pasajeros</th>
-              <th scope="col" class="text-white">Fecha de Creacion</th>
-              <th scope="col" class="text-white">Precio Total Orden</th>
-              <th scope="col" class="text-white">Días</th>
-              <th scope="col" class="text-white">Nombre Paquete</th>
-              <th scope="col" class="text-white">Precio del Paquete</th>
-            </tr>
-          </thead>
-          <tbody>
-            <template v-for="orden in ordenes">
-              <tr>
-                <td scope="row">{{ orden.cantidadPasajeros }}</td>
-                <td>{{ orden.fechaCreacion.slice(0, 10) }}</td>
-                <td>${{ orden.precioTotalOrden }}</td>
-                <td colspan="3">
-                  <table class="inner-table">
-                    <tbody>
-                      <tr v-for="paquete in orden.paquetesDTO">
-                        <td >{{ paquete.dias }}</td>
-                        <td>{{ paquete.nombrePaquete }}</td>
-                        <td>{{ paquete.precioTotalUnitario }}</td>
-                        <td><a @click="eliminarPaquete(paquete.id)" href=""><img src="../assets/cesto.png" alt="" width="20"></a></td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </td>
-              </tr>
-            </template>
-          </tbody>
-        </table>  -->
+
       <div class="tabla">
         <div class="table_header">
-          <h2>Detalle de Compra</h2>
+          <h2>Detalle de Compra a pagar</h2>
         </div>
         <div class="table_body">
           <table>
@@ -112,7 +77,8 @@
                       <tr v-for="paquete in orden.paquetesDTO" class="color">
                         <td >{{ paquete.dias }}</td>
                         <td>{{ paquete.nombrePaquete }}</td>
-                        <td>{{ format(paquete.precioTotalUnitario) }}</td>
+                        <td>${{ paquete.precioTotalUnitario.toLocaleString(undefined, { minimumFractionDigits: 2,
+                          maximumFractionDigits: 2 }) }}</td>
                         <td><a @click="eliminarPaquete(paquete.id)" href=""><img src="../assets/cesto.png" alt="" width="20"></a></td>
                       </tr>
                     </tbody>
@@ -127,11 +93,58 @@
         <button type="button" class="boton" onclick="window.location.href='/posnet/posnet.html'">Pagar</button>
       </div>
       </div> 
-      
+      </div>
     </div>
+    <div class="contenedor">
+      <div class="tabla">
+        <div class="table_header">
+          <h2>Compras Realizadas</h2>
+        </div>
+        <div class="table_body">
+          <table>
+            <thead>
+              <tr>
+                <th>Cantidad Pasajeros</th>
+                <th>Fecha de Creacion</th>
+                <th>Precio Total Orden</th>
+                <th>Días</th>
+                <th>Nombre Paquete</th>
+                <th>Precio del Paquete</th>
+              </tr>
+            </thead>
+            <tbody>
+              <template v-for="orden in ordenesPagadas">
+              <tr>
+                <td  class="text-center">{{ orden.cantidadPasajeros }}</td>
+                <td>{{ orden.fechaCreacion.slice(0, 10) }}</td>
+                <td>${{ orden.precioTotalOrden.toLocaleString(undefined, { minimumFractionDigits: 2,
+                  maximumFractionDigits: 2 }) }}</td>
+                <td colspan="3">
+                  <table>
+                    <tbody>
+                      <tr v-for="paquete in orden.paquetesDTO" class="color">
+                        <td >{{ paquete.dias }}</td>
+                        <td>{{ paquete.nombrePaquete }}</td>
+                        <td>${{ paquete.precioTotalUnitario.toLocaleString(undefined, { minimumFractionDigits: 2,
+                          maximumFractionDigits: 2 }) }}</td>
+                        <td><a @click="eliminarPaquete(paquete.id)" href=""><img src="../assets/cesto.png" alt="" width="20"></a></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+            </template>
+
+            </tbody>
+          </table>
+        </div><div class=" d-flex justify-content-center m-2">
+      
+      </div>
+      </div> 
+      </div>
     </div>
   </main>
-
+  <div class="loader"></div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"

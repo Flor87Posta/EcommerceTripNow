@@ -39,7 +39,9 @@ const app = createApp({
             mediaPension: true,
             precioHotel: null,
             cantidadStockHotel: null,
-            destinoHotel: ''
+            destinoHotel: '',
+            formVisible: false,
+            mostrarFormulario1: true,
 
 
 
@@ -119,118 +121,155 @@ const app = createApp({
                     })
                 })
         },
-        
+
         añadirDestino() {
             const dias = this.cantidadDias.split(",").map(dias => parseInt(dias.trim()));
-
+            
             axios.post('/api/admin/destino', {
-                nombre: this.nombreDestino,
-                cantidadDias: dias,
-                precioHotelExcursion: this.precioHotelExcursion
+              nombre: this.nombreDestino,
+              cantidadDias: dias,
+              precioHotelExcursion: this.precioHotelExcursion
             })
-                .then((response) => Swal.fire({
-                    icon: 'success',
-                    text: 'Destino creado correctamente',
+              .then((response) => {
+                Swal.fire({
+                  icon: 'success',
+                  text: 'Destino creado correctamente',
+                  timer: 8000,
+                });
+                
+                setTimeout(() => {
+                  location.reload(); // Recarga la página actual después de un retraso
+                }, 3000); // Espera 3 segundos antes de recargar la página (ajusta este valor según tus necesidades)
+              })
+              .catch((error) => {
+                console.log(error.response.data);
+                Swal.fire({
+                  icon: 'error',
+                  text: error.response.data,
+                  confirmButtonColor: "#7c601893",
+                });
+              });
+          },
 
-                }
-
-                ))
-                .catch((error) => {
-                    console.log(error.response.data)
-                    Swal.fire({
-                        icon: 'error',
-                        text: error.response.data,
-                        confirmButtonColor: "#7c601893",
-                    })
-                })
-        },
-        crearPaquete() {
-            axios.post('/api/admin/paquete', {
-                nombrePaquete: this.nombrePaquete,
-                dias: this.dias,
-                precioTotalUnitario: this.precioTotalUnitario,
-                stock: this.stock,
-                imagen1: this.imagen1,
-                pasaje: { id: this.pasaje },
-                destino: { id: this.destino },
-                hoteles: [] // Agrega la propiedad "hoteles" con un array vacío
-            })
-                .then((response) => Swal.fire({
-                    icon: 'success',
-                    text: 'Paquete creado correctamente',
+    crearPaquete() {
+  axios.post('/api/admin/paquete', {
+    nombrePaquete: this.nombrePaquete,
+    dias: this.dias,
+    precioTotalUnitario: this.precioTotalUnitario,
+    stock: this.stock,
+    imagen1: this.imagen1,
+    pasaje: { id: this.pasaje },
+    destino: { id: this.destino },
+    hoteles: [] // Agrega la propiedad "hoteles" con un array vacío
+  })
+    .then((response) => {
+      Swal.fire({
+        icon: 'success',
+        text: 'Paquete creado correctamente',
+        timer: 3000,
+      });
+      
+      setTimeout(() => {
+        location.reload(); // Recarga la página actual después de un retraso
+      }, 3000); // Espera 3 segundos antes de recargar la página (ajusta este valor según tus necesidades)
+    })
+    .catch((error) => {
+      console.log(error.response.data);
+      Swal.fire({
+        icon: 'error',
+        text: error.response.data,
+        confirmButtonColor: "#7c601893",
+      });
+    });
+},
+crearExcursion() {
+    axios.post('/api/admin/excursion', {
+      nombre: this.nombreExcursion,
+      actividad: this.actividad,
+      precioExcursion: this.precioExcursion,
+      cantidadStock: this.cantidadStock,
+      destino: { id: this.destinoExcursion }
+    })
+      .then((response) => {
+        Swal.fire({
+          icon: 'success',
+          text: 'Excursión creada correctamente',
+          timer: 3000,
+        });
         
-                }))
-                .catch((error) => {
-                    console.log(error.response.data)
-                    Swal.fire({
-                        icon: 'error',
-                        text: error.response.data,
-                        confirmButtonColor: "#7c601893",
-                    })
-                })
-        },
-        crearExcursion() {
-            axios.post('/api/admin/excursion', {
-                nombre: this.nombreExcursion,
-                actividad: this.actividad,
-                precioExcursion: this.precioExcursion,
-                cantidadStock: this.cantidadStock,
-                destino: { id: this.destinoExcursion }
-            })
-                .then((response) => Swal.fire({
-                    icon: 'success',
-                    text: 'Excursión creada correctamente',
+        setTimeout(() => {
+          location.reload(); // Recarga la página actual después de un retraso
+        }, 3000); // Espera 3 segundos antes de recargar la página (ajusta este valor según tus necesidades)
+      })
+      .catch((error) => {
+        console.log(error.response.data);
+        Swal.fire({
+          icon: 'error',
+          text: error.response.data,
+          confirmButtonColor: "#7c601893",
+        });
+      });
+  },
 
-                }
+  añadirHotel() {
+    axios.post('/api/admin/hotel', {
+      nombre: this.nombreHotel,
+      categoria: this.categoria,
+      allInclusive: this.allInclusive,
+      desayuno: this.desayuno,
+      mediaPension: this.mediaPension,
+      precioHotel: this.precioHotel,
+      cantidadStock: this.cantidadStockHotel,
+      destino: { id: this.destinoHotel }
+    })
+      .then((response) => {
+        Swal.fire({
+          icon: 'success',
+          text: 'Hotel creado correctamente',
+          timer: 3000,
+        });
+        
+        setTimeout(() => {
+          location.reload(); // Recarga la página actual después de un retraso
+        }, 3000); // Espera 3 segundos antes de recargar la página (ajusta este valor según tus necesidades)
+      })
+      .catch((error) => {
+        console.log(error.response.data);
+        Swal.fire({
+          icon: 'error',
+          text: error.response.data,
+          confirmButtonColor: "#7c601893",
+        });
+      });
+  },
+          
+          
+          
 
-                ))
-                .catch((error) => {
-                    console.log(error.response.data)
-                    Swal.fire({
-                        icon: 'error',
-                        text: error.response.data,
-                        confirmButtonColor: "#7c601893",
-                    })
-                })
-        },
-        añadirHotel() {
-            axios.post('/api/admin/hotel', {
-
-                nombre: this.nombreHotel,
-                categoria: this.categoria,
-                allInclusive: this.allInclusive,
-                desayuno: this.desayuno,
-                mediaPension: this.mediaPension,
-                precioHotel: this.precioHotel,
-                cantidadStock: this.cantidadStockHotel,
-                destino: { id: this.destinoHotel }
-            })
-                .then((response) => Swal.fire({
-                    icon: 'success',
-                    text: 'Hotel creado correctamente',
-
-                }
-
-                ))
-                .catch((error) => {
-                    console.log(error.response.data)
-                    Swal.fire({
-                        icon: 'error',
-                        text: error.response.data,
-                        confirmButtonColor: "#7c601893",
-                    })
-                })
-        },
+          
 
         logout(){
             axios.post('/api/logout')
             .then(response => console.log('Signed out'))
         },
 
+        showForm() {
+            this.formVisible = true;
+            this.mostrarFormulario1 = false;
+        },
     },
 
 
 
 })
 
-app.mount('#app')
+app.mount('#app');
+window.addEventListener('load', () => {
+  const loader = document.querySelector('.loader');
+
+  loader.classList.add('loader-hidden');
+
+  loader.addEventListener('transitioned', () => {
+      document.body.removeChild('loader');
+  });
+});

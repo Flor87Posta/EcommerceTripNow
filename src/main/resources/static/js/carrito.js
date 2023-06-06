@@ -4,6 +4,7 @@ const app = createApp({
         data(){
             return{
                 ordenes:[],  
+                ordenesPagadas:[],  
                 id:null,
                 idPaquete:'',
                 cliente:[]     
@@ -12,7 +13,15 @@ const app = createApp({
         },
 
         created() {
-           
+            axios.get('/api/clientes/ordenPaga')
+        .then(response => {
+            this.ordenesPagadas = response.data;
+            console.log(this.ordenesPagadas);
+        })
+        .catch(error => {
+            console.error(error);
+        });
+
             axios.get('/api/clientes/orden')
             .then(response =>{
                 this.ordenes = response.data
@@ -72,4 +81,14 @@ const app = createApp({
                 }
         }
     })
-    app.mount('#app')
+    app.mount('#app');
+   
+window.addEventListener('load', () => {
+  const loader = document.querySelector('.loader');
+
+  loader.classList.add('loader-hidden');
+
+  loader.addEventListener('transitioned', () => {
+      document.body.removeChild('loader');
+  });
+});

@@ -7,6 +7,7 @@
     <title>TripNow</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./manager.css">
     <link rel="shortcut icon" href="../assets/logo.png" type="image/x-icon">
 </head>
@@ -16,49 +17,54 @@
 
     <div id="app">
         <header>
-            <h1 class="app text-center"> Manager Cliente</h1>
-            <a href="../html/index.html" class="boton3" @click="logout">Logout</a>
-            <button onclick="window.location.href='/h2-console'" class="boton3" @click="logout">BD</button>
+            <h1 class="app text-center"> Panel de Administrador de la Agencia</h1>
+            <a href="../html/index.html" class="boton3" @click="logout">Salir</a>
+            <button onclick="window.location.href='http://localhost:8585/h2-console/'" class="boton3" @click="logout">BD</button>
+            <template v-if="mostrarFormulario1">
+                <button type="button" class="boton3"@click="showForm">Crear Cliente</button>
+            </template>
         </header>
         <div class="contenedor">
             <div id="formularioyTabla" class="caja">
-                <form @submit="postClient" class="formulario">
-                    <h2 class="text-center">Crear cliente</h2>
-                    <div class="mb-2">
-                        <label for="nombre" class="form-label">Nombre:</label>
-                        <input type="text" class="form-control" v-model="nombre" id="nombre" name="nombre">
-                    </div>
-                    <div class="mb-2">
-                        <label for="lastname" class="form-label">Apellido:</label>
-                        <input type="text" class="form-control" v-model="apellido" id="lastname" name="lastname">
-                    </div>
-                    <div class="mb-2">
-                        <label for="pasaporte" class="form-label">Pasaporte:</label>
-                        <input type="text" class="form-control" v-model="pasaporte" id="pasaporte" name="pasaporte">
-                    </div>
-                    <div class="mb-2">
-                        <label for="direccion" class="form-label">Dirección:</label>
-                        <input type="text" class="form-control" v-model="direccion" id="direccion" name="dirección">
-                    </div>
-                    <div class="mb-2">
-                        <label for="telefono" class="form-label">Teléfono:</label>
-                        <input type="text" class="form-control" v-model="telefono" id="telefono" name="telefono">
-                    </div>
-                    <div class="mb-2">
-                        <label for="mail" class="form-label">Email:</label>
-                        <input type="email" class="form-control" v-model="email" id="mail" name="Mail">
-                    </div>
-                    <div class="mb-2">
-                        <label for="fechaNac" class="form-label">Fecha de Nacimiento:</label>
-                        <input type="date" class="form-control" v-model="fechaNac" id="fechaNac" name="fechaNac">
-                    </div>
-                    <div class="mb-2">
-                        <label for="contraseña" class="form-label">Contraseña:</label>
-                        <input type="password" class="form-control" v-model="contrasena" id="contrasena"
-                            name="contrasena">
-                    </div>
-                    <button type="submit" class="boton">Añadir cliente</button>
-                </form>
+                <template v-if="formVisible">
+                    <form @submit="postClient" class="formulario">
+                        <h2 class="text-center">Crear cliente</h2>
+                        <div class="mb-2">
+                            <label for="nombre" class="form-label">Nombre:</label>
+                            <input type="text" class="form-control" v-model="nombre" id="nombre" name="nombre">
+                        </div>
+                        <div class="mb-2">
+                            <label for="lastname" class="form-label">Apellido:</label>
+                            <input type="text" class="form-control" v-model="apellido" id="lastname" name="lastname">
+                        </div>
+                        <div class="mb-2">
+                            <label for="pasaporte" class="form-label">Pasaporte:</label>
+                            <input type="text" class="form-control" v-model="pasaporte" id="pasaporte" name="pasaporte">
+                        </div>
+                        <div class="mb-2">
+                            <label for="direccion" class="form-label">Dirección:</label>
+                            <input type="text" class="form-control" v-model="direccion" id="direccion" name="dirección">
+                        </div>
+                        <div class="mb-2">
+                            <label for="telefono" class="form-label">Teléfono:</label>
+                            <input type="text" class="form-control" v-model="telefono" id="telefono" name="telefono">
+                        </div>
+                        <div class="mb-2">
+                            <label for="mail" class="form-label">Email:</label>
+                            <input type="email" class="form-control" v-model="email" id="mail" name="Mail">
+                        </div>
+                        <div class="mb-2">
+                            <label for="fechaNac" class="form-label">Fecha de Nacimiento:</label>
+                            <input type="date" class="form-control" v-model="fechaNac" id="fechaNac" name="fechaNac">
+                        </div>
+                        <div class="mb-2">
+                            <label for="contraseña" class="form-label">Contraseña:</label>
+                            <input type="password" class="form-control" v-model="contrasena" id="contrasena"
+                                name="contrasena">
+                        </div>
+                        <button type="submit" class="boton">Añadir cliente</button>
+                    </form>
+                </template>
                 <div class="tabla">
                     <div class="table_header">
                         <h2>Lista de Clientes</h2>
@@ -74,7 +80,7 @@
                                     <th>Telefono</th>
                                     <th>Fecha Nac</th>
                                     <th>Email</th>
-                                    <th>Historial Compras</th>
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -86,7 +92,6 @@
                                     <td>{{cliente.telefono}}</td>
                                     <td>{{cliente.fechaNac}}</td>
                                     <td>{{cliente.email}}</td>
-                                    <td>{{cliente.historialCompras}}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -115,7 +120,7 @@
                                     <td>{{paquete.stock}}</td>
                                     <td>
                                         <ul>
-                                            <li v-for="hotel in paquete.hoteles">{{ hotel.nombre }}</li>
+                                            <li v-for="hotel in paquete.hotelesDTO">{{ hotel.nombre }}</li>
                                         </ul>
                                     </td>
                                 </tr>
@@ -125,15 +130,8 @@
                 </div>
 
             </div>
-            <!--  <div >
-                <section>
-                    <h2>Clientes REST Response</h2>
-                </section>
-                <pre>
-                <p>{{clientes}}</p>
-                </pre>
-            </div> -->
-            <div class=" tarjetas">
+
+            <div class="tarjetas">
                 <div class="tarjeta">
                     <h2>Crear un nuevo destino</h2>
                     <form @submit.prevent="añadirDestino" class="loan-form">
@@ -201,7 +199,7 @@
                     </form>
                 </div>
 
-                <div class="tarjeta">
+                <!-- <div class="tarjeta">
                     <h2>Crear excursión</h2>
                     <form @submit.prevent="crearExcursion">
                         <div class="form-group">
@@ -233,7 +231,7 @@
 
                         <button type="submit" class="boton2">Crear excursión</button>
                     </form>
-                </div>
+                </div> -->
 
                 <div class="tarjeta">
                     <h2>Añadir Hotel</h2>
@@ -295,7 +293,7 @@
                 </div>
             </div>
         </div>
-
+        <div class="loader"></div>
 
 
 
@@ -304,7 +302,7 @@
 
     </div>
 
-    <script defer src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="./manager.js"></script>

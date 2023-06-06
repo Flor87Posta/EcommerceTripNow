@@ -80,7 +80,7 @@ createApp({
                 cancelButtonColor: '#FF8A80',
             }).then((result) => {
                 if (result.isConfirmed) {
-                    axios.post('http://localhost:8080/api/clientes/current/pagar-orden', payment)
+                    axios.post('/api/clientes/current/pagar-orden', payment)
                         .then(response => {
                             if (response.status === 201) {
                                 Swal.fire({
@@ -129,48 +129,50 @@ createApp({
         },
 
         enviarPDF(id) {
-            axios.post('/api/clientes/current/export-pdf', `idOrden=${id}`)
-              .then(response => {
-                Swal.fire({
-                  icon: 'success',
-                  title: 'PDF enviado',
-                  showCancelButton: true,
-                  confirmButtonText: 'Aceptar',
-                  confirmButtonColor: '#0DB4F3',
-                  timer: 6000,
-                });
-              })
-              .catch(error => {
-                if (error.response) {
-                  Swal.fire({
-                    icon: 'error',
-                    title: 'Error',
-                    text: `Error del servidor: ${error.response.data}`,
-                    timer: 6000,
-                    confirmButtonText: 'Ok',
-                    confirmButtonColor: '#0DB4F3',
-                  });
-                } else if (error.request) {
-                  Swal.fire({
-                    icon: 'error',
-                    title: 'Error',
-                    text: 'No se recibió respuesta del servidor',
-                    timer: 6000,
-                    confirmButtonText: 'Ok',
-                    confirmButtonColor: '#0DB4F3',
-                  });
-                } else {
-                  Swal.fire({
-                    icon: 'error',
-                    title: 'Error',
-                    text: 'Error al realizar la solicitud',
-                    timer: 6000,
-                    confirmButtonText: 'Ok',
-                    confirmButtonColor: '#0DB4F3',
-                  });
-                }
+          axios.post('/api/clientes/current/export-pdf', `idOrden=${id}`)
+            .then(response => {
+              Swal.fire({
+                icon: 'success',
+                title: 'PDF enviado',
+                showCancelButton: true,
+                confirmButtonText: 'Aceptar',
+                confirmButtonColor: '#0DB4F3',
+                timer: 6000,
+              }).then(response => {
+                window.location.href = '/html/paquetes.html';
               });
-          },
+            })
+            .catch(error => {
+              if (error.response) {
+                Swal.fire({
+                  icon: 'error',
+                  title: 'Error',
+                  text: `Error del servidor: ${error.response.data}`,
+                  timer: 6000,
+                  confirmButtonText: 'Ok',
+                  confirmButtonColor: '#0DB4F3',
+                });
+              } else if (error.request) {
+                Swal.fire({
+                  icon: 'error',
+                  title: 'Error',
+                  text: 'No se recibió respuesta del servidor',
+                  timer: 6000,
+                  confirmButtonText: 'Ok',
+                  confirmButtonColor: '#0DB4F3',
+                });
+              } else {
+                Swal.fire({
+                  icon: 'error',
+                  title: 'Error',
+                  text: 'Error al realizar la solicitud',
+                  timer: 6000,
+                  confirmButtonText: 'Ok',
+                  confirmButtonColor: '#0DB4F3',
+                });
+              }
+            });
+        },
           logout(){
             Swal.fire({
                 title: '¿Seguro que desea cerrar sesión?',
@@ -207,4 +209,13 @@ createApp({
 
     }
 
-}).mount("#app")
+}).mount("#app");
+window.addEventListener('load', () => {
+  const loader = document.querySelector('.loader');
+
+  loader.classList.add('loader-hidden');
+
+  loader.addEventListener('transitioned', () => {
+      document.body.removeChild('loader');
+  });
+});

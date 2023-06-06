@@ -46,6 +46,7 @@ public class EcommerceApplication {
 			Hotel hotel6 = new Hotel("Hotel del Sol", HotelCategoria.Cinco_Estrellas, true, true, true, 10000, 10);
 			Hotel hotel7 = new Hotel("Gran Hotel Lago Azul", HotelCategoria.Tres_Estrellas, false, false, true, 50000, 10);
 			Hotel hotel8 = new Hotel("Posada de los Colores", HotelCategoria.Dos_Estrellas, false, false, false, 30000, 10);
+			Hotel hotel9 = new Hotel("Sheraton", HotelCategoria.Cinco_Estrellas, false, true, false, 30000, 10);
 
 			Excursion excursion1 = new Excursion ("Ruta de Vinos", "Aire Libre", 4000, 20 );
 			Excursion excursion2 = new Excursion ("Cerro Cristo Rey", "Aire Libre", 4000, 20 );
@@ -64,6 +65,7 @@ public class EcommerceApplication {
 			Destino destino6 = new Destino("Carilo", new ArrayList<>(Arrays.asList(6, 8, 10)), hotel6.getPrecioHotel()+excursion8.getPrecioExcursion()+excursion1.getPrecioExcursion());
 			Destino destino7 = new Destino("Carlos Paz", new ArrayList<>(Arrays.asList(1, 2, 3)), hotel7.getPrecioHotel()+excursion2.getPrecioExcursion()+excursion3.getPrecioExcursion());
 			Destino destino8 = new Destino("Cerro de los Siete Colores(Purmamarca)", new ArrayList<>(Arrays.asList(4, 8, 10, 12)), hotel8.getPrecioHotel()+excursion6.getPrecioExcursion()+excursion4.getPrecioExcursion());
+			Destino destino9 = new Destino("Cordoba Capital", new ArrayList<>(Arrays.asList(4, 8, 10, 12)), hotel9.getPrecioHotel()+excursion6.getPrecioExcursion()+excursion4.getPrecioExcursion());
 
 			destinoRepositorio.save(destino1);
 			destinoRepositorio.save(destino2);
@@ -73,6 +75,7 @@ public class EcommerceApplication {
 			destinoRepositorio.save(destino6);
 			destinoRepositorio.save(destino7);
 			destinoRepositorio.save(destino8);
+			destinoRepositorio.save(destino9);
 
 			destino1.añadirHotel(hotel1);
 			destino2.añadirHotel(hotel2);
@@ -82,6 +85,7 @@ public class EcommerceApplication {
 			destino6.añadirHotel(hotel6);
 			destino7.añadirHotel(hotel7);
 			destino8.añadirHotel(hotel8);
+			destino9.añadirHotel(hotel9);
 
 			hotelRepositorio.save(hotel1);
 			hotelRepositorio.save(hotel2);
@@ -91,6 +95,7 @@ public class EcommerceApplication {
 			hotelRepositorio.save(hotel6);
 			hotelRepositorio.save(hotel7);
 			hotelRepositorio.save(hotel8);
+			hotelRepositorio.save(hotel9);
 
 			Pasaje pasaje1 = new Pasaje(TipoPasaje.AEREO, "Aerolineas Argentinas", 15000, 20);
 			Pasaje pasaje2 = new Pasaje(TipoPasaje.AEREO, "Lan Chile", 15000, 20);
@@ -142,6 +147,7 @@ public class EcommerceApplication {
 			Paquete paquete6 = new Paquete("Mar y bosque, combinación perfecta en Cariló ", 8, destino6.getPrecioHotelExcursion()+pasaje6.getPrecioPasaje(), 10, "/assets/carilo.jpg", destino6.getHoteles());
 			Paquete paquete7 = new Paquete("Descubriendo el Encanto de Carlos Paz", 5, destino7.getPrecioHotelExcursion()+pasaje2.getPrecioPasaje(), 10, "/assets/carlosPaz.jpg", destino7.getHoteles());
 			Paquete paquete8 = new Paquete("Experiencia Multicolor en el Cerro de los Siete Colores", 15, destino8.getPrecioHotelExcursion()+pasaje1.getPrecioPasaje(), 10, "/assets/jujuy.jpg", destino8.getHoteles());
+			Paquete paquete9 = new Paquete("Conociendo la historica Cordoba", 4, destino9.getPrecioHotelExcursion()+pasaje1.getPrecioPasaje(), 10, "/assets/cordobaCapital.jpg", destino9.getHoteles());
 
 			paqueteRepositorio.save(paquete1);
 			paqueteRepositorio.save(paquete2);
@@ -151,6 +157,7 @@ public class EcommerceApplication {
 			paqueteRepositorio.save(paquete6);
 			paqueteRepositorio.save(paquete7);
 			paqueteRepositorio.save(paquete8);
+			paqueteRepositorio.save(paquete9);
 
 			destino1.añadirDestinoAlPaquete(paquete4);
 			destino2.añadirDestinoAlPaquete(paquete3);
@@ -160,6 +167,7 @@ public class EcommerceApplication {
 			destino6.añadirDestinoAlPaquete(paquete6);
 			destino7.añadirDestinoAlPaquete(paquete7);
 			destino8.añadirDestinoAlPaquete(paquete8);
+			destino9.añadirDestinoAlPaquete(paquete9);
 
 			destinoRepositorio.save(destino1);
 			destinoRepositorio.save(destino2);
@@ -169,6 +177,7 @@ public class EcommerceApplication {
 			destinoRepositorio.save(destino6);
 			destinoRepositorio.save(destino7);
 			destinoRepositorio.save(destino8);
+			destinoRepositorio.save(destino9);
 
 			pasaje1.añadirPasajeAlPaquete(paquete1);
 			pasaje1.añadirPasajeAlPaquete(paquete2);
@@ -178,11 +187,13 @@ public class EcommerceApplication {
 			pasaje6.añadirPasajeAlPaquete(paquete6);
 			pasaje2.añadirPasajeAlPaquete(paquete7);
 			pasaje1.añadirPasajeAlPaquete(paquete8);
+			pasaje1.añadirPasajeAlPaquete(paquete9);
 
 			destino5.añadirDestinoAlPaquete(paquete5);
 			destino6.añadirDestinoAlPaquete(paquete6);
 			destino7.añadirDestinoAlPaquete(paquete7);
 			destino8.añadirDestinoAlPaquete(paquete8);
+			destino9.añadirDestinoAlPaquete(paquete9);
 
 			pasajeRepositorio.save(pasaje1);
 			pasajeRepositorio.save(pasaje2);
@@ -199,6 +210,7 @@ public class EcommerceApplication {
 			paqueteRepositorio.save(paquete6);
 			paqueteRepositorio.save(paquete7);
 			paqueteRepositorio.save(paquete8);
+			paqueteRepositorio.save(paquete9);
 
 			Orden orden1 = new Orden(LocalDateTime.now(), true, 2, paquete1.getPrecioTotalUnitario()*paquete1.getDias(), paquete1.getPrecioTotalUnitario()*paquete1.getDias()*2, false);
 			Orden orden2 = new Orden(LocalDateTime.now(), true, 3, paquete2.getPrecioTotalUnitario()*paquete2.getDias(), paquete2.getPrecioTotalUnitario()*paquete2.getDias()*3, false);
@@ -220,6 +232,7 @@ public class EcommerceApplication {
 			paqueteRepositorio.save(paquete6);
 			paqueteRepositorio.save(paquete7);
 			paqueteRepositorio.save(paquete8);
+			paqueteRepositorio.save(paquete9);
 
 			cliente1.añadirOrden(orden1);
 			cliente1.añadirOrden(orden2);

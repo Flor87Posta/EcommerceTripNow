@@ -45,6 +45,17 @@ public class OrdenControlador {
         return ordenesActivas;
     }
 
+    @GetMapping("/api/clientes/ordenPaga")
+    public List<OrdenDTO> obtenerOrdenesPagasDTO(Authentication authentication) {
+        Cliente cliente = clienteServicio.findByEmail(authentication.getName());
+        List<OrdenDTO> ordenesPagadas = cliente.getOrdenes()
+                .stream()
+                .filter(Orden::isPagada) // Filtrar órdenes pagadas
+                .map(OrdenDTO::new)
+                .collect(Collectors.toList());
+        return ordenesPagadas;
+    }
+
     @PostMapping("/api/clientes/current/orden")
     public ResponseEntity<Object> crearOrden (@RequestParam int cantidadPasajeros, Authentication authentication){
 
@@ -107,6 +118,7 @@ public class OrdenControlador {
                 connection.getOutputStream().write(cuerpoDeSolicitud.getBytes());
 
                 int codigoDeRespuesta = connection.getResponseCode();
+                System.out.println("Respuesta del servidor: " + codigoDeRespuesta);
                 if (codigoDeRespuesta == HttpURLConnection.HTTP_CREATED) {
 
                     BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
