@@ -2,7 +2,7 @@ FROM gradle:7.6.1-jdk11-alpine
 
 COPY . .
 
-EXPOSE 8585
+EXPOSE 8080
 
 RUN gradle build
 
